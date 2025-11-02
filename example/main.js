@@ -4,3 +4,4 @@
  * the Sass plugin and insert it into the <style>.
  */
 import '../frontend/main.css';
+import '../frontend/components/drawer/drawer.js';

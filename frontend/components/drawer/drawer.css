@@ -6,17 +6,19 @@
   :scope {
     --drawer-bg: var(--color-bg-z3);
     --drawer-header-border-color: var(--color-border);
-    --drawer-box-shadow: var(--shadow-z3);
+    --drawer-shadow: var(--shadow-z3);
     --drawer-closed: -50% 100%;
     --drawer-open: -50% 0;
     --drawer-header-height: var(--dim-7);
     --drawer-footer-height: 80px;
     --margin-top-subhead: var(--lh);
 
+    animation:
+      drawer-out calc(var(--duration-200) * 0.8) var(--easing-disappearance) forwards;
     background-color: var(--drawer-bg);
     backdrop-filter: var(--backdrop-glass);
     border: 0;
-    box-shadow: var(--drawer-box-shadow);
+    box-shadow: none;
     display: grid;
     grid-template-rows: var(--drawer-header-height) 1fr;
     grid-template-areas:
@@ -24,6 +26,7 @@
       'body';
     padding: 0;
     position: fixed;
+    translate: var(--drawer-closed);
     z-index: var(--z-drawer);
 
     &:focus {
@@ -54,15 +57,9 @@
     height: 100%;
   }
 
-  /* STATES */
-  :scope.drawer-closed {
-    animation:
-      drawer-out calc(var(--duration-200) * 0.8) var(--easing-disappearance) forwards;
-    translate: var(--drawer-closed);
-  }
-
   :scope.drawer-open {
     animation: drawer-in var(--duration-200) var(--easing-appearance) forwards;
+    box-shadow: var(--drawer-shadow);
     translate: var(--drawer-open);
   }
 
@@ -152,13 +149,25 @@
 /* -------------------------------------------------------------------------- */
 
 @keyframes drawer-in {
-  from { translate: var(--drawer-closed); }
-  to { translate: var(--drawer-open); }
+  from {
+    box-shadow: none;
+    translate: var(--drawer-closed);
+  }
+  to {
+    box-shadow: var(--drawer-shadow);
+    translate: var(--drawer-open);
+  }
 }
 
 @keyframes drawer-out {
-  from { translate: var(--drawer-open); }
-  to { translate: var(--drawer-closed); }
+  from {
+    box-shadow: var(--drawer-shadow);
+    translate: var(--drawer-open);
+  }
+  to {
+    box-shadow: none;
+    translate: var(--drawer-closed);
+  }
 }
 
 /* #endregion */

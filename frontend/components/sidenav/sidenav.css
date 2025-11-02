@@ -293,8 +293,7 @@
 
     .sidenav-user-menu .popover-body {
       inset-block-end: calc(100% + var(--dim-1));
-      inset-inline-start: 0;
-      inset-inline-end: auto;
+      inset-inline: 0 auto;
       top: auto;
     }
   }

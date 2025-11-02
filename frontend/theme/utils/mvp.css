@@ -109,6 +109,7 @@
 /* Flexbox & Grid */
 .items-center { align-items: center;}
 .grid-cols-fr-auto { grid-template-columns: 1fr auto; }
+.flex-col { flex-direction: column;}
 
 .gap-1 { gap: var(--dim-1);}
 .gap-2 { gap: var(--dim-2); }

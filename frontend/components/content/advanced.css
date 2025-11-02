@@ -89,6 +89,25 @@ mark {
   padding-inline: var(--dim-0p5);
 }
 
+ins {
+  color: var(--color-text-success);
+  font-weight: var(--font-weight-strong);
+  text-decoration: none;
+
+  &::before,
+  &::after {
+    content: '+';
+  }
+
+  &::before {
+    margin-inline-end: 2px;
+  }
+
+  &::after {
+    margin-inline-start: 2px;
+  }
+}
+
 /* #endregion */
 
 /* -------------------------------------------------------------------------- */

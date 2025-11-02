@@ -12,8 +12,21 @@ html {
   interpolate-size: allow-keywords;
 
   /* Prevent layout shift when scrollbar appears/disappears */
-  scrollbar-gutter: stable;
+  scrollbar-gutter: stable both-edges;
   text-size-adjust: 100%;
+
+  &.doc-drawer-open {
+    overflow: clip;
+    overflow: hidden;
+    scrollbar-color: transparent transparent; /* Firefox */
+
+    body {
+      position: fixed;
+      /* stylelint-disable-next-line length-zero-no-unit */
+      inset-block-start: var(--scroll-lock-offset, 0px);
+      inline-size: 100%;
+    }
+  }
 
   /* Smooth scroll only when user allows motion */
   @media (prefers-reduced-motion: no-preference) {
@@ -43,6 +56,13 @@ html {
       border: var(--dim-0p5) solid transparent;
       border-radius: var(--radius-pill);
     }
+
+    &.doc-drawer-open::-webkit-scrollbar { background: transparent; }
+    &.doc-drawer-open::-webkit-scrollbar-track { background: transparent; }
+    &.doc-drawer-open::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-color: transparent;
+    }
   }
 }
 
@@ -67,6 +87,10 @@ body {
   min-width: 320px;
   min-height: 100vh;
   min-height: 100dvh;
+
+  @supports not (scrollbar-gutter: stable) {
+    padding-inline-end: calc(env(safe-area-inset-right) + var(--scrollbar-width));
+  }
 }
 
 /* Enable view transitions for smooth page navigation (when motion allowed) */

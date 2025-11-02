@@ -211,7 +211,7 @@
           <p>"pnpm stores one copy of each version and links it, saving disk space."</p>
 
           <h3>Text Elements</h3>
-          <p>This paragraph contains various inline elements: <strong>bold text</strong>, <em>italic text</em>, <a href="#" onclick="event.preventDefault()">primary link</a>, <a class="secondary" href="#" onclick="event.preventDefault()">secondary link</a>, <code>inline code</code>, <mark>highlighted text</mark>, <del>deleted text</del>, and <ins>inserted text</ins>.</p>
+          <p>In this paragraph, you’ll find examples of inline text formatting: <strong>bold</strong>, <em>italic</em>, <a href="#" onclick="event.preventDefault()">link</a>, <code>code</code>, <mark>highlighted text</mark>, <del>deleted text</del>, and <ins>inserted text</ins>.</p>
 
           <h3>Lists</h3>
 
@@ -298,7 +298,7 @@
       </div>
 
       <!-- Table -->
-       <section class="section" id="section-table">
+      <section class="section" id="section-table">
         <div class="container">
           <h2>Table</h2>
           <div class="scroll-x">
@@ -508,9 +508,17 @@
             </div>
           </details>
 
-          <section>
-            <h3>Modal</h3>
-            <button data-target="modal-example" data-role="modal-trigger">Launch Modal</button>
+          <section aria-label="Dialogs & Drawers (Interactive Overlays)">
+            <div class="grid">
+              <div class="d-flex flex-col items-center">
+                <h3>Modal</h3>
+                <button type="button" data-role="open" data-target="modal-example">Launch Modal</button>
+              </div>
+              <div class="d-flex flex-col items-center">
+                <h3>Drawer</h3>
+                <button type="button" data-role="open" data-target="drawer-vertical">Open Drawer</button>
+              </div>
+            </div>
           </section>
 
           <section class="mt-3l">
@@ -534,10 +542,10 @@
     </footer>
 
     <!-- Drawer vertical -->
-    <dialog class="drawer drawer-vertical" id="drawer-vertical">
+    <aside class="drawer drawer-vertical" id="drawer-vertical">
       <header class="drawer-header">
         <h2>Drawer</h2>
-        <button class="btn btn-close" type="button" aria-label="Close">
+        <button class="btn btn-close" type="button" data-role="close" data-target="drawer-vertical" aria-label="Close">
           <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <use href="/assets/icons/sprite.svg#icon-sm-x-mark"></use>
           </svg>
@@ -579,20 +587,20 @@
 
       </div>
       <div class="drawer-footer">
-        <button class="btn" type="button" data-role="close-drawer">
+        <button class="btn" type="button" data-role="close" data-target="drawer-vertical">
           Cancel
         </button>
         <button class="btn btn-primary" type="submit" form="filters-form">
           Apply
         </button>
       </div>
-    </dialog>
+    </aside>
 
     <!-- Modal -->
     <dialog id="modal-example">
       <article>
         <header>
-          <button aria-label="Close" data-target="modal-example" onclick="toggleModal(event)" rel="prev"></button>
+          <button aria-label="Close" data-role="close" data-target="modal-example" onclick="toggleModal(event)" rel="prev"></button>
           <h3>Modal Example</h3>
         </header>
         <p>This is a sample modal dialog demonstrating the modal component.</p>
@@ -636,7 +644,7 @@
         <svg class="icon icon-warning" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-warning"></use></svg>
         <div class="toast-copy"><span class="toast-message">Name already exists</span></div>
       </div>
-      <button class="btn btn-close" aria-label="Закрыть">
+      <button class="btn btn-close" data-role="close" aria-label="Закрыть">
         <svg class="icon icon-sm-x-mark icon-sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-sm-x-mark"></use></svg>
       </button>
       <div class="progress-bar progress-bar-warning" role="progressbar" aria-label="warning" aria-valuemin="0" aria-valuemax="100" aria-busy="true" aria-valuetext="warning">
