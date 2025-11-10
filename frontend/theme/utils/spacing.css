@@ -126,7 +126,7 @@
 .my-1l { margin-block: var(--lh); }
 .mx-1l { margin-inline: var(--lh); }
 .mt-1l { margin-top: var(--lh); }
-.mb-1l { margin-bottom: var(--lh); }
+.mb-lh { margin-bottom: var(--lh); }
 .ms-1l { margin-inline-start: var(--lh); }
 .me-1l { margin-inline-end: var(--lh); }
 
@@ -134,7 +134,7 @@
 .my-2l { margin-block: calc(var(--lh) * 2); }
 .mx-2l { margin-inline: calc(var(--lh) * 2); }
 .mt-2l { margin-top: calc(var(--lh) * 2); }
-.mb-2l { margin-bottom: calc(var(--lh) * 2); }
+.mb-2lh { margin-bottom: calc(var(--lh) * 2); }
 .ms-2l { margin-inline-start: calc(var(--lh) * 2); }
 .me-2l { margin-inline-end: calc(var(--lh) * 2); }
 

@@ -115,7 +115,7 @@ ins {
 /* -------------------------------------------------------------------------- */
 
   /* Image boxes extending beyond the text column width */
-  /* figure*/.figure-wide {
+  /* figure */.figure-wide {
     margin-block: var(--dim-5);
     position: relative;
     left: 50%;

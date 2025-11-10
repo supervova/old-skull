@@ -40,7 +40,7 @@
 .scroll-x {
   --scroll-x-border: 1px solid var(--color-border);
   --scroll-x-radius: var(--radius-sm);
-  --scroll-padding: var(--lh);
+  --scroll-padding: 0;
 
   -webkit-overflow-scrolling: touch;
   border: var(--scroll-x-border);

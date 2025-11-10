@@ -1,0 +1,175 @@
+@scope (.menu) {
+
+  /* ------------------------------------------------------------------------ */
+  /* #region: BASE                                                            */
+  /* ------------------------------------------------------------------------ */
+  :scope {
+    --menu-current-bg: var(--color-fill);
+    --menu-color: var(--color-text-02);
+    --menu-padding: var(--dim-2);
+    --menu-item-padding-x: var(--dim-2);
+    --menu-item-padding-y: var(--dim-1);
+
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin: 0;
+    padding: var(--menu-padding);
+    width: max-content;
+    min-width: var(--width-sm);
+    max-width: var(--width-base);
+  }
+
+  @media (--tablet) {
+    li:not(:last-child) {
+      margin-bottom: var(--dim-0p5);
+    }
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /* #region: ITEM                                                            */
+  /* ------------------------------------------------------------------------ */
+
+  li {
+    color: var(--menu-color);
+    display: block;
+    padding: 0;
+    position: relative;
+    width: 100%;
+  }
+
+  li::marker {
+    display: none;
+  }
+
+  li > a {
+    @mixin text-format base;
+
+    background-color: transparent;
+    border: 0;
+    border-radius: var(--radius-sm);
+    color: var(--menu-color);
+    display: flex;
+    align-items: center;
+    gap: var(--dim-1);
+    justify-content: flex-start;
+    text-align: start;
+    text-decoration: none;
+    text-transform: none;
+    padding: var(--menu-item-padding-y) var(--menu-item-padding-x);
+    outline: 0;
+    position: relative;
+    transition:
+      background var(--duration-50) var(--easing-base),
+      color var(--duration-50) var(--easing-base);
+    user-select: none;
+    width: 100%;
+    height: auto;
+  }
+
+  li > a:is(:active, :focus-visible) {
+    background-color: var(--color-fill);
+    text-decoration: none;
+  }
+
+  @media (any-hover: hover) {
+    li > a:hover {
+      background-color: var(--menu-current-bg);
+    }
+  }
+
+  li > a[aria-current] {
+    background-color: var(--menu-current-bg);
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* #endregion */
+
+  /* ------------------------------------------------------------------------ */
+  /* #region: ITEM'S CHILDREN                                                 */
+  /* ------------------------------------------------------------------------ */
+
+  .menu-label {
+    @mixin text-truncate;
+
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .icon {
+    flex-shrink: 0;
+  }
+
+  /* #endregion */
+
+  /* ------------------------------------------------------------------------ */
+  /* #region: MODIFIERS                                                       */
+  /* ------------------------------------------------------------------------ */
+
+  .menu-item-icon-start {
+    padding-inline-start: calc(var(--menu-item-padding-x) - var(--dim-0p5));
+  }
+
+  .menu-item-icon-end {
+    padding-inline-end: calc(var(--menu-item-padding-x) - var(--dim-0p5));
+  }
+
+  .menu-item-icons {
+    padding-inline: calc(var(--menu-item-padding-x) - var(--dim-0p5));
+  }
+
+  /* #endregion */
+
+  /* ------------------------------------------------------------------------ */
+  /* #region: ACTION (BUTTON NOT A)                                           */
+  /* ------------------------------------------------------------------------ */
+
+  .menu-action {
+    @mixin text-format base;
+
+    background: transparent;
+    border-radius: var(--button-radius, var(--radius-base));
+    color: var(--button-color, var(--color-brand-primary));
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: var(--button-gap, var(--dim-1p5));
+    justify-content: start;
+    padding-block: 0;
+    padding-inline: var(--button-padding-x, var(--dim-2p5));
+    outline: 0;
+    touch-action: manipulation;
+    transition: background var(--duration-50) var(--easing-base);
+    user-select: none;
+    white-space: nowrap;
+    width: 100%;
+    height: var(--button-height, var(--dim-6));
+  }
+
+  @media (any-hover: hover) {
+    .menu-action:hover {
+      background-color: var(--menu-current-bg);
+    }
+  }
+
+  .menu-action.is-disabled {
+    cursor: default;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* #endregion */
+
+  /* -------------------------------------------------------------------------- */
+  /* #region: DIVIDER                                                           */
+  /* -------------------------------------------------------------------------- */
+
+  .menu-divider {
+    border-top: 1px solid var(--color-border);
+    height: 0;
+  }
+
+  /* #endregion */
+}

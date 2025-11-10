@@ -1,0 +1,62 @@
+/* -------------------------------------------------------------------------- */
+/* #region: BASE                                                              */
+/* -------------------------------------------------------------------------- */
+
+@scope (blockquote) {
+  :scope {
+    --quot-size: calc(var(--lh) * 4);
+    --quot-color: var(--color-border);
+    --quot-font: Georgia, serif;
+
+    @mixin text-format h3;
+
+    border: 0;
+    text-align: center;
+    text-wrap: balance;
+    margin: var(--dim-6) 0;
+    padding: var(--dim-4) 0;
+    position: relative;
+    quotes: "\201C""\201D""\2018""\2019";
+
+    &::before,
+    &::after {
+      color: var(--quot-color);
+      font-family: var(--quot-font);
+      font-size: var(--quot-size);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -10px;
+      position: absolute;
+    }
+
+    &::before {
+      content: open-quote;
+      top: 0;
+      inset-inline-start: var(--dim-3);
+      transform: translateY(-25%);
+    }
+
+    &::after {
+      content: close-quote;
+      bottom: 0;
+      inset-inline-end: 0;
+      transform: translateY(75%);
+    }
+
+    @media (--phone-l) {
+      padding-inline: var(--dim-6);
+
+      &::before {
+        transform: none;
+      }
+
+      &::after {
+        inset-inline-end: var(--dim-1);
+        transform: translateY(40%);
+      }
+    }
+  }
+
+  /* #endregion */
+
+}

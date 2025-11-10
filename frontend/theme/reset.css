@@ -101,7 +101,7 @@ summary::-moz-list-bullet {
 }
 
 :focus-visible {
-  outline: 2px solid currentColor;
+  outline: 2px solid var(--color-focus, currentColor);
 }
 
 /* stylelint-disable declaration-no-important */

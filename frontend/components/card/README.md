@@ -23,9 +23,11 @@ They are often used in **grids, feeds, dashboards, and previews**.
 ```pug
 article.card
   header
-    h2 10 Ways to Save Money
-  section
+    //- Optionally: .eyebrow
+    h3 10 Ways to Save Money
+  .card-body
     p Expert financial tips for everyday life.
+  //- Optionally: footer or time
 ```
 
 ### Section
@@ -34,6 +36,7 @@ article.card
 section.card
   header
     h3 Your current plan
+  //- .card-body is optional container
   p Pro — active until 2025-12-12
 ```
 
@@ -44,4 +47,16 @@ div.card
   figure
     img(src='thumbnail.jpg' alt='Preview')
   p Description goes here.
+```
+
+## Using Microdata
+
+```pug
+article.card(itemscope itemtype='https://schema.org/Product')
+  img(src='' alt='' itemprop='image')
+  h3(itemprop='name')
+    a.card-link(href='/example.html' itemprop='url') Game
+  p.card-price(itemprop='offers' itemscope itemtype='https://schema.org/Offer')
+    meta(itemprop='priceCurrency' content='USD')
+    span(itemprop='price') 10
 ```

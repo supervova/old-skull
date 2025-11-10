@@ -46,17 +46,28 @@
     z-index: calc(var(--z-tooltip) + 1);
   }
 
-  :scope:is(:active, :focus-visible)::before,
-  :scope:is(:active, :focus-visible)::after {
-    opacity: 1;
-    visibility: visible;
+  :scope.tooltip-min::before {
+    display: none;
+  }
+
+  :scope:is(:active, :focus-visible) {
+    overflow: visible;
+
+    &::before,
+    &::after {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 
   @media (any-hover: hover) and (pointer: fine) {
-    :scope:hover::before,
-    :scope:hover::after {
-      opacity: 1;
-      visibility: visible;
+    :scope:hover {
+      overflow: visible;
+      &::before,
+      &::after {
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
 

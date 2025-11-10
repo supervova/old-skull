@@ -75,8 +75,7 @@
     max-height: calc(100% - var(--modal-offset));
     max-width: var(--modal-max-width);
     opacity: 1;
-    padding-block-end: var(--modal-padding-block);
-    padding-block-start: var(--modal-radius-mobile);
+    padding-block: var(--modal-radius-mobile) var(--modal-padding-block);
     padding-inline: var(--dim-1);
     position: fixed;
     translate: 0;

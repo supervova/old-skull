@@ -23,8 +23,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--footer-gap);
-    padding-block-end: var(--footer-padding-block-end);
-    padding-block-start: var(--footer-padding-block-start);
+    padding-block: var(--footer-padding-block-start) var(--footer-padding-block-end);
   }
 
   .footer-menu {
@@ -126,8 +125,7 @@
 
 @media (--tablet-l) {
   .footer-languages .popover-body {
-    inset-inline-start: auto;
-    inset-inline-end: 0;
+    inset-inline: auto 0;
     translate: 0;
   }
 }

@@ -1,0 +1,29 @@
+@scope (.logo) {
+  :scope {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: var(--dim-2);
+  }
+
+  .logo-text {
+    display: none;
+
+    @media (--phone-l) {
+      display: block;
+      padding-top: var(--dim-0p5);
+    }
+  }
+
+  .logo-tagline {
+    @mixin text-format fine-print;
+
+    --letter-spacing-fine-print: 5.6px;
+
+    color: var(--color-text-02);
+    display: block;
+    letter-spacing: var(--letter-spacing-fine-print);
+    text-transform: lowercase;
+    margin-top: var(--dim-0p5);
+  }
+}

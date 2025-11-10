@@ -1,0 +1,9 @@
+.header-aside {
+  display: flex;
+  align-items: center;
+  gap: var(--dim-1);
+
+  .btn {
+    --button-bg: transparent;
+  }
+}

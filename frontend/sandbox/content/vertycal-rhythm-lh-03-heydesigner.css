@@ -1,4 +1,5 @@
 :root {
+
   /* font size for root */
   --fsr: 1rem;
 
@@ -6,14 +7,14 @@
   --fs: 106.25%;
 
   /* Line-height */
-  --lh: 1.6470588235rem;
+  --lh: 1.6471rem;
 
   /* Type scale */
   --ts: 1.2;
 
-  @media screen and (min-width: 764px) {
+  @media screen and (width >= 764px) {
     --fs: 112.5%;
-    --lh: 1.6666666667rem;
+    --lh: 1.6667rem;
   }
 }
 
@@ -26,7 +27,7 @@ html {
 body {
   background-color: var(--color-background);
   color: var(--color-text);
-  font-family: InterVariable, -apple-system, BlinkMacSystemFont, segoe ui, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+  font-family: InterVariable, -apple-system, BlinkMacSystemFont, "segoe ui", Helvetica, Arial, sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol";
   font-size: var(--fsr);
   font-weight: 400;
   line-height: var(--lh);

@@ -23,7 +23,9 @@ form {
   width: 100%;
 
   &:focus-visible {
-    border-color: var(--form-focus-color);
+
+    /* Prevent mixing of the semi-transparent border color with the outline color */
+    border-color: transparent;
   }
 
   &:disabled {

@@ -2,48 +2,37 @@
 /* #region: BASE                                                              */
 /* -------------------------------------------------------------------------- */
 
-/*
-`header.header` and `header.topnav` are different components that occupy the same
-area on the page.
-
-1. `header.topnav` is the global navigation of the site or application — a list
-of links to main sections, as well as a sliding search panel. On mobile devices,
-`.topnav` is split into two panels: a bottom navigation bar and a top bar
-containing the logo, search button, and user menu button.
-2. `header.header` is an additional navigation panel for sites or applications
-where the main navigation is placed in a sidebar on tablets and desktops.
-`header.header` contains an expanded search form, a user menu, and may include
-extra elements such as a cart button, key service statistics, etc.
-*/
-
 @scope (.header) {
   :scope {
     --header-bg: var(--color-bg-02);
-    --header-shadow: var(--shadow-z2);
     --header-position: fixed;
     --header-top: 0;
     --header-start: 0;
     --header-end: 0;
-    --header-padding-top: var(--dim-2p5);
-    --header-padding-bottom: var(--dim-2p5);
-    --header-padding-start: 0;
+
+    --header-padding-top: 0;
+    --header-padding-bottom: 0;
+    --header-padding-start: var(--dim-2p5);
+    --header-padding-end: var(--dim-2p5);
+
     --header-translate-y: -100%;
     --header-transition-duration: var(--duration-200);
     --header-nav-offset: 6rem;
-    --header-overlay-bg: var(--color-backdrop);
-    --header-overlay-filter: var(--backdrop-blur-min);
+    --header-overlay-bg: color-mix(in oklch, var(--color-bg-02) 80%, transparent);
+    --header-overlay-filter: var(--backdrop-glass);
 
     background-color: var(--header-bg);
-    box-shadow: var(--header-shadow);
-    padding-bottom: var(--header-padding-bottom);
-    padding-top: var(--header-padding-top);
-    padding-inline-start: var(--header-padding-start);
+    padding-block: var(--header-padding-top) var(--header-padding-bottom);
+    padding-inline: var(--header-padding-start) var(--header-padding-end);
     position: var(--header-position);
     top: var(--header-top);
     inset-inline: var(--header-start) var(--header-end);
+    z-index: var(--z-fixed);
+  }
+
+  :scope:not(:has(.topnav)) {
     translate: 0 var(--header-translate-y);
     transition: translate var(--header-transition-duration) var(--easing-base);
-    z-index: var(--z-drawer);
   }
 
   :scope::after {
@@ -55,38 +44,6 @@ extra elements such as a cart button, key service statistics, etc.
     display: flex;
     gap: 0;
     justify-content: space-between;
-  }
-
-  @media (--tablet) {
-    :scope {
-      --header-bg: transparent;
-      --header-shadow: none;
-      --header-position: static;
-      --header-end: auto;
-      --header-start: auto;
-      --header-padding-bottom: 0;
-      --header-padding-top: var(--dim-5);
-      --header-padding-start: var(--header-nav-offset);
-      --header-translate-y: 0;
-    }
-
-    > .container {
-      gap: var(--lh);
-    }
-  }
-
-  @media (--tablet-l) {
-    > .container {
-      display: grid;
-      gap: var(--dim-4);
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (--laptop) {
-    > .container {
-      grid-template-columns: repeat(3, 1fr);
-    }
   }
 }
 

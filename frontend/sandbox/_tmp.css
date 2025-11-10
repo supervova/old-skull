@@ -24,7 +24,7 @@ p, ul, ol, blockquote, pre, table {
 /* #region: HEADINGS (line-height кратна 8px)                                 */
 /* -------------------------------------------------------------------------- */
 
-/* Подход: размер шрифта — из шкалы; высота строки — целое число × 8px.*/
+/* Подход: размер шрифта — из шкалы; высота строки — целое число × 8px. */
 
 .hero-title {
   font-size: var(--font-size-hero);
@@ -86,6 +86,7 @@ small, .text-xs {
 
 /* Двухстрочный заголовок в карточке: чётко по ритму, clamp на 2 строки */
 .card h3 {
+
   /* h3 уже имеет line-height = 24px (3×8) выше */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -100,4 +101,3 @@ small, .text-xs {
   padding: var(--lh);
   margin-block: 0 var(--lh);
 }
-```

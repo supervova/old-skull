@@ -1,7 +1,10 @@
-# Old Skull CSS | An Anti-Tailwind CSS framework, powered by LLM assistants
+# Old Skull CSS | A Tailwind-free CSS framework, powered by LLM assistants
 
 Work in progress.
+
+```text
  .-.
 (o o)
   ^
  |||
+```

@@ -1,5 +1,5 @@
 /* -------------------------------------------------------------------------- */
-/* #region: DOCUMENT                                                          */
+/* #region: ROOT - HTML                                                         */
 /* -------------------------------------------------------------------------- */
 
 html {
@@ -10,29 +10,17 @@ html {
   font-synthesis: none;
   hanging-punctuation: first allow-end last;
   interpolate-size: allow-keywords;
-
-  /* Prevent layout shift when scrollbar appears/disappears */
-  scrollbar-gutter: stable both-edges;
+  scrollbar-gutter: stable;
   text-size-adjust: 100%;
 
-  &.doc-drawer-open {
-    overflow: clip;
-    overflow: hidden;
-    scrollbar-color: transparent transparent; /* Firefox */
-
-    body {
-      position: fixed;
-      /* stylelint-disable-next-line length-zero-no-unit */
-      inset-block-start: var(--scroll-lock-offset, 0px);
-      inline-size: 100%;
-    }
+  /* Hide scrollbar when drawer is open */
+  &:has(.drawer-open) {
+    scrollbar-color: transparent transparent;
   }
 
   /* Smooth scroll only when user allows motion */
   @media (prefers-reduced-motion: no-preference) {
-    &:focus-within {
-      scroll-behavior: smooth;
-    }
+    scroll-behavior: smooth;
   }
 
   /* Custom scrollbar styling for precise pointer devices */
@@ -57,14 +45,26 @@ html {
       border-radius: var(--radius-pill);
     }
 
-    &.doc-drawer-open::-webkit-scrollbar { background: transparent; }
-    &.doc-drawer-open::-webkit-scrollbar-track { background: transparent; }
-    &.doc-drawer-open::-webkit-scrollbar-thumb {
+    &:has(.drawer-open)::-webkit-scrollbar {
+      background: transparent;
+    }
+
+    &:has(.drawer-open)::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &:has(.drawer-open)::-webkit-scrollbar-thumb {
       background-color: transparent;
       border-color: transparent;
     }
   }
 }
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: BODY                                                         */
+/* -------------------------------------------------------------------------- */
 
 body {
   accent-color: var(--color-brand);
@@ -87,11 +87,13 @@ body {
   min-width: 320px;
   min-height: 100vh;
   min-height: 100dvh;
-
-  @supports not (scrollbar-gutter: stable) {
-    padding-inline-end: calc(env(safe-area-inset-right) + var(--scrollbar-width));
-  }
 }
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: VIEW TRANSITIONS                                                  */
+/* -------------------------------------------------------------------------- */
 
 /* Enable view transitions for smooth page navigation (when motion allowed) */
 @media (prefers-reduced-motion: no-preference) {

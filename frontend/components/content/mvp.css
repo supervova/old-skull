@@ -36,7 +36,10 @@ h3, .h3 {
 
 h1, .h1 {
   @mixin text-format title;
-  margin-bottom: var(--margin-bottom-title, var(--dim-7));
+
+  &:not(header *) {
+    margin-bottom: var(--margin-bottom-title, var(--dim-7));
+  }
 }
 
 h2, .h2 {
@@ -138,11 +141,42 @@ li:last-child {
   margin-bottom: 0;
 }
 
-/* Unordered markers */
-:where(ul:not([class], nav ul)) > li::marker,
-.list-unordered > li::marker {
-  color: var(--color-brand);
-  content: '\2022\00a0';
+/* Unordered list markers. The first section is for Safari, which doesn’t support
+   ::marker. */
+:where(ul:not([class], nav ul)) > li {
+  --list-marker-size: 0.25rem; /* 4px */
+  padding-inline-start: calc(var(--dim-1) + var(--list-marker-size));
+  position: relative;
+}
+
+:where(ul:not([class], nav ul)) > li::before {
+  background-color: var(--color-brand);
+  border-radius: 50%;
+  content: '';
+  position: absolute;
+  top: calc(0.75em - var(--list-marker-size) / 2);
+  inset-inline-start: 0;
+  block-size: var(--list-marker-size);
+  inline-size: var(--list-marker-size);
+}
+
+/* Modern browsers */
+@supports selector(::marker) {
+  @supports not (-webkit-hyphenate-limit-after: 1) {
+    :where(ul:not([class], nav ul)) > li {
+      padding-inline-start: 0;
+      position: revert;
+    }
+
+    :where(ul:not([class], nav ul)) > li::before {
+      content: none;
+    }
+
+    :where(ul:not([class], nav ul)) > li::marker {
+      color: var(--color-brand);
+      content: '\2022\00a0';
+    }
+  }
 }
 
 /* Ordered list counter */
@@ -206,15 +240,8 @@ dd {
 /* #endregion */
 
 /* -------------------------------------------------------------------------- */
-/* #region: MEDIA, EMBEDS, AND QUOTES                                                              */
+/* #region: MEDIA AND EMBEDS                                                  */
 /* -------------------------------------------------------------------------- */
-
-blockquote {
-  border-inline-start: 3px solid var(--color-link);
-  color: var(--color-text-02);
-  margin-block: var(--margin-top-subhead, var(--dim-6));
-  padding-inline-start: var(--lh);
-}
 
 img,
 svg,
@@ -274,6 +301,7 @@ td {
   border-bottom: 1px solid var(--color-border);
   padding-block: calc(var(--cell-padding-y) - 1px) var(--cell-padding-y);
   padding-inline: var(--cell-padding-x);
+  min-width: 10ch;
 
   /* In tables, this behaves like min-height */
   height: var(--cell-height);

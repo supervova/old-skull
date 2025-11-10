@@ -40,6 +40,10 @@ tfoot td {
   scroll-snap-align: start;
 }
 
+:where(.scroll-x) tr:last-child > :is(td, th) {
+  border-bottom: 0;
+}
+
 @media (any-hover: hover) {
   :where(.table-hover tbody) tr:hover {
     background-color: var(--color-bg-02);

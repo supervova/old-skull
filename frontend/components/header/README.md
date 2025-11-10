@@ -1,6 +1,45 @@
-# Header Components Overview
+# Header
 
-`header.header` and `header.topnav` are different components that occupy approximately the same area on the page.
+The header serves as the top section of a website or application. It can be configured to perform one of two roles depending on the layout structure.
 
-1. `header.topnav` is the global navigation of the site or application — a list of links to main sections, as well as a sliding search panel. On mobile devices, `.topnav` is split into two panels: a bottom navigation bar and a top bar containing the logo, search button, and user menu button.
-2. `header.header` is an additional navigation panel for sites or applications where the main navigation is placed in a sidebar on tablets and desktops. `header.header` contains an expanded search form, a user menu, and may include extra elements such as a cart button, key service statistics, etc.
+## 1. Main navigation layout
+
+Used when the header contains the site’s primary navigation:
+
+- Logo
+- Main navigation `.topnav`
+- Search bar (inline, expandable or modal)
+- User menu / Authorization Buttons
+- Optionally: buttons for a shopping cart, adding user-generated content, adding to favorites, and similar actions.
+
+```pug
+header.header
+  a.logo(href='/')
+  nav.topnav
+  form.search
+  nav.header-aside
+    button.btn(type='button' aria-label='Open search')
+      details.user-menu.popover
+```
+
+## Minimal layout (with side navigation)
+
+Used when the main navigation is placed in a sidebar (.sidenav). The header includes:
+
+- Search bar
+- User menu / Authorization Buttons
+- Optionally: hamburger button for side menu for a shopping cart, adding user-generated content, adding to favorites, and similar actions.
+- Optionally: a logo, a hamburger button to open the main menu drawer, and the optional buttons listed above.
+
+```pug
+header.header
+  //- Optionally: logo, a hamburger button
+  form.search
+  nav.header-aside
+```
+
+## Usage notes
+
+- Combine with `.sidenav` for layouts with persistent side navigation.
+- The header height should remain consistent across pages.
+- Place global actions (like notifications or account menu) in the top-right area.

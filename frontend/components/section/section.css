@@ -21,10 +21,3 @@
   color: var(--color-text);
 }
 
-.section-title-highlight {
-  background-clip: text;
-  background-image: var(--color-gradient-brand);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  color: transparent;
-}

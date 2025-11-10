@@ -50,11 +50,11 @@
 
   :scope::details-content {
     color: var(--color-text-02);
-    height: 0;
     transition:
       content-visibility var(--duration-200) var(--easing-base),
       height var(--duration-200) var(--easing-base);
     transition-behavior: allow-discrete;
+    height: 0;
   }
 
   :scope[open] {

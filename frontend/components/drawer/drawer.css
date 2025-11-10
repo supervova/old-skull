@@ -36,14 +36,18 @@
 
   /* MODIFIERS */
   :scope.drawer-horizontal {
-    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    --drawer-radius: var(--radius-base);
+
+    border-radius: var(--drawer-radius) var(--drawer-radius) 0 0;
     bottom: 0;
     left: 50%;
     width: 100%;
+    max-width: var(--width-xl);
     height: 312px;
+    max-height: calc(90vh - var(--dim-5));
 
     & .drawer-header {
-      border-radius: calc(var(--dim-2) + 1rem) calc(var(--dim-2) + 1rem) 0 0;
+      border-radius: calc(var(--drawer-radius) - 1px) calc(var(--drawer-radius) - 1px) 0 0;
     }
   }
 
@@ -54,9 +58,11 @@
     inset-block: 0;
     inset-inline: auto 0;
     width: var(--width-md);
+    max-width: calc(100vw - var(--dim-7));
     height: 100%;
   }
 
+  :scope[open],
   :scope.drawer-open {
     animation: drawer-in var(--duration-200) var(--easing-appearance) forwards;
     box-shadow: var(--drawer-shadow);
@@ -130,6 +136,7 @@
     display: flex;
     align-items: center;
     align-self: end;
+    flex-wrap: wrap;
     gap: var(--dim-2);
     justify-content: end;
     grid-area: body;
@@ -139,6 +146,16 @@
     right: 0;
     bottom: 0;
     z-index: 1;
+  }
+
+  &.drawer-horizontal .drawer-footer {
+    box-shadow: var(--shadow-z1);
+    border-radius: calc(var(--radius-base) + var(--dim-1));
+    padding: var(--dim-1);
+    overflow: visible;
+    left: auto;
+    right: var(--dim-1p5);
+    bottom: var(--dim-1p5);
   }
 }
 

@@ -80,4 +80,13 @@
   --color-text-02-success: hsl(var(--h-green) var(--s) 32%);
 
   /* #endregion */
+
+  /* ------------------------------------------------------------------------ */
+  /* #region: ICONS                                                           */
+  /* ------------------------------------------------------------------------ */
+
+  --icon-chevron-down: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M6%208L10%2012L14%208%22%20stroke%3D%22black%22%20stroke-opacity%3D%220.38%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E%0A');
+  --icon-remove: url('data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M7.87868%207.87868L10%2010M10%2010L12.1213%2012.1213M10%2010L7.87868%2012.1213M10%2010L12.1213%207.87868M17%2010C17%2013.866%2013.866%2017%2010%2017C6.13401%2017%203%2013.866%203%2010C3%206.13401%206.13401%203%2010%203C13.866%203%2017%206.13401%2017%2010Z%22%20stroke%3D%22black%22%20stroke-opacity%3D%220.38%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E%0A');
+
+  /* #endregion */
 }

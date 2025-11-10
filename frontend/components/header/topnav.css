@@ -1,48 +1,215 @@
-.topnav {
-  backdrop-filter: var(--backdrop-glass);
-  background: color-mix(in oklch, var(--color-bg) 80%, transparent);
-  padding: var(--dim-2p5);
-  width: 100vw;
-  height: max-content;
+/* -------------------------------------------------------------------------- */
+/* #region: BASE                                                              */
+/* -------------------------------------------------------------------------- */
+
+@scope (.header-topnav, .header:has(.topnav)) {
+  :scope {
+    --header-label-color: var(--color-text-02);
+    --header-nav-item-height: var(--dim-5);
+    --header-padding-end: var(--dim-2p5);
+    --header-padding-start: var(--dim-2p5);
+    --header-padding-top: var(--dim-2);
+    --header-position: static;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: max-content;
+  }
+
+  :scope > .container {
+    display: contents;
+  }
+
+  @media (--tablet) {
+    :scope {
+      --header-padding-start: var(--dim-5);
+      --header-padding-end: var(--dim-5);
+      --header-padding-top: var(--dim-4);
+      --header-padding-bottom: var(--dim-3);
+    }
+  }
+
+  @media (--tablet-l) {
+    :scope {
+      --header-padding-end: 0;
+      --header-padding-start: 0;
+      --header-position: fixed;
+
+      background-color: var(--header-overlay-bg);
+      backdrop-filter: var(--header-overlay-filter);
+    }
+
+    :scope > .container {
+      display: flex;
+    }
+  }
 }
 
-.header > .container {
-  display: flex;
-  align-items: flex-start;
+@scope (.topnav) {
+  :scope {
+    --topnav-bg: var(--header-overlay-bg);
+    --topnav-filter: var(--header-overlay-filter);
+    --topnav-height: calc(5rem + env(safe-area-inset-bottom));
+    --topnav-item-width: clamp(80px, 25%, 168px);
+
+    background-color: var(--topnav-bg);
+    backdrop-filter: var(--topnav-filter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--dim-0p5)
+      calc(var(--dim-0p5) + env(safe-area-inset-bottom));
+    padding-inline: var(--dim-1);
+    position: fixed;
+    bottom: 0;
+    inset-inline: 0;
+    width: 100%;
+    height: var(--topnav-height);
+    z-index: var(--z-fixed);
+  }
+
+  :scope > ul {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    gap: 0;
+    justify-content: center;
+  }
+
+  :scope > ul > li {
+    flex: 1 1 var(--topnav-item-width);
+    margin-bottom: 0;
+  }
+
+  :scope > ul > li[hidden] {
+    display: none;
+  }
+
+  .topnav-link,
+  .topnav-more summary {
+    border-radius: var(--radius-sm);
+    color: var(--header-label-color);
+    display: flex;
+    align-items: center;
+    transition:
+      background-color var(--duration-100) var(--easing-base),
+      background-image var(--duration-150) var(--easing-base);
+    height: 100%;
+
+    &:active,
+    &:focus-visible {
+      background: var(--color-fill);
+      outline-offset: 0;
+      text-decoration: none;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: var(--color-fill);
+      }
+    }
+  }
+
+  .topnav-link:not(.popover-body .topnav-link),
+  .topnav-more summary {
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--dim-1);
+    padding-block: var(--dim-1);
+    text-align: center;
+  }
+
+  .topnav-label:not(.popover-body .topnav-label) {
+    @mixin text-format fine-print;
+
+    @media (--phone) {
+      @mixin text-truncate;
+    }
+  }
+
+  .topnav-more .popover {
+    width: 100%;
+  }
+
+  .topnav-more .popover-body {
+    bottom: 100%;
+    inset-inline: auto var(--dim-1p5);
+  }
+
+  .topnav-more .menu > li {
+    width: 100%;
+  }
+
+  .topnav-more .topnav-link:has(> .icon:first-child) {
+    padding-inline-start: calc(var(--menu-item-padding-x) - var(--dim-0p5));
+  }
+
+  .topnav-more[hidden] {
+    display: none;
+  }
+
+  @media (--tablet-l) {
+    :scope {
+      --topnav-height: auto;
+
+      background-color: transparent;
+      backdrop-filter: none;
+      gap: var(--dim-1);
+      height: auto;
+      padding: 0;
+      position: static;
+      width: auto;
+    }
+
+    :scope > ul {
+      justify-content: flex-start;
+    }
+
+    :scope > ul > li {
+      flex: 0 0 auto;
+    }
+
+    .topnav-link:not(.popover-body .topnav-link),
+    .topnav-more summary {
+      flex-direction: row;
+      gap: var(--dim-1);
+      text-align: start;
+      padding: 0 var(--dim-2);
+      transition: background var(--duration-50) var(--easing-base);
+      height: var(--header-nav-item-height);
+
+      .icon {
+        display: none;
+      }
+    }
+
+    .topnav-label:not(.popover-body .topnav-label) {
+      --line-height-base: 1;
+
+      @mixin text-format base;
+    }
+
+    .topnav-more .popover-body {
+      bottom: auto;
+    }
+  }
 }
 
-.topnav-item {
-  width: auto;
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: MODIFIERS                                                         */
+/* -------------------------------------------------------------------------- */
+
+@scope (.topnav) {
+  @media (--laptop) {
+    .topnav-home {
+      display: none;
+    }
+  }
 }
 
-.topnav-item > a {
-  align-items: center;
-  border-radius: var(--radius-base);
-  flex-direction: row;
-  gap: var(--dim-1);
-  padding-block: 0;
-  padding-inline: var(--dim-4) var(--dim-2);
-  position: relative;
-  height: var(--navbar-height-desktop);
-}
-
-.topnav-label {
-  color: var(--navbar-label-color);
-  font-size: var(--navbar-label-size);
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 1;
-}
-
-.topnav-user summary {
-  translate: 0 var(--dim-0p5);
-}
-
-.topnav-user summary::after {
-  display: block;
-}
-
-.topnav-user .popover-body {
-  inset-block-end: auto;
-  inset-inline: auto 0;
-}
+/* #endregion */

@@ -91,7 +91,6 @@
   justify-content: center;
   line-height: var(--line-height-body-sm);
   max-width: 100%;
-  min-width: 0;
   padding-inline: var(--dim-1p5);
   scroll-snap-align: start;
   text-decoration: none;

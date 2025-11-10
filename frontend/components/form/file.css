@@ -1,0 +1,7 @@
+[type='file'] {
+  background: 0 0;
+  border-radius: 0;
+  border: 0;
+  padding: var(--dim-1) 0;
+  width: 100%;
+}

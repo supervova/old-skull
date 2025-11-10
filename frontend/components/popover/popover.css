@@ -1,81 +1,104 @@
-/* -------------------------------------------------------------------------- */
-/* #region: BASE                                                              */
-/* -------------------------------------------------------------------------- */
-
 @scope (.popover) {
+
+  /* ------------------------------------------------------------------------ */
+  /* #region: BASE                                                            */
+  /* ------------------------------------------------------------------------ */
   :scope {
     --popover-body-background: var(--color-bg);
-    --popover-body-border: 1px solid var(--color-border, hsl(0 0% 0% / 0.08));
+    --popover-body-color: var(--color-text-02);
+    --popover-body-offset: var(--dim-1);
+    --popover-body-inset-inline-start: 0;
+    --popover-body-padding-block: var(--dim-2);
+    --popover-body-padding-inline: var(--padding-inline-md, var(--dim-2));
     --popover-body-radius: var(--radius-base);
     --popover-body-shadow: var(--shadow-z2);
-    --popover-body-color: var(--color-text-02);
+    --popover-body-translate-inline: 0;
+    --popover-body-translate-block: var(--popover-body-offset);
     --popover-body-width: var(--width-sm);
-    --popover-body-padding-inline: var(--padding-inline-md, var(--dim-2));
-    --popover-body-padding-block: var(--dim-2);
-    --popover-body-offset: var(--dim-1);
     --popover-layer: 40;
     --popover-max-inline: calc(100vw - var(--dim-2p5) * 2);
 
     position: relative;
+    width: fit-content;
   }
+
+  /* #endregion */
+
+  /* ------------------------------------------------------------------------ */
+  /* #region: BODY                                                            */
+  /* ------------------------------------------------------------------------ */
 
   :scope::details-content {
-    opacity: 0;
-    transition:
-      content-visibility var(--duration-200) var(--easing-base),
-      opacity var(--duration-200) var(--easing-base);
+    transition: content-visibility var(--duration-200) var(--easing-base);
     transition-behavior: allow-discrete;
-  }
-
-  :scope[open]::details-content {
-    opacity: 1;
   }
 
   .popover-body {
     background-color: var(--popover-body-background);
     border-radius: var(--popover-body-radius);
-    border: var(--popover-body-border);
     box-shadow: var(--popover-body-shadow);
     color: var(--popover-body-color);
     display: flex;
     flex-direction: column;
     margin: 0;
+    inset-inline-start: var(--popover-body-inset-inline-start);
     max-width: var(--popover-max-inline);
     opacity: 0;
     padding-block: var(--popover-body-padding-block);
     padding-inline: var(--popover-body-padding-inline);
     pointer-events: none;
     position: absolute;
-    text-align: left;
+    text-align: start;
     transition:
-      opacity calc(var(--duration-200) * 0.8) var(--easing-disappearance),
-      translate calc(var(--duration-200) * 0.8) var(--easing-disappearance);
-    translate: 0 var(--popover-body-offset);
+      opacity var(--duration-200) var(--easing-disappearance),
+      translate var(--duration-200) var(--easing-disappearance);
+    translate: var(--popover-body-translate-inline) var(--popover-body-translate-block);
     width: var(--popover-body-width);
     z-index: var(--popover-layer);
   }
 
+  /* Initial state for opening animation */
+  @starting-style {
+    :scope[open] > .popover-body,
+    :scope.popover-open > .popover-body {
+      --popover-body-translate-block: var(--popover-body-offset);
+      opacity: 0;
+    }
+  }
+
+  .popover-body:has(> .menu) {
+    padding: 0;
+  }
+
+  /* Open state */
   :scope[open] .popover-body,
   :scope.popover-open > .popover-body {
+    --popover-body-translate-block: 0;
     opacity: 1;
     pointer-events: auto;
     transition:
       opacity var(--duration-200) var(--easing-appearance),
       translate var(--duration-200) var(--easing-appearance);
-    translate: 0;
   }
+
+  /* #endregion */
+
+  /* ------------------------------------------------------------------------ */
+  /* #region: SUMMARY / TRIGGER                                               */
+  /* ------------------------------------------------------------------------ */
 
   summary,
   [data-role='popover-summary'] {
     cursor: pointer;
   }
 
-  .popover-chevron {
+  /* Chevron indicator */
+  :scope.popover-chevron summary {
     align-items: center;
     display: flex;
   }
 
-  .popover-chevron::after {
+  :scope.popover-chevron summary::after {
     background-image: var(--icon-chevron-down);
     background-position: center;
     background-repeat: no-repeat;
@@ -87,64 +110,57 @@
     width: var(--dim-2);
   }
 
-  :scope[open] summary::after {
+  :scope.popover-chevron[open] summary::after,
+  :scope.popover-chevron.popover-open summary::after {
     rotate: 180deg;
   }
 
-  .popover-body.menu {
-    --popover-body-padding-block: var(--dim-1p5);
-    --popover-body-padding-inline: var(--dim-1p5);
-  }
+  /* #endregion */
 }
 
-/* #endregion */
-
 /* -------------------------------------------------------------------------- */
-/* #region: MODIFIERS                                                         */
+/* #region: LAYOUT MODIFIERS                                                  */
 /* -------------------------------------------------------------------------- */
 
-@scope (.popover-share) {
-  :scope summary,
-  :scope [data-role='popover-summary'] {
-    align-items: center;
-    border-radius: var(--radius-sm);
-    display: flex;
-    justify-content: center;
-    padding: var(--dim-1);
+@scope (.popover) {
+
+  /* Position above trigger */
+  :scope.popover-up > .popover-body {
+    --popover-body-translate-block: calc(var(--popover-body-offset) * -1);
+    inset-block-end: 100%;
   }
 
-  @media (any-hover: hover) {
-    :scope summary:hover,
-    :scope [data-role='popover-summary']:hover {
-      background-color: color-mix(in oklch, var(--color-bg) 92%, transparent);
+  @starting-style {
+    :scope.popover-up[open] > .popover-body,
+    :scope.popover-up.popover-open > .popover-body {
+      --popover-body-translate-block: var(--popover-body-offset);
     }
   }
 
-  :scope summary::after,
-  :scope [data-role='popover-summary']::after {
-    display: none;
+  :scope.popover-up[open] > .popover-body,
+  :scope.popover-up.popover-open > .popover-body {
+    --popover-body-translate-block: 0;
   }
 
-  .popover-body {
-    inset-block-end: var(--dim-4);
-    inset-inline-end: calc(var(--dim-4) * -1);
-    inset-inline-start: auto;
+  /* Align to end (right in LTR) */
+  :scope.popover-end > .popover-body {
+    @media (--phone-l) {
+      inset-inline: auto 0;
+    }
   }
-}
 
-/* #endregion */
+  /* Align body to center */
+  :scope.popover-center > .popover-body {
+    --popover-body-inset-inline-start: 50%;
+    --popover-body-translate-inline: -50%;
+  }
 
-/* -------------------------------------------------------------------------- */
-/* #region: LAYOUT OVERRIDES                                                  */
-/* -------------------------------------------------------------------------- */
-
-.popover-up > .popover-body {
-  inset-block-end: 100%;
-}
-
-.popover-right > .popover-body {
-  inset-inline-start: auto;
-  inset-inline-end: 0;
+  :scope.phone\:popover-center > .popover-body {
+    @media (--phone) {
+      --popover-body-inset-inline-start: 50%;
+      --popover-body-translate-inline: -50%;
+    }
+  }
 }
 
 /* #endregion */

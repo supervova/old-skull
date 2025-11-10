@@ -41,9 +41,65 @@
         }
       }
 
-      .logo {
-        display: flex;
-        gap: var(--dim-2);
+      .avatar-xl {
+        border: 8px solid var(--color-bg-02);
+        overflow: visible;
+      }
+
+      @supports (background: linear-gradient(red, blue) border-box) {
+        .avatar-xl {
+          border: 8px solid transparent;
+          background:
+            linear-gradient(to bottom, var(--color-bg-02) 50%, hsl(var(--h) var(--s-min) 82%)) border-box;
+        }
+      }
+
+      .avatar-xl img {
+        border-radius: 50%;
+      }
+
+      /* .avatar-xl::after {
+        background: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22104%22%20height%3D%22166%22%20viewBox%3D%220%200%20104%20166%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M101.9%200C80.6374%200%2063.4004%2017.237%2063.4004%2038.5C63.4004%2051.3193%2070.5152%2063.8955%2081.1719%2070.9492C95.0572%2080.14%20104%2096.0936%20104%20114C104%20142.719%2080.7188%20166%2052%20166C23.2812%20166%200%20142.719%200%20114C0%2096.0939%208.94202%2080.1399%2022.8271%2070.9492C33.4837%2063.8955%2040.5996%2051.3192%2040.5996%2038.5C40.5996%2017.237%2023.3626%200%202.09961%200H101.9Z%22%20fill%3D%22url(%23paint0_linear_16062_5746)%22%2F%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22paint0_linear_16062_5746%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%22166%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%23F8F6F6%22%2F%3E%3Cstop%20offset%3D%220.165598%22%20stop-color%3D%22%23F6F4F4%22%2F%3E%3Cstop%20offset%3D%220.308455%22%20stop-color%3D%22%23F2EEEE%22%2F%3E%3Cstop%20offset%3D%220.437668%22%20stop-color%3D%22%23ECE6E6%22%2F%3E%3Cstop%20offset%3D%220.562332%22%20stop-color%3D%22%23E5DDDD%22%2F%3E%3Cstop%20offset%3D%220.691545%22%20stop-color%3D%22%23DED5D5%22%2F%3E%3Cstop%20offset%3D%220.834402%22%20stop-color%3D%22%23D9CFCF%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23D7CCCC%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3C%2Fsvg%3E') no-repeat;
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        translate: -50%;
+        width: 104px;
+        height: 166px;
+        z-index: -1;
+      } */
+
+      .avatar-xl::after {
+        background-color: var(--color-bg-02);
+        content: '';
+        position: absolute;
+        top: -72px;
+        left: 50%;
+        translate: -50% ;
+        width: 100vw;
+        height: 104px;
+        z-index: -1;
+      }
+
+      .box {
+        background: var(--color-bg);
+        box-shadow: var(--shadow-z1);
+        border-radius: var(--radius-base);
+        padding: var(--box-padding, 0);
+        overflow: hidden;
+      }
+
+      @media only screen and (min-width: 568px) and (min-height: 341px) {
+        .box {
+          width: fit-content;
+        }
+      }
+
+      @media only screen and (min-width: 1360px) {
+        .topnav {
+          margin-inline-end: 168px;
+        }
       }
     </style>
   </head>
@@ -51,53 +107,74 @@
 
     <!-- Header -->
     <header class="header">
-      <nav class="container">
-        <figure class="logo">
-          <img src="/assets/img/logomark.svg" alt="Old Skull CSS Logo">
-          <figcaption class="logo-hgroup">
-            <img src="/assets/img/logotype.svg" alt="Old Skull CSS Logo">
-          </figcaption>
-        </figure>
-        <ul>
-          <li>
-            <details class="popover">
-              <summary>On this page</summary>
+      <div class="container">
+
+        <!-- Logo -->
+        <a class="logo" href="/" aria-label="Old Skull CSS">
+          <img class="logo-mark" src="/assets/img/logomark.svg" aria-hidden="true" alt="">
+          <span class="logo-text">
+            <img src="/assets/img/logotype.svg" alt="Old Skull CSS">
+            <span class="logo-tagline">CSS Framework</span>
+          </span>
+        </a>
+
+        <!-- Main nav -->
+        <nav class="topnav" aria-label="Main menu">
+          <ul>
+
+            <li>
+              <a class="topnav-link" href="#section-mvp">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="/assets/icons/sprite.svg#icon-paperplan"></use>
+                </svg>
+                <span class="topnav-label">MVP</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="topnav-link" href="#section-components">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="/assets/icons/sprite.svg#icon-cubes"></use>
+                </svg>
+                <span class="topnav-label">Components</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="topnav-link" href="#section-benefits">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="/assets/icons/sprite.svg#icon-star"></use>
+                </svg>
+                <span class="topnav-label">Benefits</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Buttons -->
+        <nav class="header-aside" aria-label="Profile menu and search">
+          <button class="btn btn-icon" type="button" aria-label="Open search">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/assets/icons/sprite.svg#icon-search"></use>
+            </svg>
+          </button>
+
+          <details class="user-menu popover popover-chevron" data-role="popover">
+            <summary class="" aria-label="Open author menu">
+              <span class="avatar" data-fallback="VN"></span>
+            </summary>
+            <div class="popover-body">
               <ul class="menu">
-                <li><a href="#section-preview">Preview</a></li>
-                <li><a href="#section-typography">Typography</a></li>
-                <li><a href="#section-forms">Forms</a></li>
-                <li><a href="#section-components">Components</a></li>
+                <li><a href="https://super-mark.ru/en#section-about" target="_blank" rel="noopener">About author</a></li>
+                <li><a href="https://dribbble.com/supervova" target="_blank" rel="noopener">Author's portfolio</a></li>
               </ul>
-            </details>
-          </li>
-          <li><a href="https://super-mark.ru/en">About Me</a></li>
-          <li>
-            <a class="contrast" href="https://github.com/supervova/old-skull" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
-              </svg>
-            </a>
-          </li>
-        </ul>
-      </nav>
+            </div>
+          </details>
+        </nav>
+      </div>
     </header>
 
-    <header class="header">
-      <nav class="container" aria-label="Global">
-        <ul class="header-nav">
-          <li class="header-nav-logo">
-            <a href="/" aria-label="Old Skull"></a>
-          </li>
-          <li class="header-nav-item">
-            <a href="/menu-item-01">Menu Item 01</a>
-          <li class="header-nav-search">
-          <!-- кнопка 🔎 и форма -->
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <!-- Main -->
+    <!-- MAIN -->
     <main class="main">
       <!-- Avoid using `header` inside `main` unless it contains navigation or metadata.
       For visual hero sections, prefer `section` to preserve semantic clarity. -->
@@ -108,7 +185,7 @@
           </figure>
           <div class="hero-content">
             <h1>A Tailwind-free CSS framework, <span class="text-02">powered by LLM assistants</span></h1>
-            <p>This page is an example of using <span class="nobr">the Old Skull ☠️ CSS</span> framework.</p>
+            <p><span class="nobr">The Old Skull ☠️ CSS</span> framework combines handcrafted CSS architecture with AI-powered generation – so every component stays clean, consistent, and ready for production.</p>
 
             <div class="grid grid-max-content">
               <a class="btn btn-primary" href="#">Let's Rock</a>
@@ -118,8 +195,37 @@
         </div>
       </section>
 
+      <!-- Intro -->
+      <section class="container max-w-xl mx-auto py-half-max" aria-label="Что это такое?">
+
+          <figure class="avatar avatar-xl mx-auto">
+            <span class="tooltip" data-tooltip="Vladimir 'Old Skull' Nikishin, author">
+              <img src="/assets/img/i-am-madison-av.jpg" alt="Vladimir Nikishin, author">
+              </span>
+          </figure>
+
+        <blockquote class="text-02">Are you already “too old for this shit”? Tired of the “CSS-in-JS soup” and endless Tailwind utility chains? But still believe in semantics &mdash; and love adopting new CSS features as soon as Can I Use hits 90%? Well, buddy, welcome home &mdash; to our cozy, old-school-cool <s>Bootstrap</s> Old Skull. A CSS framework and boilerplate built together with ChatGPT, Claude, and Gemini. Packed with cutting-edge CSS features &mdash; and total creative freedom. You&rsquo;re not stuck tweaking variables here &mdash; grab any component and restyle it to fit your design vision. <span class="nobr">It&rsquo;s free!</span></blockquote>
+      </section>
+
+      <!-- MVP -->
+      <section class="section section-alt" id="section-mvp">
+        <div class="container">
+          <h2 class="h1 text-gradient">Minimal viable &lt;p&gt;</h2>
+          <p>Every front-end project starts with the basics: a clean reset, smart variables, proper HTML and BODY styles, solid typography, and a few essential utility classes. Put those together &mdash; and in under a minute, you&rsquo;ve got a solid foundation ready to build on.</p>
+          <button class="btn btn-link" data-role="open-modal" aria-haspopup="dialog" aria-controls="modal-mvp">
+            Usage
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/assets/icons/sprite.svg#icon-modal"></use>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Components -->
+      <section class="section" id="section-components"></section>
+
       <!-- Cards -->
-      <section class="mt-2l" id="section-cards">
+      <section class="mt-2lh" id="section-cards">
         <h2 class="visually-hidden">Features</h2>
         <div class="container">
           <div class="grid tablet-l:grid gap-3">
@@ -211,7 +317,7 @@
           <p>"pnpm stores one copy of each version and links it, saving disk space."</p>
 
           <h3>Text Elements</h3>
-          <p>In this paragraph, you’ll find examples of inline text formatting: <strong>bold</strong>, <em>italic</em>, <a href="#" onclick="event.preventDefault()">link</a>, <code>code</code>, <mark>highlighted text</mark>, <del>deleted text</del>, and <ins>inserted text</ins>.</p>
+          <p>In this paragraph, you’ll find examples of inline text formatting: <strong>bold</strong>, <em>italic</em>, <a href="#" data-role="link">link</a>, <code>code</code>, <mark>highlighted text</mark>, <del>deleted text</del>, and <ins>inserted text</ins>.</p>
 
           <h3>Lists</h3>
 
@@ -336,7 +442,27 @@
       <!-- Forms -->
       <section class="section" id="section-forms">
         <div class="container">
-          <h2>Form</h2>
+          <h2>Search</h2>
+          <form class="search" action="/" method="get" role="search">
+            <label for="search-input" class="visually-hidden">Search the site</label>
+
+            <input
+              type="search"
+              id="search-input"
+              name="q"
+              autocomplete="off"
+              required
+              placeholder="Search…"
+            >
+
+            <button class="btn-ghost btn-icon" type="submit" aria-label="Submit search">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="/assets/icons/sprite.svg#icon-search"></use>
+              </svg>
+            </button>
+          </form>
+
+          <h2>Base Form</h2>
 
           <form>
             <div class="grid">
@@ -363,7 +489,7 @@
 
               <p>
                 <label class="d-flex" for="form-range">Range Slider</label>
-                <input class="mt-2" id="form-range" max="100" min="0" name="range" type="range" value="50">
+                <input class="mt-2h" id="form-range" max="100" min="0" name="range" type="range" value="50">
               </p>
             </div>
 
@@ -456,25 +582,105 @@
       </section>
 
       <!-- Components -->
-      <section class="section" id="section-components">
+      <section class="section" id="section-components-init">
         <div class="container">
           <h2>Interactive Components</h2>
 
+          <h3 class="mb-lh">Popovers and menu</h3>
+          <div class="grid grid-auto">
+            <details class="popover phone:popover-center mx-auto" data-role="popover">
+              <summary class="btn">
+                Default
+              </summary>
+              <div class="popover-body">
+                <ul class="menu">
+                  <li><a href="#section-preview">Preview</a></li>
+                  <li><a href="#section-typography">Typography</a></li>
+                  <li><a href="#section-forms">Forms</a></li>
+                  <li><a href="#section-components">Components</a></li>
+                </ul>
+              </div>
+            </details>
+
+            <div class="box">
+              <ul class="menu">
+                <li>
+                  <a class="menu-item-icon-start" href="https://super-mark.ru/en" target="_blank" rel="noopener">
+                    <svg class="icon" aria-hidden="true" focusable="false">
+                      <use href="/assets/icons/sprite.svg#icon-home"></use>
+                    </svg>
+                    <span class="menu-label">Diagnostics</span>
+                  </a>
+                </li>
+                <li class="menu-divider" role="separator"></li>
+                <li>
+                  <a class="menu-item-icon-start" href="https://super-mark.ru/en" target="_blank" rel="noopener">
+                    <svg class="icon" aria-hidden="true" focusable="false">
+                      <use href="/assets/icons/sprite.svg#icon-star"></use>
+                    </svg>
+                    <span class="menu-label">Design</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="menu-item-icon-start" href="https://super-mark.ru/en" target="_blank" rel="noopener">
+                    <svg class="icon" aria-hidden="true" focusable="false">
+                      <use href="/assets/icons/sprite.svg#icon-star"></use>
+                    </svg>
+                    <span class="menu-label">Development: React, CSS, Vanilla JS, HTML</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="menu-item-icon-start" href="https://super-mark.ru/en" target="_blank" rel="noopener">
+                    <svg class="icon" aria-hidden="true" focusable="false">
+                      <use href="/assets/icons/sprite.svg#icon-star"></use>
+                    </svg>
+                    <span class="menu-label">Marketing</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="d-flex flex-col items-center">
+              <details class="popover popover-end phone:popover-center mb-2" data-role="popover">
+                <summary class="btn">Right aligned on tablet+</summary>
+                <div class="popover-body">
+                  <ul class="menu">
+                    <li><a href="#section-preview">Preview</a></li>
+                    <li><a href="#section-typography">Typography</a></li>
+                    <li><a href="#section-forms">Forms</a></li>
+                    <li><a href="#section-components">Components</a></li>
+                  </ul>
+                </div>
+              </details>
+              <details class="popover popover-up popover-end phone:popover-center" data-role="popover">
+                <summary class="btn">Popover on top</summary>
+                <div class="popover-body">
+                  <ul class="menu">
+                    <li><a href="#section-preview">Preview</a></li>
+                    <li><a href="#section-typography">Typography</a></li>
+                    <li><a href="#section-forms">Forms</a></li>
+                    <li><a href="#section-components">Components</a></li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+            <!-- popover-left -->
+          </div>
+
           <h3>Tooltips</h3>
           <div class="grid grid-auto mb-2">
-            <a class="btn tooltip" href="https://super-mark.ru/" target="_blank" rel="noopener noreferrer" data-tooltip="Developed by super-mark.ru"> Default </a>
-            <a class="btn tooltip tooltip-right" href="https://super-mark.ru/" target="_blank" rel="noopener noreferrer" data-tooltip="Developed by super-mark.ru"> Right </a>
-            <a class="btn tooltip tooltip-bottom" href="https://super-mark.ru/" target="_blank" rel="noopener noreferrer" data-tooltip="Developed by super-mark.ru Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius hic, beatae dolores numquam repellendus magni nobis "> Bottom </a>
+            <a class="btn tooltip" href="https://super-mark.ru/en" target="_blank" rel="noopener" data-tooltip="Developed by super-mark.ru"> Default </a>
+            <a class="btn tooltip tooltip-right" href="https://super-mark.ru/en" target="_blank" rel="noopener" data-tooltip="Developed by super-mark.ru"> Right </a>
+            <a class="btn tooltip tooltip-bottom" href="https://super-mark.ru/en" target="_blank" rel="noopener" data-tooltip="Developed by super-mark.ru Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius hic, beatae dolores numquam repellendus magni nobis "> Bottom </a>
 
             <span class="tooltip-rich tooltip-left d-flex">
-              <a class="btn w-100" href="https://super-mark.ru/" target="_blank" rel="noopener noreferrer" aria-describedby="tt-4"> Left </a>
+              <a class="btn w-100" href="https://super-mark.ru/en" target="_blank" rel="noopener" aria-describedby="tt-4"> Left </a>
               <span class="tooltip-bubble" id="tt-4" role="tooltip">
                 Text with markup<br>
                 <b>Note:</b> links are supported —<br>
                 <a href="#">read more</a>
               </span>
             </span>
-
           </div>
 
           <h3>Accordions</h3>
@@ -512,16 +718,20 @@
             <div class="grid">
               <div class="d-flex flex-col items-center">
                 <h3>Modal</h3>
-                <button type="button" data-role="open" data-target="modal-example">Launch Modal</button>
+                <button type="button" data-role="open-modal" data-target="modal-example">Launch Modal</button>
               </div>
               <div class="d-flex flex-col items-center">
                 <h3>Drawer</h3>
-                <button type="button" data-role="open" data-target="drawer-vertical">Open Drawer</button>
+                <div class="d-flex gap-2 flex-wrap">
+                  <button class="mx-auto" type="button" data-role="open-drawer" data-target="drawer-vertical">Open Vertical</button>
+                  <button class="mx-auto" type="button" data-role="toggle-drawer" data-target="drawer-vertical" data-label-alt="Close Drawer">Toggle Vertical</button>
+                  <button class="mx-auto" type="button" data-role="open-drawer" data-target="drawer-horizontal">Open Horizontal</button>
+                </div>
               </div>
             </div>
           </section>
 
-          <section class="mt-3l">
+          <section class="mt-3lh">
             <h3>Progress & Loading</h3>
             <div class="grid items-center">
               <button class="progress-inline" aria-busy="true">Loading...</button>
@@ -532,17 +742,24 @@
           </section>
         </div>
       </section>
+
+      <!-- Features -->
+      <section class="section" id="section-benefits"></section>
+
+      <!-- CTA -->
+      <section class="section" id="section-cta"></section>
+
     </main>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
       <div class="container">
         <small> Built with <a href="https://supervova.github.io/old-skull/">Old Skull CSS</a> </small>
       </div>
     </footer>
 
-    <!-- Drawer vertical -->
-    <aside class="drawer drawer-vertical" id="drawer-vertical">
+    <!-- DRAWER VERTICAL -->
+    <dialog class="drawer drawer-vertical" id="drawer-vertical">
       <header class="drawer-header">
         <h2>Drawer</h2>
         <button class="btn btn-close" type="button" data-role="close" data-target="drawer-vertical" aria-label="Close">
@@ -552,17 +769,17 @@
         </button>
       </header>
       <div class="drawer-body">
-        <form class="mb-1l" id="filters-form">
+        <form class="mb-lh" id="filters-form">
           <fieldset>
             <legend>Actress age:</legend>
             <div class="grid gap-2">
               <p>
                 <label class="label visually-hidden" for="filter-age-min">From</label>
-                <input id="filter-age-min" name="price-min" type="number" step="1" min="1" value="30" placeholder="From">
+                <input id="filter-age-min" name="price-min" type="number" step="1" min="1" value="35" placeholder="From">
               </p>
               <div>
                 <label class="label visually-hidden" for="filter-age-max">to</label>
-                <input id="filter-age-max" name="filter-age-max" type="number" step="1" min="2" value="40" placeholder="to">
+                <input id="filter-age-max" name="filter-age-max" type="number" step="1" min="2" value="50" placeholder="to">
               </div>
             </div>
           </fieldset>
@@ -594,9 +811,75 @@
           Apply
         </button>
       </div>
-    </aside>
+    </dialog>
 
-    <!-- Modal -->
+    <!-- DRAWER HORIZONTAL -->
+    <dialog class="drawer drawer-horizontal" id="drawer-horizontal">
+      <header class="drawer-header">
+        <h2>Drawer</h2>
+        <button class="btn btn-close" type="button" data-role="close" data-target="drawer-horizontal" aria-label="Close">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <use href="/assets/icons/sprite.svg#icon-sm-x-mark"></use>
+          </svg>
+        </button>
+      </header>
+      <div class="drawer-body">
+        <form class="mb-lh" id="filters-form-02">
+          <fieldset>
+            <legend>Actress age:</legend>
+            <div class="grid gap-2">
+              <p>
+                <label class="label visually-hidden" for="filter-age-min-02">From</label>
+                <input id="filter-age-min-02" name="price-min" type="number" step="1" min="1" value="35" placeholder="From">
+              </p>
+              <div>
+                <label class="label visually-hidden" for="filter-age-max-02">to</label>
+                <input id="filter-age-max-02" name="filter-age-max" type="number" step="1" min="2" value="50" placeholder="to">
+              </div>
+            </div>
+          </fieldset>
+        </form>
+
+
+        <p><b>Laura Birn</b> (born April 25, 1981) is a Finnish actress known for her roles in both Nordic and international films and television series. She is most notably recognized internationally for her portrayal of the robot Eto Demerzel in the Apple TV+ series Foundation (2021–present). </p>
+
+        <h3>Key Details</h3>
+        <ul>
+          <li>Full Name: Laura Eveliina Birn</li>
+          <li>Date of Birth: April 25, 1981</li>
+          <li>Birthplace: Helsinki, Finland</li>
+          <li>Nationality: Finnish</li>
+          <li>Occupation: Actress, writer, producer </li>
+        </ul>
+
+        <h3>Career Highlights</h3>
+        <p>Birn has built a diverse career, appearing in historical dramas, comedies, and art-house films. Her significant roles include: </p>
+
+        <ul>
+        <li><b>Foundation</b> (2021–present): Playing the complex and layered character of Eto Demerzel.</li>
+        <li><b>Purge</b> (2012): Her performance in this film earned her a Jussi Award for Best Leading Actress (the Finnish equivalent of an Oscar) and a nomination for a Satellite Award.</li>
+        <li><b>A Walk Among the Tombstones</b> (2014): A supporting role in this American film increased her international recognition.</li>
+        <li><b>The Crow</b> (2024): She appeared in this film as well.</li>
+        <li><b>Helene</b> (2020): Portraying the Finnish painter Helene Schjerfbeck. </li>
+        </ul>
+
+        <p>In 2024, a Finnish news magazine reported that, based on publicly available tax records, Birn is the most highly-paid Finnish actor of all time. </p>
+
+      </div>
+      <div class="drawer-footer">
+        <button class="btn" type="button" data-role="close" data-target="drawer-horizontal">
+          Cancel
+        </button>
+        <button class="btn btn-primary" type="submit">
+          Apply
+        </button>
+      </div>
+    </dialog>
+
+    <!-- MODAL: MVP -->
+    <dialog class="modal" id="modal-mvp"></dialog>
+
+    <!-- MODAL: EXAMPLE -->
     <dialog id="modal-example">
       <article>
         <header>
@@ -627,7 +910,7 @@
           <fieldset>
             <label for="form-terms">
               <input id="form-terms" name="terms" role="switch" type="checkbox">
-              I agree to the <a href="#" onclick="event.preventDefault()">Privacy Policy</a>
+              I agree to the <a href="#" data-role="link">Privacy Policy</a>
             </label>
           </fieldset>
         </form>
@@ -638,8 +921,87 @@
       </article>
     </dialog>
 
-    <!-- Toast -->
-    <div class="toast toast-warning toast-icon toast-warning" role="alert" aria-live="assertive" style="position: static; --toast-timer-duration: 8000ms">
+    <!-- MODAL: TOPNAV -->
+    <dialog class="modal" id="modal-topnav">
+              <!-- Main nav -->
+        <nav class="topnav" aria-label="Main menu">
+          <ul>
+
+            <li class="topnav-home">
+              <a class="topnav-link" href="#" data-role="link">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="/assets/icons/sprite.svg#icon-home"></use>
+                </svg>
+                <span class="topnav-label">Home</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="topnav-link" href="#" data-role="link">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="/assets/icons/sprite.svg#icon-box"></use>
+                </svg>
+                <span class="topnav-label">Products</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="topnav-link" href="#" data-role="link">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="/assets/icons/sprite.svg#icon-recommendation"></use>
+                </svg>
+                <span class="topnav-label">Services</span>
+              </a>
+            </li>
+
+            <li class="topnav-more">
+              <details class="popover" data-role="popover">
+                <summary>
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="/assets/icons/sprite.svg#icon-more"></use>
+                  </svg>
+                   <span class="topnav-label">More</span>
+                </summary>
+                <div class="popover-body">
+                  <ul class="menu">
+
+                    <li>
+                      <a class="topnav-link" href="#" data-role="link">
+                        <svg class="icon" aria-hidden="true" focusable="false">
+                          <use href="/assets/icons/sprite.svg#icon-star"></use>
+                        </svg>
+                        <span class="topnav-label">About Us</span>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a class="topnav-link" href="#" data-role="link">
+                        <svg class="icon" aria-hidden="true" focusable="false">
+                          <use href="/assets/icons/sprite.svg#icon-case"></use>
+                        </svg>
+                        <span class="topnav-label">Careers</span>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a class="topnav-link" href="#" data-role="link">
+                        <svg class="icon" aria-hidden="true" focusable="false">
+                          <use href="/assets/icons/sprite.svg#icon-phone-mobile"></use>
+                        </svg>
+                        <span class="topnav-label">Contact Us</span>
+                      </a>
+                    </li>
+
+                  </ul>
+                </div>
+              </details>
+            </li>
+          </ul>
+        </nav>
+    </dialog>
+
+    <!-- TOAST -->
+    <div class="toast toast-warning toast-icon toast-warning" role="alert" aria-live="assertive" style="visibility: hidden; --toast-timer-duration: 8000ms">
       <div class="toast-base">
         <svg class="icon icon-warning" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-warning"></use></svg>
         <div class="toast-copy"><span class="toast-message">Name already exists</span></div>
@@ -653,7 +1015,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/modal.js"></script>
     <script type="module" src="main.js"></script>
 
   </body>

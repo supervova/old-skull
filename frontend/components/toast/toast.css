@@ -12,7 +12,7 @@
     animation: toast-in var(--duration-150) var(--easing-appearance);
     background-color: var(--toast-bg);
     backdrop-filter: var(--backdrop-glass);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-base);
     box-shadow: var(--shadow-z2);
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@
     left: var(--lh);
     max-width: var(--width-base);
     min-width: var(--width-sm);
-    z-index: calc(var(--zindex-drawer) + 1);
+    z-index: calc(var(--z-drawer) + 1);
 
     &:not(:has(.btn)) {
       text-align: center;
