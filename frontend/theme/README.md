@@ -153,10 +153,12 @@ Light theme (default) can be forced with the `data-theme="light"` attributes and
 
 Допускаются и вложенные темы.
 
-```pug
-html(data-theme='light')
-  section(data-theme='dark')
-    .component(data-theme='light')
+```html
+<html data-theme="light">
+  <section data-theme="dark">
+    <div class="component" data-theme="light"></div>
+  </section>
+</html>
 ```
 
 ### Многослойность и zindex

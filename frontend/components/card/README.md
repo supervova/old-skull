@@ -20,43 +20,53 @@ They are often used in **grids, feeds, dashboards, and previews**.
 
 ### Article
 
-```pug
-article.card
-  header
-    //- Optionally: .eyebrow
-    h3 10 Ways to Save Money
-  .card-body
-    p Expert financial tips for everyday life.
-  //- Optionally: footer or time
+```html
+<article class="card">
+  <header>
+    <!-- Optionally: .eyebrow -->
+    <h3>10 Ways to Save Money</h3>
+  </header>
+  <div class="card-body">
+    <p>Expert financial tips for everyday life.</p>
+  </div>
+  <!-- Optionally: footer or time -->
+</article>
 ```
 
 ### Section
 
-```pug
-section.card
-  header
-    h3 Your current plan
-  //- .card-body is optional container
-  p Pro — active until 2025-12-12
+```html
+<section class="card">
+  <header>
+    <h3>Your current plan</h3>
+  </header>
+  <!-- .card-body is optional container -->
+  <p>Pro — active until 2025-12-12</p>
+</section>
 ```
 
 ### Div
 
-```pug
-div.card
-  figure
-    img(src='thumbnail.jpg' alt='Preview')
-  p Description goes here.
+```html
+<div class="card">
+  <figure>
+    <img src="thumbnail.jpg" alt="Preview" />
+  </figure>
+  <p>Description goes here.</p>
+</div>
 ```
 
 ## Using Microdata
 
-```pug
-article.card(itemscope itemtype='https://schema.org/Product')
-  img(src='' alt='' itemprop='image')
-  h3(itemprop='name')
-    a.card-link(href='/example.html' itemprop='url') Game
-  p.card-price(itemprop='offers' itemscope itemtype='https://schema.org/Offer')
-    meta(itemprop='priceCurrency' content='USD')
-    span(itemprop='price') 10
+```html
+<article class="card" itemscope itemtype="https://schema.org/Product">
+  <img src="" alt="" itemprop="image" />
+  <h3 itemprop="name">
+    <a class="card-link" href="/example.html" itemprop="url">Game</a>
+  </h3>
+  <p class="card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+    <meta itemprop="priceCurrency" content="USD" />
+    <span itemprop="price">10</span>
+  </p>
+</article>
 ```

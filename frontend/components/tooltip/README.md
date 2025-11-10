@@ -6,12 +6,14 @@ Rich tooltip with HTML support inside bubble: `<br>`, `<b>`, `<a>`.
 
 Usage:
 
-```pug
-span.tooltip-rich
-  button(aria-describedby='my-tooltip') Tooltip trigger
-  span.tooltip-bubble#my-tooltip(role='tooltip')
-    | Text with markup<br><b>Note:</b> links are supported —
-    a(href='#') read more
+```html
+<span class="tooltip-rich">
+  <button aria-describedby="my-tooltip">Tooltip trigger</button>
+  <span class="tooltip-bubble" id="my-tooltip" role="tooltip">
+    Text with markup<br /><b>Note:</b> links are supported —
+    <a href="#">read more</a>
+  </span>
+</span>
 ```
 
 Modifiers:

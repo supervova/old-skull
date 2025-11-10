@@ -4,7 +4,7 @@
 
 Usage:
 
-```pug
-//- Empty div w/ class
-.progress-spinner
+```html
+<!-- Empty div w/ class -->
+<div class="progress-spinner"></div>
 ```

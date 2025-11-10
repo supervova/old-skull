@@ -4,30 +4,34 @@
 
 Usage:
 
-```pug
-p
-  label(for='form-my-input') Label
-  input#form-my-input(name='name' type='text' placeholder='Label')
-  small(role='alert') Message
-
-p
-  label(for='form-my-email') * Email
-  input#form-my-email(name='email' type='email' inputmode='email' required)
-
-p
-  label(for='form-my-textarea') * Comment
-  textarea#form-my-textarea(name='comment' required placeholder='Your comment')
-  small(role='alert') Message
+```html
+<p>
+  <label for="form-my-input">Label</label>
+  <input id="form-my-input" name="name" type="text" placeholder="Label" />
+  <small role="alert">Message</small>
+</p>
+<p>
+  <label for="form-my-email">* Email</label>
+  <input id="form-my-email" name="email" type="email" inputmode="email" required />
+</p>
+<p>
+  <label for="form-my-textarea">* Comment</label>
+  <textarea id="form-my-textarea" name="comment" required placeholder="Your comment"></textarea>
+  <small role="alert">Message</small>
+</p>
 ```
 
 ### Multiple Fields in a Row
 
-```pug
-.grid.grid-auto
-  p
-    input(name='firstname' type='text' aria-label='First name' placeholder='First name' required)
-  p
-    input(name='lastname' type='text' aria-label='Last name' placeholder='Last name' required)
+```html
+<div class="grid grid-auto">
+  <p>
+    <input name="firstname" type="text" aria-label="First name" placeholder="First name" required />
+  </p>
+  <p>
+    <input name="lastname" type="text" aria-label="Last name" placeholder="Last name" required />
+  </p>
+</div>
 ```
 
 ## Special Attributes
@@ -36,18 +40,18 @@ p
 
 Used to specify which keyboard should appear on mobile devices.
 
-```pug
-input(type='text' inputmode='url')
-input(type='text' inputmode='email')
-input(type='text' inputmode='search')
-input(type='text' inputmode='numeric')
-input(type='text' inputmode='tel')
+```html
+<input type="text" inputmode="url" />
+<input type="text" inputmode="email" />
+<input type="text" inputmode="search" />
+<input type="text" inputmode="numeric" />
+<input type="text" inputmode="tel" />
 ```
 
 The keyboard for `inputmode="decimal"` is almost identical to the one for `inputmode="tel"`, but it replaces the `+*#` key with a decimal point (useful for English-style fractional numbers).
 
-```pug
-input(type='text' inputmode='decimal')
+```html
+<input type="text" inputmode="decimal" />
 ```
 
 ### `enterkeyhint`
@@ -66,23 +70,25 @@ Changes the label of the Enter key on mobile keyboards. Possible values:
 
 If a field must be placed outside of the `<form>` element, you can still link it to the form using the `form` attribute.
 
-```pug
-form#my-form(action='/form.php')
-  input#name
-  button(type='submit') Submit
-
-input(type='email' form='my-form')
+```html
+<form id="my-form" action="/form.php">
+  <input id="name" />
+  <button type="submit">Submit</button>
+</form>
+<input type="email" form="my-form" />
 ```
 
 ### `label` for `optgroup`
 
-```pug
-select
-  option --Your Favourite Animal--
-  optgroup(label='Birds')
-    option Blue Jay
-    option Cardinal
-    option Hummingbird
+```html
+<select>
+  <option>--Your Favourite Animal--</option>
+  <optgroup label="Birds">
+    <option>Blue Jay</option>
+    <option>Cardinal</option>
+    <option>Hummingbird</option>
+  </optgroup>
+</select>
 ```
 
 ### `multiple` for `[type='email']` and `[type='file']`
@@ -97,8 +103,8 @@ Enables autofill from the browser profile.
 
 Usually disabled for combo boxes and search fields:
 
-```pug
-input(name='q' type='search' autocorrect='off' autocapitalize='off' autocomplete='off' spellcheck='false' aria-label='Search apple.com' placeholder='Search apple.com')
+```html
+<input name="q" type="search" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" aria-label="Search apple.com" placeholder="Search apple.com" />
 ```
 
 For other fields, it provides useful values:
@@ -122,140 +128,125 @@ For other fields, it provides useful values:
 
 Usage:
 
-```pug
-//- A floating label for an input
-.form-float
-  input#form-email(type='email' placeholder='Enter email')
-  label(for='form-email') Email
-
-//-  A floating label for a select
-.form-float
-  select#form-country
-    option(value) Choose country
-    option(value='me') Montenegro
-    option(value='us') USA
-   label(for='form-country') Country
-
-//- A floating label for a textarea
-.form-float#form-message
-  textarea(placeholder='Enter message')
-  label(for='form-message') Message
+```html
+<!-- A floating label for an input -->
+<div class="form-float">
+  <input id="form-email" type="email" placeholder="Enter email" />
+  <label for="form-email">Email</label>
+</div>
+<!-- A floating label for a select -->
+<div class="form-float">
+  <select id="form-country">
+    <option value=""></option>
+    <option value="me">Montenegro</option>
+    <option value="us">USA</option>
+  </select>
+  <label for="form-country">Country</label>
+</div>
+<!-- A floating label for a textarea -->
+<div class="form-float" id="form-message">
+  <textarea placeholder="Enter message"></textarea>
+  <label for="form-message">Message</label>
+</div>
 ```
 
 ## Checkboxes and Radio Buttons
 
 Usage
 
-```pug
-label
-  input(name='isadult' type='checkbox')
-  | The community contains adult content
-
-label
-  input(name='enabled' type='checkbox')
-  | This community is visible to other users
+```html
+<label>
+  <input name="isadult" type="checkbox" />
+  The community contains adult content
+</label>
+<label>
+  <input name="enabled" type="checkbox" />
+  This community is visible to other users
+</label>
 ```
 
 Add a fieldset wrapper if you need options displayed in a column.
 
-```pug
-fieldset
-  label
-    input(name='delivery' type='radio' value='Pickup' checked)
-    | Pickup: Herceg Novi, Trg maršala Tita 2 (weekdays only)
-
-  label
-    input(name='delivery' type='radio' value='Locker')
-    | Delivery across Herceg Novi via parcel lockers — approximately 2€
+```html
+<fieldset>
+  <label>
+    <input name="delivery" type="radio" value="Pickup" checked />
+    Pickup: Herceg Novi, Trg maršala Tita 2 (weekdays only)
+  </label>
+  <label>
+    <input name="delivery" type="radio" value="Locker" />
+    Delivery across Herceg Novi via parcel lockers — approximately 2€
+  </label>
+</fieldset>
 ```
 
 ## Search
 
 Usage:
 
-```pug
-form.search(action='/search' method='get' role='search')
-  label.visually-hidden(for='search-input') Search the site
-  input#search-input(type='search' name='q' placeholder='Search…' autocomplete='search' required)
-  button.btn-ghost(type='submit' aria-label='Submit search')
-    svg.icon(aria-hidden='true' focusable='false')
-      use(href='/assets/icons/sprite.svg#icon-search')
+```html
+<form class="search" action="/search" method="get" role="search">
+  <label class="visually-hidden" for="search-input">Search the site</label>
+  <input id="search-input" type="search" name="q" placeholder="Search…" autocomplete="search" required />
+  <button class="btn-ghost" type="submit" aria-label="Submit search">
+    <svg class="icon" aria-hidden="true" focusable="false">
+      <use href="/assets/icons/sprite.svg#icon-search"></use>
+    </svg>
+  </button>
+</form>
 ```
 
 ## Social Sign-In
 
-```pug
-p Continue with your social network or messenger account:
-
-ul.btns-social
-  li
-    +button('Facebook', 'brand-facebook', 'is-icon is-ghost', true)(onclick='facebookoauth()')
-  li
-    +button('Google', 'brand-google', 'is-icon is-ghost', true)(onclick='googleoauth()')
+```html
+<p>Continue with your social network or messenger account:</p>
+<ul class="btns-social">
+  <li>
+    <!-- +button('Facebook', 'brand-facebook', 'is-icon is-ghost', true)(onclick='facebookoauth()') -->
+  </li>
+  <li>
+    <!-- +button('Google', 'brand-google', 'is-icon is-ghost', true)(onclick='googleoauth()') -->
+  </li>
+</ul>
 ```
 
 ## Complete Example: Common Field Types and Validation (with Patterns)
 
-```pug
-form#form-needs-validation(action='/' method='post' novalidate)
-  input(type='hidden' name='hidden-field' value='')
-
-  p
-    label(for='form-name') Name
-    input#form-name(
-      name='name'
-      type='text'
-      maxlength='128'
-      pattern='[A-Za-z -]+'
-      required
-    )
-
-  p
-    label(for='form-email') Email
-    input#form-email(
-      name='email'
-      type='email'
-      inputmode='email'
-      maxlength='128'
-      required
-    )
-    small(role='alert') Message
-
-  .grid
-    p.col-1\/3
-      input(
-        name='country-code'
-        type='text'
-        aria-label='Country code'
-        inputmode='numeric'
-        maxlength='3'
-        pattern='\\d{3}'
-        required
-      )
-
-    p.col-2\/3
-      input(
-        name='phone'
-        type='text'
-        aria-label='Phone number'
-        inputmode='numeric'
-        maxlength='9'
-        pattern='\\d{8,9}'
-        required
-      )
-
-  p
-    label(for='form-state') State
-    select#form-state(name='state')
-      option(value='AL') Alabama
-      option(value='AK') Alaska
-      option(value='AZ') Arizona
-
-  p.form-option
-    input#form-terms(type='checkbox' name='terms' required)
-    label(for='form-terms')
-      | You agree to our
-      a(href='' target='_blank' rel='noopener noreferrer') Terms
-
-  button.btn.btn-primary(type='submit') Sign Up
+```html
+<form id="form-needs-validation" action="/" method="post" novalidate>
+  <input type="hidden" name="hidden-field" value="" />
+  <p>
+    <label for="form-name">Name</label>
+    <input id="form-name" name="name" type="text" maxlength="128" pattern="[A-Za-z -]+" required />
+  </p>
+  <p>
+    <label for="form-email">Email</label>
+    <input id="form-email" name="email" type="email" inputmode="email" maxlength="128" required />
+    <small role="alert">Message</small>
+  </p>
+  <div class="grid">
+    <p class="col-1/3">
+      <input name="country-code" type="text" aria-label="Country code" inputmode="numeric" maxlength="3" pattern="\\d{3}" required />
+    </p>
+    <p class="col-2/3">
+      <input name="phone" type="text" aria-label="Phone number" inputmode="numeric" maxlength="9" pattern="\\d{8,9}" required />
+    </p>
+  </div>
+  <p>
+    <label for="form-state">State</label>
+    <select id="form-state" name="state">
+      <option value="AL">Alabama</option>
+      <option value="AK">Alaska</option>
+      <option value="AZ">Arizona</option>
+    </select>
+  </p>
+  <p class="form-option">
+    <input id="form-terms" type="checkbox" name="terms" required />
+    <label for="form-terms">
+      You agree to our
+      <a href="" target="_blank" rel="noopener noreferrer">Terms</a>
+    </label>
+  </p>
+  <button class="btn btn-primary" type="submit">Sign Up</button>
+</form>
 ```

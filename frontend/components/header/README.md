@@ -12,14 +12,17 @@ Used when the header contains the site’s primary navigation:
 - User menu / Authorization Buttons
 - Optionally: buttons for a shopping cart, adding user-generated content, adding to favorites, and similar actions.
 
-```pug
-header.header
-  a.logo(href='/')
-  nav.topnav
-  form.search
-  nav.header-aside
-    button.btn(type='button' aria-label='Open search')
-      details.user-menu.popover
+```html
+<header class="header">
+  <a class="logo" href="/"></a>
+  <nav class="topnav"></nav>
+  <form class="search"></form>
+  <nav class="header-aside">
+    <button class="btn" type="button" aria-label="Open search">
+      <details class="user-menu popover"></details>
+    </button>
+  </nav>
+</header>
 ```
 
 ## Minimal layout (with side navigation)
@@ -31,11 +34,12 @@ Used when the main navigation is placed in a sidebar (.sidenav). The header incl
 - Optionally: hamburger button for side menu for a shopping cart, adding user-generated content, adding to favorites, and similar actions.
 - Optionally: a logo, a hamburger button to open the main menu drawer, and the optional buttons listed above.
 
-```pug
-header.header
-  //- Optionally: logo, a hamburger button
-  form.search
-  nav.header-aside
+```html
+<header class="header">
+  <!-- Optionally: logo, a hamburger button -->
+  <form class="search"></form>
+  <nav class="header-aside"></nav>
+</header>
 ```
 
 ## Usage notes
