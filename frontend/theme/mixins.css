@@ -48,3 +48,9 @@
   overflow: hidden;
   height: var(--height);
 }
+
+@define-mixin state-focus {
+  border-radius: inherit;
+  outline: var(--focus-outline, 0.125rem) solid var(--color-focus, AccentColor, -webkit-focus-ring-color);
+  outline-offset: var(--focus-offset, 0);
+}

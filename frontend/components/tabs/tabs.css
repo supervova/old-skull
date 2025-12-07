@@ -102,8 +102,7 @@
 
 .tabs [role='tab']:focus-visible,
 .tabs-nav [role='tab']:focus-visible {
-  outline: 2px solid color-mix(in oklch, currentColor 40%, transparent);
-  outline-offset: 2px;
+  @mixin state-focus;
 }
 
 @media (any-hover: hover) {

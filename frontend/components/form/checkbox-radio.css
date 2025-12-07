@@ -89,13 +89,10 @@
 /* #region: STATES                                                            */
 /* -------------------------------------------------------------------------- */
 
+/* :focus-visible is standard */
+
 .form-option :where([type='checkbox'], [type='radio']):active {
   filter: var(--filter-brightness-up);
-}
-
-.form-option :where([type='checkbox'], [type='radio']):focus-visible {
-  box-shadow: 0 0 0 2px var(--color-text-02-info);
-  outline: 0;
 }
 
 .form-option :where([type='checkbox'], [type='radio']):checked {

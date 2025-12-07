@@ -209,8 +209,12 @@ TODO: Скопировать из `docs/notes.md` и удалить пока н�
 Надежного PostCSS-плагина для `@scope` нет, поэтому если вам важны пользователи Firefox и старых версий остальных браузеров, заведите дополнительный файл `legacy.css`, в котором перепишите стили проблемных компонентов по-старинке. Например, стили компонентов с потомками – `.hero`, `.card` etc – без `@scope`\`:scope`.
 
 ```css
-.comp { /* base */ }
-.comp .comp-icon { /* child */ }
+.comp {
+  /* base */
+}
+.comp .comp-icon {
+  /* child */
+}
 ```
 
 Затем, добавьте их в `head` в JS с проверкой поддержки.
@@ -224,5 +228,153 @@ TODO: Скопировать из `docs/notes.md` и удалить пока н�
     document.head.appendChild(link);
   }
 </script>
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="main.css" />
+```
+
+## Нейминг классов
+
+### 1. Три типа классов
+
+1. **Компонент**:
+   `.btn`, `.alert`, `.tooltip`, `.modal`, `.nav`, `.tabs`, `.table`, `.form`, `.grid` etc.
+
+2. **Дочерний элемент**, потомок компонента, который не может существовать отдельно:
+   - `.nav-list`, `.nav-item`, `.nav-link`
+   - `.tabs-list`, `.tabs-tab`, `.tabs-panel`
+   - `.table-row`, `.table-cell`, `.table-head`, `.table-body`
+   - `.form-field`, `.form-label`, `.form-control`, `.form-hint`, `.form-error`, `.form-float`, `.form-textarea`, `.form-select`
+   - `.grid-item`
+
+3. **Вариант компонента/элемента (modifier)** – какой он
+   - `.btn-primary`, `.alert-error`, `.tooltip-bottom`, `.tabs-pill`
+   - `.nav-horizontal`, `.nav-vertical`, `.nav-inline`, `.nav-item-icon`, `.nav-item-badge`
+   - `.table-striped`, `.table-hover`, `.table-bordered`, `.table-compact`, `.table-fixed`, `.table-cell-num`
+   - `.form-inline`, `.form-field-compact`
+   - `.grid-12`, `.grid-6`, `.grid-auto`, `.grid-gap-sm`, `.grid-gap-md`, `.grid-gap-lg`, `.grid-align-center`, `.grid-align-stretch`, `.grid-item-span-3`, `.grid-item-span-4`, `.grid-item-span-6`, `.grid-item-start-2`, `.grid-item-start-4`
+
+4. **Состояние (state)** – что с компонентом/элементом сейчас
+   - `.btn.is-loading`, `.alert.is-hidden`, `.modal.is-open`, `.page.has-modal`
+   - `.nav-item.is-active`, `.nav-item.is-disabled`, `.nav-item.is-hidden`, `.nav-item.is-expanded`, `.nav.has-open-dropdown`, `.nav.has-active-item`
+   - `.tabs-tab.is-selected`, `.tabs-tab.is-disabled`, `.tabs-panel.is-active`, `.tabs.has-scroll-shadow`
+   - `.table-row.is-selected`, `.table-row.is-hovered`, `.table-row.is-expanded`, `.table-cell.is-sorted`, `.table-cell.is-updated`, `.table.has-selection`, `.table.has-updated-rows`
+   - `.form-field.is-invalid`, `.form-field.is-valid`, `.form-field.is-disabled`, `.form-field.is-focused`, `.form-field.is-touched`, `.form.has-error`, `.form.has-submitted`
+
+### 2. Варианты: `block-modifier`
+
+**Когда:** вариант внешнего вида / роли, заданный дизайном и разметкой. Не меняется «сам по себе» в рантайме без явного решения.
+
+```css
+.btn-primary {}
+.btn-secondary {}
+.btn-ghost {}
+
+.alert-error {}
+.alert-success {}
+.alert-warning {}
+
+.tooltip-top {}
+.tooltip-bottom {}
+.tooltip-inline {}
+
+.card-compact {}
+.card-elevated {}
+```
+
+❌ Не использовать `is-` для таких вещей:
+`.alert.is-error` – это не состояние, а тип.
+
+### 3. Состояния элемента: `.is-*`
+
+**Когда:** то, что может включиться / выключиться во время работы UI.
+
+```css
+.btn.is-loading {}
+.btn.is-active {}
+.btn.is-disabled {}
+
+.modal.is-open {}
+.dropdown.is-open {}
+
+.field.is-invalid {}
+.tab.is-selected {}
+.accordion-item.is-expanded {}
+```
+
+- `is-open`, `is-closed`
+- `is-active`, `is-inactive`
+- `is-selected`
+- `is-loading`
+- `is-disabled`
+- `is-invalid`
+- `is-focused`
+- `is-sticky`
+
+### 4. Состояние родителя: `.has-*`
+
+**Когда:** родитель меняет стиль из-за содержимого / дочернего компонента.
+
+```css
+body.has-modal { overflow: hidden; }
+.form.has-error {}
+.nav.has-dropdown-open {}
+```
+
+- `has-modal`
+- `has-error`
+- `has-selection`
+- `has-icon`
+- `has-unread`
+
+### 5. Как комбинировать
+
+```html
+<button class="btn btn-primary is-loading">Save</button>
+```
+
+- `btn` – базовый компонент
+- `btn-primary` – вариант
+- `is-loading` – состояние
+
+```html
+<div class="alert alert-error is-hidden">...</div>
+```
+
+```html
+<body class="has-modal">
+  <dialog class="modal is-open">...</dialog>
+</body>
+```
+
+### 6. Что считать чем
+
+**Вариант (modifier, `-`)** – если можно задать вопрос:
+
+> «_Какой это компонент?_»
+> Ответ: _primary_, _error_, _compact_, _bottom_.
+
+**Состояние (`.is-*`)** – если можно задать вопрос:
+
+> «_Что сейчас с компонентом происходит?_»
+> Ответ: _открыт_, _выбран_, _заблокирован_, _в процессе_.
+
+**Состояние родителя (`.has-*`)** – если важно:
+
+> «_Что внутри / с дочерними элементами?_»
+> Ответ: _есть модалка_, _есть ошибки_, _есть иконка_.
+
+### 7. Мини-шпаргалка
+
+Хорошо:
+
+```css
+.alert.alert-error .menu-item.is-active .tooltip.tooltip-bottom .modal.is-open body.has-modal .accordion-header-hgroup;
+```
+
+Плохо / путанно:
+
+```css
+.alert.is-error /* тип, а не состояние */
+.tooltip.is-bottom /* позиция, а не состояние */
+.accordion-header.has-hgroup /* вариант, а не состояние */
+body.is-modal-open; /* лучше has-modal */
 ```

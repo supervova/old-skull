@@ -1,0 +1,40 @@
+select:not([multiple]) {
+  &, &::picker(select) {
+    /* stylelint-disable-next-line declaration-property-value-no-unknown */
+    appearance: base-select;
+  }
+
+  &::picker(select) {
+    background-color: var(--color-bg-z3);
+    border-radius: var(--radius-base);
+    box-shadow: var(--shadow-z2);
+    padding: var(--dim-2);
+  }
+
+  &::picker-icon {
+    display: none;
+  }
+}
+
+option {
+  @mixin text-truncate;
+
+  border-radius: var(--radius-sm);
+  font-weight: 400;
+  color: var(--color-text-02);
+  padding-block: var(--dim-1);
+  padding-inline: var(--dim-2) var(--dim-1);
+  max-width: var(--width-lg);
+
+  &:hover {
+    background-color: var(--color-fill);
+  }
+}
+
+/* Support for multiple select elements */
+select[multiple] {
+  background-image: none;
+  overflow-y: auto;
+  padding-inline-end: var(--dim-2);
+  max-height: calc(var(--lh) * 7);
+}

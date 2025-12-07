@@ -13,8 +13,8 @@
 }
 
 @scope (.tooltip) {
-  :scope::before,
-  :scope::after {
+  &::before,
+  &::after {
     opacity: 0;
     pointer-events: none;
     position: absolute;
@@ -24,7 +24,7 @@
     visibility: hidden;
   }
 
-  :scope::after {
+  &::after {
     background-color: var(--tooltip-bg);
     border-radius: var(--radius-sm);
     color: var(--tooltip-color);
@@ -39,14 +39,14 @@
     z-index: var(--z-tooltip);
   }
 
-  :scope::before {
+  &::before {
     background: transparent;
     border: calc(var(--tooltip-arrow-width) / 2) solid transparent;
     content: '';
     z-index: calc(var(--z-tooltip) + 1);
   }
 
-  :scope.tooltip-min::before {
+  &.tooltip-min::before {
     display: none;
   }
 
@@ -95,50 +95,50 @@
     translate: -50% calc(var(--tooltip-arrow-width) * -1);
   }
 
-  :scope.tooltip-bottom::before,
-  :scope.tooltip-left::before,
-  :scope.tooltip-right::before,
-  :scope.tooltip-bottom::after,
-  :scope.tooltip-left::after,
-  :scope.tooltip-right::after {
+  &.tooltip-bottom::before,
+  &.tooltip-left::before,
+  &.tooltip-right::before,
+  &.tooltip-bottom::after,
+  &.tooltip-left::after,
+  &.tooltip-right::after {
     left: 50%;
     top: 100%;
   }
 
-  :scope.tooltip-bottom::before,
-  :scope.tooltip-left::before,
-  :scope.tooltip-right::before {
+  &.tooltip-bottom::before,
+  &.tooltip-left::before,
+  &.tooltip-right::before {
     border-bottom-color: var(--tooltip-bg);
     translate: 0 calc(var(--tooltip-arrow-width) * -1);
   }
 
-  :scope.tooltip-bottom::after,
-  :scope.tooltip-left::after,
-  :scope.tooltip-right::after {
+  &.tooltip-bottom::after,
+  &.tooltip-left::after,
+  &.tooltip-right::after {
     translate: -50% calc(var(--lh) * -1);
   }
 
-  :scope.tooltip-bottom:is(:hover, :focus-visible, :active)::before,
-  :scope.tooltip-left:is(:hover, :focus-visible, :active)::before,
-  :scope.tooltip-right:is(:hover, :focus-visible, :active)::before {
+  &.tooltip-bottom:is(:hover, :focus-visible, :active)::before,
+  &.tooltip-left:is(:hover, :focus-visible, :active)::before,
+  &.tooltip-right:is(:hover, :focus-visible, :active)::before {
     translate: 0;
   }
 
-  :scope.tooltip-bottom:is(:hover, :focus-visible, :active)::after,
-  :scope.tooltip-left:is(:hover, :focus-visible, :active)::after,
-  :scope.tooltip-right:is(:hover, :focus-visible, :active)::after {
+  &.tooltip-bottom:is(:hover, :focus-visible, :active)::after,
+  &.tooltip-left:is(:hover, :focus-visible, :active)::after,
+  &.tooltip-right:is(:hover, :focus-visible, :active)::after {
     translate: -50% var(--tooltip-arrow-width);
   }
 
   @media (--tablet) {
-    :scope.tooltip-left::before,
-    :scope.tooltip-left::after {
+    &.tooltip-left::before,
+    &.tooltip-left::after {
       left: auto;
       right: 100%;
       top: auto;
     }
 
-    :scope.tooltip-left::before {
+    &.tooltip-left::before {
       border-bottom-color: transparent;
       border-inline-start-color: var(--tooltip-bg);
       border-top-color: transparent;
@@ -146,22 +146,22 @@
       translate: var(--lh);
     }
 
-    :scope.tooltip-left::after {
+    &.tooltip-left::after {
       top: 50%;
       translate: var(--lh) -50%;
     }
 
-    :scope.tooltip-left:is(:hover, :focus-visible, :active)::after {
+    &.tooltip-left:is(:hover, :focus-visible, :active)::after {
       translate: calc(var(--tooltip-arrow-width) * -1) -50%;
     }
 
-    :scope.tooltip-right::before,
-    :scope.tooltip-right::after {
+    &.tooltip-right::before,
+    &.tooltip-right::after {
       left: 100%;
       top: auto;
     }
 
-    :scope.tooltip-right::before {
+    &.tooltip-right::before {
       border-bottom-color: transparent;
       border-inline-end-color: var(--tooltip-bg);
       border-top-color: transparent;
@@ -169,16 +169,16 @@
       translate: calc(var(--lh) * -1);
     }
 
-    :scope.tooltip-right::after {
+    &.tooltip-right::after {
       top: 50%;
       translate: calc(var(--lh) * -1) -50%;
     }
 
-    :scope.tooltip-right:is(:hover, :focus-visible, :active)::after {
+    &.tooltip-right:is(:hover, :focus-visible, :active)::after {
       translate: var(--tooltip-arrow-width) -50%;
     }
 
-    :scope.tooltip-right:is(:hover, :focus-visible, :active) ~ * {
+    &.tooltip-right:is(:hover, :focus-visible, :active) ~ * {
       z-index: -1;
     }
   }

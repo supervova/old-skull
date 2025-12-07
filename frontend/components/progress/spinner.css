@@ -18,8 +18,8 @@
     width: var(--spinner-size);
   }
 
-  :scope::before,
-  :scope::after {
+  &::before,
+  &::after {
     animation: spinner var(--spinner-dur) linear infinite;
     border: var(--spinner-stroke) solid transparent;
     border-radius: 50%;
@@ -28,12 +28,12 @@
     mix-blend-mode: var(--spinner-blend);
   }
 
-  :scope::before {
+  &::before {
     border-right-color: var(--spinner-primary);
     border-top-color: var(--spinner-primary);
   }
 
-  :scope::after {
+  &::after {
     animation-direction: reverse;
     border-bottom-color: var(--spinner-accent);
     border-left-color: var(--spinner-accent);

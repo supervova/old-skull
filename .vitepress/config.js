@@ -6,14 +6,14 @@ export default defineConfig({
 
   srcDir: '.',
 
-  srcExclude: ['**/README.md', '.vitepress/**', 'dist/**', 'node_modules/**'],
+  srcExclude: ['README.md', '.vitepress/**', 'dist/**', 'node_modules/**'],
 
   cleanUrls: true,
 
   rewrites: {
-    'src/front/readme.md': 'index.md',
-    'src/front/base/base.md': 'base.md',
-    'src/front/components/(.*).md': 'components/$1.md',
+    'frontend/README.md': 'index.md',
+    'frontend/theme/README.md': 'base.md',
+    'frontend/components/(.*).md': 'components/$1.md',
   },
 
   themeConfig: {

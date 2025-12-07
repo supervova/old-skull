@@ -3,9 +3,6 @@
 # ------------------------------------------------------------------------------
 
 docs/ui/
-docs/index-old.md
-docs/init.md
-docs/plan.md
 
 # ------------------------------------------------------------------------------
 # WORKING STUFF
@@ -15,13 +12,15 @@ docs/plan.md
 .env
 .env.*
 !.env.example
-deploy.sh
-notes.md
 /public
+deploy.sh
+docs/notes/
+docs/ui/ru/
+notes.md
 sandbox/*
 !sandbox/README.md
-tmp/
 temp/
+tmp/
 
 # ------------------------------------------------------------------------------
 # EDITORS
@@ -32,7 +31,6 @@ temp/
 !.vscode/settings.json
 *.code-workspace
 /GEMINI.md
-/gemini-notes.md
 
 # ------------------------------------------------------------------------------
 # PACKAGE MANAGERS
@@ -59,7 +57,9 @@ yarn-error.log*
 .cache
 .eslintcache
 .tmp
+.vitepress/cache
 dist/
+!dist/main.css
 docs/.vitepress/cache
 sprite.symbol.html
 src/**/*.css
@@ -124,3 +124,4 @@ $RECYCLE.BIN/
 .Trashes
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
+

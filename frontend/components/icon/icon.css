@@ -27,7 +27,7 @@
 
   /* #region: MODIFIERS */
 
-  :scope.icon-sm {
+  &.icon-sm {
     --icon-size: var(--dim-2p5);
   }
 

@@ -1,216 +1,95 @@
-# theme/
+# Theme and Base Styles
 
-## Переменные
+The `/theme` directory contains all base styles, design tokens, resets, global settings, and utilities that form the foundation of the project's visual language.
 
-### Цвета
+## Key Principles
 
-Для создания палитры, сохраняем уровень насыщенности и, если возможно, уровень светлости, и меняем тон основного на определенный градус.
+-   **CSS Custom Properties**: The entire system is built on CSS Custom Properties (design tokens), ensuring flexibility and easy customization.
+-   **Modern CSS**: The framework leverages modern CSS capabilities such as logical properties, `@scope`, `:has()`, nesting, and `rlh` units.
+-   **PostCSS**: PostCSS is used to extend CSS capabilities, such as mixins (`@define-mixin`) and custom media queries (`@custom-media`).
 
-Ориентируемся на координаты цветов на цветовом круге:
+## Design Tokens (`vars.css`)
 
-- красный: 0
-- оранжевый: 30
-- желтый: 60
-- лайм: 90
-- зеленый: 120,
-- бирюзовый: 150,
-- циан: 180,
-- кобальт: 210,
-- синий: 210,
-- фиолетовый: 270,
-- малиновый: 330.
+The `vars.css` file is the core of the theme and defines all primary design tokens.
 
-Для создания светлых (tint) и темных (shade) оттенков меняем значение `lightness` в `hsl`.
+### 1. Color Palette
 
-```scss
---color-link: hsl(var(--h), var(--s), 41%);
-```
+The color system is built on the HSL color model, allowing easy management of hues, saturation, and lightness.
 
-- Base backgrounds. For the sake of design, we can violate the recommendations in contrast, but only where, it will not spoil the UX.
-- Use @-moz-document url-prefix() { background-color: hsl(0 0% 100% .92);} for FireFox
-- Base inks. Inks are foreground colors for headlines, body copy and icons.
+-   **Base Hues**: Variables are defined for main semantic colors (`--h-blue: 210`, `--h-green: 120`, etc.).
+-   **Saturation**: Managed via `--s-base`, `--s-02`, etc.
+-   **Brand Color**: Defined through `--h`, `--s`, and `--l` variables.
 
-#### Соответствие стандартам WCAG
+#### Dark and Light Themes
 
-Стараемся придерживаться стандартов AA и AAA. Но можем нарушать ради эстетики продукта, если решения не критично для UX.
+The project supports light and dark themes, which are defined in `vars-light.css` and `vars-dark.css`.
 
-### Максимальная ширина контейнеров
-
-- Внутренние поля добавляются в mixin'е контейнера.
-- Обычно задаем только одно значение — для размера LG. На меньших экранах макет растягивается на всю ширину.
-- Хотя значение соответствуют максимальной ширине содержания на больших экранах, используем ключ LG, чтобы исключить превышения ширины в промежутке между LG и XL.
-
-## Типографика
-
-<!--
-Apple-like typography scale. Use it for landing pages
-LG: 1.414 (1:√2) — augmented fourth / diminished fifth
-SM: 1.25 (4:5) — major third
--->
-
-Типографика в стиле Apple. Харектиризуется крупным кеглем основного текста. Использовать её для посадочных страниц. Коэффициенты:\
-LG: 1.414 (1:√2) — увеличенная четверть / уменьшенная пятая часть
-SM: 1.25 (4:5) — большая терция
-
-```txt
-        SM      LG
-hero    41/48   76/80
-title   33/40   54/64
-h2      27/32   38/48
-big     21/24   27/32
-body    17/24   19/24
-small   13/16   13/16
-```
-
-Кстати, Washington Post также использует крупный текст — 20/32 — в статьях. А на разводящих страницах — компактный: 15/20.
-
-- Don't use system-ui (Tahoma in Win7), Segoe UI and Cantarell. These fonts are ugly
-- Don't quoted special keywords: inherit, serif, sans-serif, cursive, fantasy, system-ui, monospace, ui-serif,ui-sans-serif, ui-monospace, and ui-rounded.
-- Don't quoted prefixed system fonts such as -apple-system and BlinkMacSystemFont.
-- To avoid mistakes in escaping, it is recommended to quote font family names that contain white space, digits, or punctuation characters other than hyphens.
-However quotes are required around font-family names only when they are not valid CSS identifiers. For example, a font family name requires quotes around it if it contains $, ! or /, but does not require quotes just because it contains spaces or a (non-initial) number or underscore.
-
-## Модификации стилей
-
-Для модификаций предпочтительней использовать наследование и цепочки селекторов. Общие стили — в селекторах элементов или базовых классах; особенности — в классах-модификаторах.
-
-```scss
-.btn, button, [type='button'] { border-radius: var(--borer-radius-base); }
-.btn-primary: { background: var(--color-bg-brand-dark); }
-```
-
-## Неиспользуемые нестандартные свойства
-
-Нестандартные свойства, которые часто встречаются в библиотеках, но которые в данном шаблоне не используются.
-
-`-webkit-overflow-scrolling: touch`. Инерцонная прокрутка теперь включена в iOS по умолчанию.
-
-## Медиазапрос для портретных планшетов
-
-Высота экрана [некоторых телефонов](https://gs.statcounter.com/screen-resolution-stats/mobile/worldwide/#monthly-202106-202206-bar) превышает 768px — ширину экрана iPad'а: 780×360, 800×360, 812×375, 844×390, 851×393, 869×412, 873×393, 892×412, 896×414, 915×412.
-
-Поэтому на таких телефонах в альбомной ориентации к сайтам будут применяться стили записанные в стандартном, основанном на `min-width` планшетном медиазапросе.
-
-Чтобы этого избежать, мы добавили в планшетный медиазапрос дополнительное условие.
-
-```css
-@custom-media --tablet
-  screen and (min-width: 768px),
-  (not (pointer: coarse) and (orientation: landscape));
-```
-
-## Light theme
-
-Light theme (default) can be forced with the `data-theme="light"` attributes and the `[data-theme='dark']` selectors.
-
-### Dark theme
-
-```scss
-@mixin dark-theme {
-  color-scheme: dark;
-
-  // The saturation and lightness reduced a relative 20%. --s-02: 64%;
-
-  --color-brand: hsl(var(--h), var(--s-02), 44%);
-
-  --color-bg: hsl(var(--h) var(--s-min) 10%);
-  --color-bg-z1: hsl(var(--h)  var(--s-min) 15%);
-  --color-bg-z3: hsl(var(--h) var(--s-min) 20%);
-  --color-bg-z5: hsl(var(--h) var(--s-min) 25%);
-
-  --color-text: hsl(var(--h) var(--s-min) 85%);
-  --color-text-02: hsl(var(--h) var(--s-min) 65%);
-
-  --color-shadow: var(--h) var(--s-min) 3%;
-
-  // Etc
-}
-```
-
-#### Уровень настроек системы (автоматический режим)
-
-```scss
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    @include dark-theme;
-  }
-}
-```
-
-#### Уровень сайта/приложения
-
-Включается в пользовательском атрибуте `data-theme`.
-
-```scss
-
-[data-theme='light'],
-:root:not([data-theme='dark']) {/* светлая тема */}
-
-[data-theme='dark'] {
-  @include dark-theme;
-}
-```
-
-Допускаются и вложенные темы.
+-   **Automatic Mode**: The theme switches based on user system settings using the `(prefers-color-scheme: dark)` media query.
+-   **Manual Switching**: Users can force a theme by using the `data-theme="dark"` or `data-theme="light"` attribute on the `<html>` element or any other element, creating nested themes.
 
 ```html
-<html data-theme="light">
-  <section data-theme="dark">
-    <div class="component" data-theme="light"></div>
-  </section>
+<!-- Automatic theme detection -->
+<html>
+  ...
 </html>
+
+<!-- Force dark theme -->
+<html data-theme="dark">
+  ...
+</html>
+
+<!-- Nested light theme within a dark theme -->
+<body data-theme="dark">
+  <section data-theme="light">
+    ...
+  </section>
+</body>
 ```
 
-### Многослойность и zindex
+### 2. Typography
 
-Слои, предлагаемые [Material design](https://material.io/design/environment/elevation.html)
+-   **Scale**: Font sizes are based on a base size (`--font-size-base: 17px`) and a scaling factor (`--scale`), which changes at different breakpoints.
+-   **Size Levels**: Variables are defined for various text levels: `body-sm`, `base`, `h3`, `h2`, `title`, `hero`.
+-   **Fonts**: The primary font is `Inter`, loaded in `fonts.css`. Stacks are defined for different text types (`--font-family-sans`, `--font-family-mono`).
+-   **Quotes in `font-family`**: Font names containing spaces or characters (other than hyphens) should be enclosed in quotes. System keywords (`serif`, `sans-serif`) and prefixed fonts (`-apple-system`) are not quoted.
 
-- Модальное окно: 24dp
-- Выдвижная панель: 16dp
-- FAB: 6dp
-- Фиксированная «шапка» и нижняя панель навигации: 4dp
-- Кнопка: 2dp
-- Карточка: от 1dp до 8dp (для перетягивания)
+### 3. Spacing and Rhythm
 
-При этом надо учитывать, что модальные окна и выдвижные панели, если их создавать с помощью элемента `dialog` занимают специальный `top level` на странице, изолированы от потока основного содержания и не нуждаются в zindex'е.
+-   **Vertical Rhythm**: Based on the relative unit `rlh` (line-height unit). The `--lh` variable equals `1rlh` (`1.5rem` as a fallback).
+-   **Dimensional Scale**: A set of `--dim-*` variables (e.g., `--dim-1: calc(var(--lh) / 3)`) is used to create a consistent system for margins, padding, and sizes.
 
-Поэтому в Old Skull их zindex'ы не записываются в переменные.
+### 4. Shape and Elevation
 
-## Анимационный дизайн
+-   **Border Radii**: A set of variables from `--radius-xs` to `--radius-pill`.
+-   **Shadows**: Three levels of shadows (`--shadow-z1`, `--shadow-z2`, `--shadow-z3`) to create a sense of depth.
+-   **Z-index Layers**: A set of `z-index` values is provided for managing interface layers (`--z-sticky`, `--z-modal`, etc.). A `<dialog>` element opened modally does not require a `z-index` as it automatically moves to the top layer.
 
-- Длительность анимации зависит от объекта, его размеров и расстояния, которое он преодолевает на экране. Рассчитать можно по одному из ключевых факторов.
-  - Размер объекта. Минимальная продолжительность — 100–200 мс — для кнопок и пр. маленьких компонентов. Максимальная — 500–700 мс — для переходов или анимаций всего экрана.
-  - Дистанция. 100 мс на каждые 10vw.
-  - Сложность анимации. 2-5 одновременно анимируемых объектов — 300–400 мс. 6–10 объектов — 500–700 мс.
-- Для типичных переходов и трансформаций можно использовать шкалу тайминга, выраженную в переменных (исходные значения взяты у [IBM](https://carbondesignsystem.com/guidelines/motion/overview/#duration)).
+### 5. Animation (Motion)
 
-  ```scss
-  // Микровзаимодействия с малыми объектами: кнопками, переключателями etc
-  var(--duration-50): .07s !default;
+-   **Duration**: A scale of variables from `--duration-50` (70ms) to `--duration-600` (1s) for different types of animations.
+-   **Easing Functions**: A set of `cubic-bezier` functions for various scenarios (`--easing-base`, `--easing-appearance`, etc.).
 
-  /* Микровзаимодействия типа переходов fade out / fade in (затемнения / выхода
-  из затемнения; растворения / выхода из прозрачности) */
-  var(--duration-50):  .11s !default;
+## Global Styles (`reset.css`, `doc.css`)
 
-  /* Микровзаимодействия, раскрытие небольших блоков, перемещения на небольшие
-  расстояния */
-  var(--duration-200):  .15s !default;
+-   **`reset.css`**: Resets default browser styles. Manages focus states, making them visible only during keyboard navigation (`:focus-visible`).
+-   **`doc.css`**: Applies base styles to `<html>` and `<body>`, such as font smoothing, `color-scheme`, primary background, and text color. Includes custom scrollbar styles and support for View Transitions.
 
-  // Раскрытие средних блоков, тосты, системные сообщения
-  var(--duration-300):  .24s !default;
+## Media Queries (`custom.css`)
 
-  // Раскрытие больших блоков, важные сообщения
-  var(--duration-400):  .4s !default;
+The `custom.css` file contains all `@custom-media` queries.
 
-  // Смена фонового цвета
-  var(--duration-500):  .7s !default;
-  ```
+-   **Breakpoints**: Main points for responsiveness are defined (`--phone`, `--tablet`, `--laptop`).
+-   **Special Tablet Logic**: The `--tablet` media query includes an additional condition `not (pointer: coarse) and (orientation: landscape)` to prevent tablet styles from applying to high-resolution phones in landscape orientation.
+-   **Device Capabilities**: Queries for detecting pointer type (`--touch`, `--mouse`), hover support (`--can-hover`), and color scheme (`--dark`).
 
-- Длительность сложных полноэкранных анимаций можно задавать увеличением одного из стартных периодов в несколько раз. Например, `var(--duration-400) * 4`.
-- Для расчета новой шкалы можно использовать коэффициент геометрической прогрессии — также, как в размерной шкале шрифта. Например, малую септиму: 1.778 (9:16).
-- Элементы в идеале должны исчезать с экрана быстрее, чем появляться. Для этого используем свойство `transition` в обоих положениях.
+## Mixins (`mixins.css`)
 
-  ```scss
-  .el { transition: all (var(--duration-300) * .8) $motion-easing-disappearance; }
-  .el-hidden { transition: all var(--duration-300) $motion-easing-appearance; }
-  ```
+This file defines a set of PostCSS mixins for style reuse.
+
+-   `@mixin text-format $level`: Applies a set of typographic styles (size, weight, letter-spacing, line-height) for a given level.
+-   `@mixin line-clamp $rows`: Limits text to a specified number of lines.
+-   `@mixin state-focus`: Applies styles for `:focus-visible`.
+
+## Utilities (`utils/`)
+
+This directory contains utility classes for quickly managing spacing, display, color, etc., directly in HTML. More details can be found in the `README.md` file within this folder.

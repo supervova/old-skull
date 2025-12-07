@@ -8,10 +8,6 @@
   text-shadow: none;
 }
 
-:focus-visible {
-  outline: 3px solid var(--color-focus);
-}
-
 /* #endregion */
 
 /* -------------------------------------------------------------------------- */
@@ -24,6 +20,10 @@ h3, .h3,
 h4, .h4,
 h5, h6 {
   text-wrap: balance;
+
+  @media (--phone-l) {
+    hyphens: manual;
+  }
 }
 
 h1, .h1,
@@ -78,10 +78,6 @@ p, li, dd {
   margin-block: 0 var(--lh);
 }
 
-address, dd, div, dt, li, p, td, th {
-  overflow-wrap: break-word;
-}
-
 a:not(.btn) {
   color: var(--color-link);
   text-decoration-thickness: 1px;
@@ -96,10 +92,13 @@ a:not(.btn) {
   }
 }
 
-b,
-strong {
+b, strong {
   font-weight: var(--font-weight-strong, 600);
 }
+
+/* Use this to highlight with color. E.g. `.text-success` */
+b[class] { font-weight: inherit; }
+em[class] { font-style: inherit; }
 
 small {
   font-size: var(--font-size-fine-print);

@@ -180,14 +180,6 @@ fieldset {
   --form-field-min-height: calc(var(--lh) * 2.5);
 }
 
-.form-field :is(:--text-field, [type='search']):focus,
-.form-field :is(:--text-field, [type='search']):focus-visible {
-  border-color: transparent;
-  box-shadow: 0 0 0 2px var(--color-text-02-info);
-  color: var(--form-field-text-color);
-  outline: 0;
-}
-
 .form-field :is(:--text-field, [type='search']):disabled,
 .form-field :is(:--text-field, [type='search'])[readonly] {
   cursor: not-allowed;

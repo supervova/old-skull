@@ -1,0 +1,286 @@
+/* -------------------------------------------------------------------------- */
+/* #region: BASE                                                              */
+/* -------------------------------------------------------------------------- */
+
+@import url('../../theme/mixins.css');
+@import url('../../theme/custom.css') layer(base);
+
+:root {
+  --sidenav-area: initial; /* Default value, or a sensible fallback */
+
+  @media (--tablet) {
+
+    /* Keep px units for zero values to avoid calc() errors.
+       Set 96px for the navigation rail */
+    --sidenav-area: 0px;
+  }
+
+  @media (--laptop) {
+    --navbar-area: 0px; /* Set 240px for the vertical navigation bar */
+  }
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: HEADER / TOPNAV                                                   */
+/* -------------------------------------------------------------------------- */
+
+.topnav {
+  @media (--laptop) {
+    margin-inline-end: 126px;
+  }
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: HERO                                                              */
+/* -------------------------------------------------------------------------- */
+
+.hero .btn-primary:active {
+  animation: rock var(--duration-300) var(--easing-base);
+  transform-origin: 50% 60%;
+}
+
+@keyframes rock {
+  0%   { transform: translateY(0)    rotate(-1.5deg); }
+  40%  { transform: translateY(1px)  rotate(2deg); }
+  70%  { transform: translateY(-1px) rotate(-0.5deg); }
+  100% { transform: translateY(0)    rotate(0deg); }
+}
+
+.hero .btn-secondary:active {
+  animation: roll var(--duration-300) var(--easing-base);
+  transform-origin: 50% 55%;
+}
+
+@keyframes roll {
+  0%   { transform: rotate(0deg)      translateY(0); }
+  30%  { transform: rotate(16deg)      translateY(-1px); }
+  55%  { transform: rotate(24deg)     translateY(1px); }
+  80%  { transform: rotate(10deg)      translateY(-0.5px); }
+  100% { transform: rotate(0deg)      translateY(0); }
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: BLOCKQUOTE + AVATAR                                               */
+/* -------------------------------------------------------------------------- */
+
+.avatar-xl {
+  border: 8px solid var(--color-bg-02);
+  overflow: visible;
+}
+
+@supports (background: linear-gradient(red, blue) border-box) {
+  .avatar-xl {
+    border: 8px solid transparent;
+    background:
+      linear-gradient(to bottom, var(--color-bg-02) 50%, hsl(var(--h) var(--s-min) 82%)) border-box;
+  }
+}
+
+.avatar-xl img {
+  border-radius: 50%;
+}
+
+.avatar-xl::after {
+  background-color: var(--color-bg-02);
+  content: '';
+  position: absolute;
+  top: -72px;
+  left: 50%;
+  translate: -50% ;
+  width: 100vw;
+  height: 104px;
+  z-index: -1;
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: BODY                                                              */
+/* -------------------------------------------------------------------------- */
+
+.box {
+  background: var(--color-bg-02);
+  border-radius: var(--radius-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--box-padding, 0);
+  overflow: hidden;
+  justify-self: stretch;
+  min-height: var(--box-min-height, 100px);
+}
+
+.box-fit {
+  @media (--phone-l) {
+    width: fit-content;
+  }
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: QUICK START BASE                                                  */
+/* -------------------------------------------------------------------------- */
+
+.section-start {
+  position: relative;
+  overflow: clip;
+
+  background: var(--color-bg-page);
+  color: var(--color-fg-base);
+}
+
+.section-start-inner {
+  display: grid;
+  align-items: center;
+  gap: var(--size-8);
+  grid-template-columns: minmax(0, 1fr);
+  padding-block: clamp(2.5rem, 8vh, 4rem);
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+  position: relative;
+  min-height: 100vh;
+
+  @media (--tablet) {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    padding-block: clamp(3rem, 12vh, 6rem);
+  }
+}
+
+.section-start-bg {
+  background: radial-gradient(120% 120% at 0% 0%, var(--color-surface-elevated) 0, transparent 60%);
+  border-radius: var(--radius-pill);
+  filter: drop-shadow(0 16px 40px rgb(0 0 0 / 0.08));
+  inset-block: 10% 40%;
+  inset-inline: 4% 10%;
+  opacity: 0.98;
+  position: absolute;
+
+  @media (--tablet) {
+    inset-block: 8% 20%;
+    inset-inline: max(0px, 5vw) 45%;
+  }
+}
+
+.section-start-content {
+  display: grid;
+  align-items: center;
+  gap: var(--size-8);
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  position: relative;
+  z-index: 1;
+}
+
+.section-start-text {
+  max-inline-size: 34rem;
+}
+
+.section-start-media {
+  justify-self: center;
+  max-inline-size: 26rem;
+
+  @media (--tablet) {
+    justify-self: end;
+    max-width: min(38rem, 40vw);
+  }
+}
+
+.section-start-img {
+  display: block;
+  inline-size: 100%;
+  height: auto;
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: SCROLL PARALLAX (scroll-driven animations)                        */
+/* -------------------------------------------------------------------------- */
+
+/* Включаем только там, где есть поддержка scroll-animations */
+@supports (animation-timeline: view()) {
+  .section-start {
+
+    /* Связываем hero с собственной view-timeline */
+    view-timeline-name: --section-start;
+    view-timeline-axis: block;
+  }
+
+  /* Облака — самый «медленный» слой */
+  .section-start-bg {
+    --section-parallax-range: 10vh;
+
+    animation-name: section-start-bg-parallax;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --section-start;
+    animation-range: entry 0% exit 100%;
+  }
+
+  /* Мальчик — движется заметнее */
+  .section-start-media {
+    --section-parallax-range: 18vh;
+
+    animation-name: section-start-media-parallax;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --section-start;
+    animation-range: entry 0% exit 100%;
+  }
+
+  /* Текст — лёгкий встречный сдвиг + небольшое появление */
+  .section-start-text {
+    --section-parallax-range: 6vh;
+
+    animation-name: section-start-text-parallax;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --section-start;
+    animation-range: entry 0% exit 80%;
+  }
+
+  @keyframes section-start-bg-parallax {
+    0% {
+      transform: translateY(calc(var(--section-parallax-range) * -0.6));
+    }
+
+    100% {
+      transform: translateY(calc(var(--section-parallax-range) * 0.4));
+    }
+  }
+
+  @keyframes section-start-media-parallax {
+    0% {
+      transform: translateY(calc(var(--section-parallax-range) * -0.5)) scale(1.02);
+    }
+
+    100% {
+      transform: translateY(calc(var(--section-parallax-range) * 0.5)) scale(1.02);
+    }
+  }
+
+  @keyframes section-start-text-parallax {
+    0% {
+      opacity: 0;
+      transform: translateY(calc(var(--section-parallax-range) * 0.5));
+    }
+
+    30% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(calc(var(--section-parallax-range) * -0.5));
+    }
+  }
+}

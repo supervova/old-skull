@@ -12,17 +12,27 @@
   min-width: 0;
 }
 
+/* Remove mouse-triggered focus, keep only keyboard focus */
+:focus {
+  outline: none;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+:focus-visible {
+  @mixin state-focus;
+}
+
 body {
   min-height: 100vh;
 }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6,
+div, dd, dt, li, p, td, th {
+  hyphens: auto;
   overflow-wrap: break-word;
 }
 
@@ -98,10 +108,6 @@ summary::-moz-list-bullet {
 
 :where([draggable='true']) {
   -webkit-user-drag: element;
-}
-
-:focus-visible {
-  outline: 2px solid var(--color-focus, currentColor);
 }
 
 /* stylelint-disable declaration-no-important */

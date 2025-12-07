@@ -129,7 +129,7 @@
   /* #region: MODIFIERS                                                       */
   /* ------------------------------------------------------------------------ */
 
-  :scope.card-elevated {
+  &.card-elevated {
     --card-shadow: var(--shadow-z2);
   }
 

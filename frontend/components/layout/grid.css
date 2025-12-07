@@ -1,52 +1,57 @@
-/* -------------------------------------------------------------------------- */
-/* #region: GRID LAYOUT                                                       */
-/* -------------------------------------------------------------------------- */
+:root {
+  --grid-min-width: 132px;
+  --grid-cols-12: repeat(12, minmax(0, 1fr));
+  --grid-cols-auto: repeat(auto-fit, minmax(0, max-content));
+  --grid-cols-equal: repeat(auto-fit, minmax(var(--grid-min-width), 1fr));
+  --grid-cols-4-compound-5: 2fr 1fr 1fr 2fr 2fr 1fr 1fr 2fr;
+}
 
 .grid {
   display: grid;
-  gap: var(--grid-gap, var(--dim-2));
+  gap: var(--grid-gap, var(--gap-base));
   grid-template-columns: var(--grid-columns, 1fr);
   grid-template-rows: var(--grid-rows, auto);
 
   @media (--tablet) {
-    --grid-gap: var(--lh);
-  }
-
-  @media (--tablet-l) {
-    --grid-gap: var(--dim-4);
-  }
-}
-
-.grid:not(.tablet-l\:grid, .grid-center, .grid-max-content) {
-  @media (--tablet) {
-    --grid-columns: repeat(auto-fit, minmax(80px, 1fr));
+    --grid-columns: var(--grid-cols-equal);
   }
 }
 
 .tablet-l\:grid {
   @media (--tablet-l) {
-    --grid-columns: repeat(auto-fit, minmax(80px, 1fr));
+    --grid-columns: var(--grid-cols-equal);
   }
 }
 
-@media (--tablet) {
-  .grid-12 {
-    --grid-columns: repeat(12, minmax(0, 1fr));
+.grid-12 {
+  @media (--tablet) {
+    --grid-columns: var(--grid-cols-12);
   }
+}
 
-  .grid-center,
-  .grid-max-content {
-    --grid-columns: repeat(auto-fit, minmax(0, max-content));
+.grid-center,
+.grid-max-content {
+  @media (--tablet) {
+    --grid-columns: var(--grid-cols-auto);
   }
+}
 
-  .grid-center {
+.grid-center {
+  @media (--tablet) {
     justify-content: center;
   }
 }
 
-@media (--phone) {
-  .phone\:grid-3 { --grid-columns: repeat(3, 1fr); }
-  .phone\:grid-4 { --grid-columns: repeat(4, 1fr); }
+.phone\:grid-3 {
+  @media (--phone) {
+    --grid-columns: repeat(3, 1fr);
+  }
+}
+
+.phone\:grid-4 {
+  @media (--phone) {
+    --grid-columns: repeat(4, 1fr);
+  }
 }
 
 .col,
@@ -68,4 +73,18 @@
 .col-start-2 { grid-column-start: 2; }
 .col-start-3 { grid-column-start: 3; }
 
-/* #endregion */
+/* Pair presets for 12 columns grid */
+.col-1\/2 { grid-column: 1 / span 2; }
+.col-4\/9 { grid-column: 4 / span 9; }
+
+.col-1\/7 { grid-column: 1 / span 7; }
+.col-9\/4 { grid-column: 9 / span 4; }
+
+.col-1\/8 { grid-column: 1 / span 7; }
+.col-10\/3 { grid-column: 10 / span 3; }
+
+.col-3\/4 { grid-column: 3 / span 4; }
+.col-8\/5 { grid-column: 8 / span 5; }
+
+/* Wide column, centered */
+.col-3\/8 { grid-column: 3 / span 8; }

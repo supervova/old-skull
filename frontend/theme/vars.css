@@ -128,13 +128,19 @@
   --spacer: var(--lh);
   --spacer-half-max: var(--dim-4);
   --spacer-max: var(--dim-8);
-  --gap-base: var(--lh);
+  --gap-base: var(--dim-2);
   --gap-large: var(--dim-4);
 
   @media (--tablet) {
     --spacer: calc(var(--lh) * 3);
     --spacer-half-max: var(--dim-8);
     --spacer-max: calc(var(--dim-8) * 2);
+
+    --gap-base: var(--lh);
+  }
+
+  @media (--tablet-l) {
+    --gap-base: var(--dim-4);
   }
 
   /* #endregion */
@@ -320,14 +326,14 @@
   }
 
   @media (--tablet) {
-    --navbar-area: 96px;
+    --sidenav-width: 96px;
 
     --padding-inline-md: var(--lh);
     --padding-inline-xl: var(--dim-5);
   }
 
   @media (--laptop) {
-    --navbar-area: 240px;
+    --sidenav-width: 240px;
   }
 
   /* #endregion */

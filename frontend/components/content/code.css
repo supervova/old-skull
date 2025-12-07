@@ -8,12 +8,14 @@ samp,
 pre {
   color: var(--color-code, var(--color-text));
   font-family: var(--font-family-mono, monospace);
-  font-size: 100%;
+  font-size: 1em;
+  font-weight: 400;
+  font-style: normal;
 }
 
 code, kbd {
   border-radius: var(--radius-sm);
-  padding: 2px var(--dim-0p5);
+  padding: 2px var(--dim-1);
 }
 
 code {
@@ -41,6 +43,9 @@ samp {
 pre {
   background-color: var(--color-bg-02);
   border-radius: var(--radius-base);
+  white-space: pre;
+  padding: var(--dim-2p5) var(--dim-4);
+  overflow-wrap: normal;
   overflow-x: auto;
   tab-size: 2;
 }

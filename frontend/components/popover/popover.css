@@ -28,7 +28,7 @@
   /* #region: BODY                                                            */
   /* ------------------------------------------------------------------------ */
 
-  :scope::details-content {
+  &::details-content {
     transition: content-visibility var(--duration-200) var(--easing-base);
     transition-behavior: allow-discrete;
   }
@@ -60,7 +60,7 @@
   /* Initial state for opening animation */
   @starting-style {
     :scope[open] > .popover-body,
-    :scope.popover-open > .popover-body {
+    &.popover-open > .popover-body {
       --popover-body-translate-block: var(--popover-body-offset);
       opacity: 0;
     }
@@ -72,7 +72,7 @@
 
   /* Open state */
   :scope[open] .popover-body,
-  :scope.popover-open > .popover-body {
+  &.popover-open > .popover-body {
     --popover-body-translate-block: 0;
     opacity: 1;
     pointer-events: auto;
@@ -93,12 +93,12 @@
   }
 
   /* Chevron indicator */
-  :scope.popover-chevron summary {
+  &.popover-chevron summary {
     align-items: center;
     display: flex;
   }
 
-  :scope.popover-chevron summary::after {
+  &.popover-chevron summary::after {
     background-image: var(--icon-chevron-down);
     background-position: center;
     background-repeat: no-repeat;
@@ -110,8 +110,8 @@
     width: var(--dim-2);
   }
 
-  :scope.popover-chevron[open] summary::after,
-  :scope.popover-chevron.popover-open summary::after {
+  &.popover-chevron[open] summary::after,
+  &.popover-chevron.popover-open summary::after {
     rotate: 180deg;
   }
 
@@ -125,40 +125,97 @@
 @scope (.popover) {
 
   /* Position above trigger */
-  :scope.popover-up > .popover-body {
+  &.popover-up > .popover-body {
     --popover-body-translate-block: calc(var(--popover-body-offset) * -1);
     inset-block-end: 100%;
   }
 
   @starting-style {
-    :scope.popover-up[open] > .popover-body,
-    :scope.popover-up.popover-open > .popover-body {
+    &.popover-up[open] > .popover-body,
+    &.popover-up.popover-open > .popover-body {
       --popover-body-translate-block: var(--popover-body-offset);
     }
   }
 
-  :scope.popover-up[open] > .popover-body,
-  :scope.popover-up.popover-open > .popover-body {
+  &.popover-up[open] > .popover-body,
+  &.popover-up.popover-open > .popover-body {
     --popover-body-translate-block: 0;
   }
 
   /* Align to end (right in LTR) */
-  :scope.popover-end > .popover-body {
+  &.popover-end > .popover-body {
     @media (--phone-l) {
       inset-inline: auto 0;
     }
   }
 
   /* Align body to center */
-  :scope.popover-center > .popover-body {
+  &.popover-center > .popover-body {
     --popover-body-inset-inline-start: 50%;
     --popover-body-translate-inline: -50%;
   }
 
-  :scope.phone\:popover-center > .popover-body {
+  &.phone\:popover-center > .popover-body {
     @media (--phone) {
       --popover-body-inset-inline-start: 50%;
       --popover-body-translate-inline: -50%;
+    }
+  }
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: ANCHOR POSITIONING (PROGRESSIVE ENHANCEMENT)                      */
+/* -------------------------------------------------------------------------- */
+
+@scope (.popover) {
+  @supports (anchor-name: --a) and (position-anchor: --a) {
+
+    /* Declare the anchor on the trigger. Works for both <summary> and [data-role='popover-summary'] */
+    summary,
+    [data-role='popover-summary'] {
+      anchor-name: --popover-anchor;
+    }
+
+    /* Attach the popover body to the trigger via anchor positioning.
+       Default placement also sets inline alignment for modern browsers. */
+     .popover-body {
+       position-anchor: --popover-anchor;
+
+      /* Default placement: below + start (logical inline start) */
+      inset-area: bottom start;
+    }
+
+    /* Modifier: place above the trigger */
+    &.popover-up > .popover-body {
+      inset-area: top start;
+    }
+
+    /* Inline alignment: end (logical inline end) */
+    &.popover-end > .popover-body {
+      inset-area: bottom end;
+    }
+
+    /* Inline alignment: center */
+    &.popover-center > .popover-body {
+      inset-area: bottom center;
+    }
+
+    /* Combinations with "up" */
+    &.popover-up.popover-end > .popover-body {
+      inset-area: top end;
+    }
+
+    &.popover-up.popover-center > .popover-body {
+      inset-area: top center;
+    }
+
+    /* Phone-only center variant */
+    &.phone\:popover-center > .popover-body {
+      @media (--phone) {
+        inset-area: bottom center;
+      }
     }
   }
 }

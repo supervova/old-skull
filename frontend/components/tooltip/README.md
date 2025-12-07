@@ -1,5 +1,15 @@
 # Tooltip
 
+A **tooltip** is a small, informative UI component that appears when a user hovers over or focuses on an element, providing brief contextual information.
+
+Usage:
+
+```html
+<button type="button" data-role="close-modal" data-tooltip="Close">
+  ❌
+</button>
+```
+
 ## Rich tooltip
 
 Rich tooltip with HTML support inside bubble: `<br>`, `<b>`, `<a>`.

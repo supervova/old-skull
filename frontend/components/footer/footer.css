@@ -93,7 +93,7 @@
 
 @media (--tablet) {
   :where(.page-app) .footer {
-    padding-inline-start: var(--navbar-area, 0);
+    padding-inline-start: var(--sidenav-area, 0);
   }
 }
 

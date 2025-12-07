@@ -73,9 +73,9 @@ nav ul,
   }
 
   &:focus-visible {
+    --outline-offset: 2px;
     background-color: var(--link-bg-focus);
     border-radius: var(--radius-xs);
-    outline-offset: 2px;
   }
 
   &[aria-current] {
@@ -122,7 +122,7 @@ ins {
     transform: translateX(-50%);
 
     /* Max width: 960px or (viewport width minus page padding), whichever is smaller */
-    width: min(960px, calc(100vw - var(--navbar-area) - 2 * var(--padding-inline-xl)));
+    width: min(960px, calc(100vw - var(--sidenav-area) - 2 * var(--padding-inline-xl)));
   }
 
 /* #endregion */

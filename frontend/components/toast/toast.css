@@ -84,7 +84,7 @@
   /* #region: VARIANTS                                                        */
   /* ------------------------------------------------------------------------ */
 
-  :scope.toast-icon {
+  &.toast-icon {
     padding-left: var(--dim-2p5);
 
     .icon:not(.icon-sm-x-mark) {
@@ -97,13 +97,13 @@
     }
   }
 
-  :scope.toast-error {
+  &.toast-error {
     --toast-title-color: var(--color-text-error);
     --icon-stroke: var(--color-text-02-error);
     --icon-fill: var(--color-bg-error);
   }
 
-  :scope.toast-warning {
+  &.toast-warning {
     --toast-title-color: var(--color-text-warning);
     --icon-stroke: var(--color-text-02-warning);
     --icon-fill: var(--color-warning);

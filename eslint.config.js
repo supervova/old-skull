@@ -9,7 +9,7 @@ export default [
   js.configs.recommended,
   { ignores: ['node_modules', 'dist', 'example/dist'] },
   {
-    files: ['frontend/**/*.js', 'scripts/**/*.mjs'],
+    files: ['frontend/**/*.js', 'scripts/**/*.mjs', 'example/**/*.js'],
     languageOptions: {
       ecmaVersion: 2023,
       sourceType: 'module',

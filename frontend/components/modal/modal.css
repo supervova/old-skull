@@ -240,7 +240,7 @@
 /* -------------------------------------------------------------------------- */
 
 @scope (.modal) {
-  :scope.modal-sm > .modal-base {
+  &.modal-sm > .modal-base {
     --modal-max-width: var(--width-md);
   }
 }

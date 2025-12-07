@@ -4,6 +4,7 @@
  * the Sass plugin and insert it into the <style>.
  */
 import '../frontend/main.css';
+import '../frontend/pages/example/example.css';
 import '../frontend/components/drawer/drawer.js';
 import '../frontend/components/popover/popover.js';
 import '../frontend/components/header/topnav.js';

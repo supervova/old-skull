@@ -20,6 +20,8 @@
 
 
 .main {
+  max-width: 100%;
+
   &:not(:has(> .hero)) {
     padding-top: var(--spacer);
   }
@@ -27,7 +29,7 @@
   @media (--tablet) {
 
     /* Make room for navbar... */
-    padding-inline-start: var(--navbar-area, 0);
+    padding-inline-start: var(--sidenav-area, 0);
   }
 }
 

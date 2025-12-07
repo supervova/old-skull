@@ -74,9 +74,9 @@
   /* #region: POSITION BOTTOM (MOBILE FALLBACK FOR SIDES)                     */
   /* ------------------------------------------------------------------------ */
 
-  :scope.tooltip-bottom,
-  :scope.tooltip-left,
-  :scope.tooltip-right {
+  &.tooltip-bottom,
+  &.tooltip-left,
+  &.tooltip-right {
     .tooltip-bubble {
       top: 100%;
       left: 50%;
@@ -111,7 +111,7 @@
   /* #region: POSITION LEFT (DESKTOP/TABLET)                                  */
   /* ------------------------------------------------------------------------ */
 
-  :scope.tooltip-left {
+  &.tooltip-left {
     @media (--tablet) {
       .tooltip-bubble {
         top: 50%;
@@ -143,7 +143,7 @@
   /* #region: POSITION RIGHT (DESKTOP/TABLET)                                 */
   /* ------------------------------------------------------------------------ */
 
-  :scope.tooltip-right {
+  &.tooltip-right {
     @media (--tablet) {
       .tooltip-bubble {
         top: 50%;

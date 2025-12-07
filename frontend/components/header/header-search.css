@@ -1,0 +1,28 @@
+.header-search {
+  --search-translate-y: -100%;
+
+  .search {
+    flex-grow: 1;
+
+    /* --search-max-width example value for 12-column grid:
+       calc((100% - 11 * var(--gap-base)) * 7 / 12 + 6 * var(--gap-base)) */
+    max-width: var(--search-max-width, none);
+  }
+
+  &.is-open {
+    --search-translate-y: 0;
+
+    /* Backdrop */
+    @media (--phone) {
+      &::after {
+        background-color: var(--header-bg);
+        backdrop-filter: var(--header-bg-filter);
+        content: '';
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+      }
+    }
+  }
+}

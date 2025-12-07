@@ -1,4 +1,4 @@
-# data/
+# `data/`
 
 This folder contains **static or mock data** used throughout the project.
 

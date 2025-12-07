@@ -28,7 +28,6 @@ button,
     color var(--duration-50) var(--easing-base);
   --button-shadow: none;
   --button-shadow-hover: none;
-  --button-shadow-focus: 0 0 0 3px var(--color-focus);
   --button-decoration-hover: none;
 
   appearance: none;
@@ -54,11 +53,6 @@ button,
   transition: var(--button-transition);
   user-select: none;
   height: var(--button-height);
-
-  &:focus-visible {
-    box-shadow: var(--button-shadow-focus);
-    outline: none;
-  }
 
   &:disabled {
     cursor: not-allowed;
@@ -111,6 +105,7 @@ button,
   --button-transition:
     filter var(--duration-50) var(--easing-base),
     box-shadow var(--duration-50) var(--easing-base);
+  --focus-offset: 2px;
 }
 
 .btn-outline {
@@ -155,11 +150,6 @@ button,
     content: '';
     position: absolute;
     inset: -8px;
-  }
-
-  &:focus-visible {
-    background: var(--button-hover, var(--color-bg-error));
-    outline: none;
   }
 }
 

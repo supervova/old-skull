@@ -28,14 +28,10 @@
     position: fixed;
     translate: var(--drawer-closed);
     z-index: var(--z-drawer);
-
-    &:focus {
-      outline: 0;
-    }
   }
 
   /* MODIFIERS */
-  :scope.drawer-horizontal {
+  &.drawer-horizontal {
     --drawer-radius: var(--radius-base);
 
     border-radius: var(--drawer-radius) var(--drawer-radius) 0 0;
@@ -51,7 +47,7 @@
     }
   }
 
-  :scope.drawer-vertical {
+  &.drawer-vertical {
     --drawer-closed: 100% 0;
     --drawer-open: 0 0;
 
@@ -63,7 +59,7 @@
   }
 
   :scope[open],
-  :scope.drawer-open {
+  &.drawer-open {
     animation: drawer-in var(--duration-200) var(--easing-appearance) forwards;
     box-shadow: var(--drawer-shadow);
     translate: var(--drawer-open);
