@@ -40,7 +40,7 @@ nav ul,
 
 .list-inline li {
   display: inline-block;
-  margin-inline-end: var(--dim-0p5);
+  margin-inline-end: var(--dim-0plus);
   padding: 0;
 }
 
@@ -84,9 +84,11 @@ nav ul,
 }
 
 mark {
-  background: var(--color-bg-brand);
-  color: inherit;
-  padding-inline: var(--dim-0p5);
+  background: var(--color-bg-warning);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-warning);
+  margin-inline: 2px;
+  padding: 2px var(--dim-0plus);
 }
 
 ins {

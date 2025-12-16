@@ -76,7 +76,14 @@
       "function-url-quotes": "always",
       "hue-degree-notation": "number",
       "layer-name-pattern": "^[a-z0-9-.]+$",
-      "length-zero-no-unit": [true, { "ignore": ["custom-properties"] }],
+      "length-zero-no-unit": [
+        true,
+        {
+          "ignore": [
+            "custom-properties"
+          ]
+        }
+      ],
       "media-feature-name-no-unknown": [
         true,
         {
@@ -140,71 +147,6 @@
       "value-no-vendor-prefix": true
     }
   },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "airbnb-base",
-      "plugin:prettier/recommended"
-    ],
-    "env": {
-      "browser": true,
-      "es2023": true,
-      "node": true
-    },
-    "plugins": [
-      "import"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2023,
-      "sourceType": "module"
-    },
-    "settings": {
-      "import/ignore": [
-        "node_modules",
-        "\\.(coffee|scss|css|less|hbs|svg|json)$"
-      ]
-    },
-    "rules": {
-      "import/no-extraneous-dependencies": "off",
-      "import/extensions": [
-        "error",
-        "ignorePackages",
-        {
-          "js": "always",
-          "jsx": "always",
-          "ts": "never",
-          "tsx": "never"
-        }
-      ],
-      "max-len": [
-        "error",
-        {
-          "ignoreComments": true,
-          "ignoreStrings": true,
-          "ignoreTemplateLiterals": true
-        }
-      ],
-      "no-multi-spaces": [
-        "error",
-        {
-          "exceptions": {
-            "BinaryExpression": true,
-            "VariableDeclarator": true
-          }
-        }
-      ],
-      "no-plusplus": [
-        2,
-        {
-          "allowForLoopAfterthoughts": true
-        }
-      ],
-      "quotes": [
-        "error",
-        "single"
-      ]
-    }
-  },
   "postcss": {
     "plugins": {
       "postcss-import": {},
@@ -257,7 +199,7 @@
     "bracketSpacing": true,
     "endOfLine": "auto",
     "jsxSingleQuote": false,
-    "printWidth": 80,
+    "printWidth": 100,
     "quoteProps": "as-needed",
     "semi": true,
     "singleQuote": true,
@@ -284,7 +226,7 @@
     "last 2 versions",
     "not dead"
   ],
-  "packageManager": "pnpm@10.19.0+sha512.c9fc7236e92adf5c8af42fd5bf1612df99c2ceb62f27047032f4720b33f8eacdde311865e91c411f2774f618d82f320808ecb51718bfa82c060c4ba7c76a32b8",
+  "packageManager": "pnpm@10.25.0+sha512.5e82639027af37cf832061bcc6d639c219634488e0f2baebe785028a793de7b525ffcd3f7ff574f5e9860654e098fe852ba8ac5dd5cefe1767d23a020a92f501",
   "pnpm": {
     "ignoredBuiltDependencies": [
       "@parcel/watcher",
@@ -293,15 +235,16 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.0.0",
+    "@eslint/js": "^9.39.1",
     "@fullhuman/postcss-purgecss": "^7.0.2",
     "autoprefixer": "^10.4.13",
-    "eslint": "^8.57.1",
-    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.2.1",
     "fs-extra": "^11.3.2",
-    "glob": "^11.0.3",
+    "glob": "^13.0.0",
+    "globals": "^16.5.0",
     "imagemin": "^9.0.1",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-mozjpeg": "^10.0.0",
@@ -327,6 +270,6 @@
     "vite": "^7.1.9",
     "vite-plugin-imagemin": "^0.6.1",
     "vitepress": "^1.2.3",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.15"
   }
 }

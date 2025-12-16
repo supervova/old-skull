@@ -2,8 +2,8 @@
 /* #region: BASE                                                              */
 /* -------------------------------------------------------------------------- */
 
-@import url('../../theme/mixins.css');
-@import url('../../theme/custom.css') layer(base);
+@import url('../../styles/mixins.css');
+@import url('../../styles/custom.css') layer(base);
 
 :root {
   --sidenav-area: initial; /* Default value, or a sensible fallback */
@@ -178,12 +178,12 @@
 }
 
 .section-start-text {
-  max-inline-size: 34rem;
+  max-width: 34rem;
 }
 
 .section-start-media {
   justify-self: center;
-  max-inline-size: 26rem;
+  max-width: 26rem;
 
   @media (--tablet) {
     justify-self: end;
@@ -193,7 +193,7 @@
 
 .section-start-img {
   display: block;
-  inline-size: 100%;
+  width: 100%;
   height: auto;
 }
 

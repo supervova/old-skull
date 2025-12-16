@@ -3,22 +3,22 @@
 @layer components.mvp, components.extended;
 
 /* Mixins are defined outside layers — excluded from build but available globally. */
-@import url('./theme/mixins.css');
+@import url('./styles/mixins.css');
 
-@import url('./theme/custom.css') layer(base);
-/* @import url('./theme/fonts.css') layer(base); */
-@import url('./theme/reset.css') layer(base);
-@import url('./theme/vars.css') layer(base);
-@import url('./theme/vars-light.css') layer(base);
-@import url('./theme/vars-dark.css') layer(base);
-@import url('./theme/doc.css') layer(base);
+@import url('./styles/custom.css') layer(base);
+/* @import url('./styles/fonts.css') layer(base); */
+@import url('./styles/reset.css') layer(base);
+@import url('./styles/vars.css') layer(base);
+@import url('./styles/vars-light.css') layer(base);
+@import url('./styles/vars-dark.css') layer(base);
+@import url('./styles/doc.css') layer(base);
 
 @import url('./components/icon/icon.css') layer(components.mvp);
+@import url('./components/content/mvp.css') layer(base);
 @import url('./components/button/button.css') layer(components.mvp);
-@import url('./components/content/mvp.css') layer(components.mvp);
 @import url('./components/form/mvp.css') layer(components.mvp);
 @import url('./components/layout/containers.css') layer(components.mvp);
-@import url('./theme/utils/mvp.css') layer(utils);
+@import url('./styles/utils/mvp.css') layer(utils);
 
 /* -------------------------------------------------------------------------- */
 /* #region: EXTENDED                                                          */
@@ -93,14 +93,14 @@
 
 /* Utils */
 /*
-@import url('./theme/utils/accessibility.css') layer(utils);
-@import url('./theme/utils/animation.css') layer(utils);
-@import url('./theme/utils/display.css') layer(utils);
-@import url('./theme/utils/flex.css') layer(utils);
-@import url('./theme/utils/spacing.css') layer(utils);
-@import url('./theme/utils/width.css') layer(utils);
+@import url('./styles/utils/accessibility.css') layer(utils);
+@import url('./styles/utils/animation.css') layer(utils);
+@import url('./styles/utils/display.css') layer(utils);
+@import url('./styles/utils/flex.css') layer(utils);
+@import url('./styles/utils/spacing.css') layer(utils);
+@import url('./styles/utils/width.css') layer(utils);
 */
 
-@import url('./theme/utils/print.css') layer(print);
+@import url('./styles/utils/print.css') layer(print);
 
 /* #endregion */

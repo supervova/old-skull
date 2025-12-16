@@ -5,7 +5,7 @@
     flex-grow: 1;
 
     /* --search-max-width example value for 12-column grid:
-       calc((100% - 11 * var(--gap-base)) * 7 / 12 + 6 * var(--gap-base)) */
+       calc((100% - 11 * var(--gap)) * 7 / 12 + 6 * var(--gap)) */
     max-width: var(--search-max-width, none);
   }
 

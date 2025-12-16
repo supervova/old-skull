@@ -112,7 +112,7 @@ fieldset {
   --form-field-padding-x: var(--padding-x-input);
   --form-field-text-color: var(--color-text);
   --form-field-border-color: transparent;
-  --form-field-min-height: calc(var(--lh) * 2);
+  --form-field-min-height: calc(var(--rlh) * 2);
 }
 
 .form-field :is(:--text-field, [type='search']) {
@@ -148,7 +148,7 @@ fieldset {
 }
 
 .form-field textarea:not([rows]) {
-  height: calc(var(--lh) * 6);
+  height: calc(var(--rlh) * 6);
 }
 
 .form-field.form-field-error {
@@ -170,14 +170,14 @@ fieldset {
   --form-field-padding-y: var(--dim-1);
   --form-field-padding-x: var(--dim-2);
   --form-field-font-size: var(--font-size-sm);
-  --form-field-min-height: calc(var(--lh) * 1.5);
+  --form-field-min-height: calc(var(--rlh) * 1.5);
 }
 
 .form-field.form-field-lg {
   --form-field-padding-y: var(--dim-2);
-  --form-field-padding-x: var(--lh);
+  --form-field-padding-x: var(--rlh);
   --form-field-font-size: var(--font-size-h3);
-  --form-field-min-height: calc(var(--lh) * 2.5);
+  --form-field-min-height: calc(var(--rlh) * 2.5);
 }
 
 .form-field :is(:--text-field, [type='search']):disabled,
@@ -196,14 +196,14 @@ fieldset {
 .form-hint {
   color: var(--color-text-02);
   display: block;
-  margin-top: var(--dim-0p5);
+  margin-top: var(--dim-0plus);
   padding-inline: var(--dim-2);
   text-align: left;
   max-width: var(--width-prose);
 }
 
 .form-disclaimer {
-  margin-block: var(--lh);
+  margin-block: var(--rlh);
 }
 
 /* #endregion */
@@ -233,7 +233,7 @@ fieldset {
 
 .form-password-toggle {
   background: transparent;
-  top: var(--dim-0p5);
+  top: var(--dim-0plus);
   inset-inline-end: var(--dim-1);
   position: absolute;
 }

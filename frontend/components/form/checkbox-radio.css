@@ -11,7 +11,7 @@
 
   color: var(--color-text-02);
   margin: 0;
-  padding-inline-start: var(--lh);
+  padding-inline-start: var(--rlh);
   position: relative;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .form-option [type='checkbox'] {
-  border-radius: var(--dim-0p5);
+  border-radius: var(--dim-0plus);
 }
 
 .form-option [type='checkbox']:checked {
@@ -68,11 +68,11 @@
 /* -------------------------------------------------------------------------- */
 
 .form-option.form-option-sm {
-  --option-size: var(--dim-1p5);
+  --option-size: var(--dim-1plus);
 }
 
 .form-option.form-option-lg {
-  --option-size: var(--dim-2p5);
+  --option-size: var(--dim-2plus);
 }
 
 .form-option.form-option-invalid {

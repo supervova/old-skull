@@ -43,7 +43,7 @@
     .tooltip-bubble {
       bottom: 100%;
       left: 50%;
-      translate: -50% var(--lh);
+      translate: -50% var(--rlh);
     }
 
     .tooltip-bubble::after {
@@ -58,9 +58,9 @@
       height: 0;
     }
 
-    &:hover .tooltip-bubble,
-    &:focus-visible .tooltip-bubble,
-    &:active .tooltip-bubble {
+    :scope:hover .tooltip-bubble,
+    :scope:focus-visible .tooltip-bubble,
+    :scope:active .tooltip-bubble {
       opacity: 1;
       pointer-events: auto;
       translate: -50% calc(var(--tooltip-arrow-width) * -1);
@@ -74,13 +74,13 @@
   /* #region: POSITION BOTTOM (MOBILE FALLBACK FOR SIDES)                     */
   /* ------------------------------------------------------------------------ */
 
-  &.tooltip-bottom,
-  &.tooltip-left,
-  &.tooltip-right {
+  :scope.tooltip-bottom,
+  :scope.tooltip-left,
+  :scope.tooltip-right {
     .tooltip-bubble {
       top: 100%;
       left: 50%;
-      translate: -50% calc(var(--lh) * -1);
+      translate: -50% calc(var(--rlh) * -1);
     }
 
     .tooltip-bubble::after {
@@ -95,9 +95,9 @@
       height: 0;
     }
 
-    &:hover .tooltip-bubble,
-    &:focus-visible .tooltip-bubble,
-    &:active .tooltip-bubble {
+    :scope:hover .tooltip-bubble,
+    :scope:focus-visible .tooltip-bubble,
+    :scope:active .tooltip-bubble {
       opacity: 1;
       pointer-events: auto;
       translate: -50% var(--tooltip-arrow-width);
@@ -111,13 +111,13 @@
   /* #region: POSITION LEFT (DESKTOP/TABLET)                                  */
   /* ------------------------------------------------------------------------ */
 
-  &.tooltip-left {
+  :scope.tooltip-left {
     @media (--tablet) {
       .tooltip-bubble {
         top: 50%;
         right: 100%;
         left: auto;
-        translate: var(--lh) -50%;
+        translate: var(--rlh) -50%;
       }
 
       .tooltip-bubble::after {
@@ -129,9 +129,9 @@
         translate: 0 -50%;
       }
 
-      &:hover .tooltip-bubble,
-      &:focus-visible .tooltip-bubble,
-      &:active .tooltip-bubble {
+      :scope:hover .tooltip-bubble,
+      :scope:focus-visible .tooltip-bubble,
+      :scope:active .tooltip-bubble {
         translate: calc(var(--tooltip-arrow-width) * -1) -50%;
       }
     }
@@ -143,12 +143,12 @@
   /* #region: POSITION RIGHT (DESKTOP/TABLET)                                 */
   /* ------------------------------------------------------------------------ */
 
-  &.tooltip-right {
+  :scope.tooltip-right {
     @media (--tablet) {
       .tooltip-bubble {
         top: 50%;
         left: 100%;
-        translate: calc(var(--lh) * -1) -50%;
+        translate: calc(var(--rlh) * -1) -50%;
       }
 
       .tooltip-bubble::after {
@@ -160,14 +160,14 @@
         translate: 0 -50%;
       }
 
-      &:hover .tooltip-bubble,
-      &:focus-visible .tooltip-bubble,
-      &:active .tooltip-bubble {
+      :scope:hover .tooltip-bubble,
+      :scope:focus-visible .tooltip-bubble,
+      :scope:active .tooltip-bubble {
         translate: var(--tooltip-arrow-width) -50%;
       }
 
       /* Lower neighbor below tooltip to prevent overlap */
-      & ~ * {
+      :scope ~ * {
         z-index: -1;
       }
     }

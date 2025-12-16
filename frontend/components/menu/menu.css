@@ -22,7 +22,7 @@
 
   @media (--tablet) {
     li:not(:last-child) {
-      margin-bottom: var(--dim-0p5);
+      margin-bottom: var(--dim-0plus);
     }
   }
 
@@ -108,15 +108,15 @@
   /* ------------------------------------------------------------------------ */
 
   .menu-item-icon-start {
-    padding-inline-start: calc(var(--menu-item-padding-x) - var(--dim-0p5));
+    padding-inline-start: calc(var(--menu-item-padding-x) - var(--dim-0plus));
   }
 
   .menu-item-icon-end {
-    padding-inline-end: calc(var(--menu-item-padding-x) - var(--dim-0p5));
+    padding-inline-end: calc(var(--menu-item-padding-x) - var(--dim-0plus));
   }
 
   .menu-item-icons {
-    padding-inline: calc(var(--menu-item-padding-x) - var(--dim-0p5));
+    padding-inline: calc(var(--menu-item-padding-x) - var(--dim-0plus));
   }
 
   /* #endregion */
@@ -135,10 +135,10 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    gap: var(--button-gap, var(--dim-1p5));
+    gap: var(--button-gap, var(--dim-1plus));
     justify-content: start;
     padding-block: 0;
-    padding-inline: var(--button-padding-x, var(--dim-2p5));
+    padding-inline: var(--button-padding-x, var(--dim-2plus));
     outline: 0;
     touch-action: manipulation;
     transition: background var(--duration-50) var(--easing-base);

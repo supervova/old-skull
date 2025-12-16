@@ -15,7 +15,7 @@
     border-top: var(--footer-border);
     display: flex;
     flex-direction: column;
-    margin-block-start: var(--spacer);
+    margin-block-start: var(--spacer-lg);
   }
 
   :scope > .container {
@@ -32,7 +32,7 @@
     flex-direction: column;
     gap: var(--dim-1);
     list-style: none;
-    margin: var(--lh) 0;
+    margin: var(--rlh) 0;
     padding: 0;
   }
 
@@ -72,7 +72,7 @@
   @media (--tablet-l) {
     :scope > .container {
       flex-direction: row;
-      gap: var(--lh);
+      gap: var(--rlh);
       padding-block-end: var(--dim-6);
     }
 

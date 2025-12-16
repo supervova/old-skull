@@ -1,5 +1,7 @@
 # Hero
 
+A hero is a prominent UI section at the top of a page, typically featuring a headline, supporting text, and a call-to-action to capture user attention and convey the main message.
+
 Usage:
 
 ```html

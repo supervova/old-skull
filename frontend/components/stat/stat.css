@@ -1,23 +1,27 @@
 /* -------------------------------------------------------------------------- */
-/* #region: BASE                                                              */
+/* #region: GROUP                                                             */
 /* -------------------------------------------------------------------------- */
 
-@scope (.stats) {
-  :scope {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--lh);
-    padding: var(--dim-2p5) 0;
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--rlh);
+  padding: var(--dim-2plus) 0;
 
-    @media (--tablet) {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  @media (--tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    @media (--laptop) {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
+  @media (--laptop) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: BASE AND MODIFIERS                                                */
+/* -------------------------------------------------------------------------- */
 
 @scope (.stat) {
   :scope {
@@ -27,7 +31,13 @@
     flex-direction: column;
     gap: var(--dim-1);
     font-variant-numeric: oldstyle-nums;
-    padding: var(--dim-2p5) 0;
+    padding: var(--dim-2plus) 0;
+  }
+
+  :scope.stat-accent {
+    background: var(--color-bg-brand);
+    border-inline-start: 0;
+    border-radius: var(--radius-base);
   }
 
   .eyebrow {
@@ -54,7 +64,7 @@
       @mixin text-format h3;
 
       display: inline-block;
-      padding-inline-start: var(--dim-0p5);
+      padding-inline-start: var(--dim-0plus);
     }
   }
 
@@ -62,26 +72,12 @@
     color: var(--color-text-02);
     font-weight: 600;
   }
-}
 
-/* #endregion */
-
-/* -------------------------------------------------------------------------- */
-/* #region: MODIFIERS                                                         */
-/* -------------------------------------------------------------------------- */
-
-@scope (.stat-accent) {
-  :scope {
-    background: var(--color-bg-brand);
-    border-inline-start: 0;
-    border-radius: var(--radius-base);
-  }
-}
-
-  .stat-accent + .stat {
-    @media (--tablet) {
+  @media (--tablet) {
+    .stat-accent + :scope {
       border-inline-start: 0;
     }
   }
+}
 
 /* #endregion */

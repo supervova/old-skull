@@ -44,7 +44,7 @@ h1, .h1 {
 
 h2, .h2 {
   @mixin text-format h2;
-  margin-bottom: var(--margin-bottom-h2, var(--lh));
+  margin-bottom: var(--margin-bottom-h2, var(--rlh));
 }
 
 h3, .h3 {
@@ -57,7 +57,6 @@ h4, .h4, h5, h6 {
   font-weight: var(--font-weight-strong, 600);
   margin-bottom: 0;
 }
-
 
 :where(address, blockquote, div, dl, figure, form, ol, p, pre, table, ul)
   + :is(h2, .h2, h3, .h3, h4, .h4, h5, h6) {
@@ -75,21 +74,35 @@ p, li, dd {
 }
 
 :where(p, pre, table) {
-  margin-block: 0 var(--lh);
+  margin-block: 0 var(--rlh);
 }
 
-a:not(.btn) {
+a {
   color: var(--color-link);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
-
-  &:hover {
-    color: color-mix(in oklch, var(--color-link) 90%, hsl(var(--h) var(--s) 99%));
-  }
+  text-decoration: none;
+  transition:
+    color var(--duration-50) var(--easing-base),
+    text-decoration var(--duration-50) var(--easing-base);
 
   &:active {
-    color: color-mix(in oklch, var(--color-link) 90%, hsl(var(--h) var(--s) 12%));
+    color: var(--color-link-hover);
   }
+
+  &:visited {
+    color: var(--color-link-visited);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--color-link-hover);
+      text-decoration-skip-ink: auto;
+      text-decoration: underline;
+      text-decoration-thickness: max(0.05em, 1px);
+      text-underline-offset: 0.125em;
+    }
+  }
+
+  /* :focus-visible is set on reset level */
 }
 
 b, strong {
@@ -119,98 +132,71 @@ hr {
 
 ul,
 ol {
-  list-style: none;
-  margin: 0 0 var(--lh);
+  --list-padding: var(--dim-3);
+  --list-gap: var(--dim-1);
+  --list-indent: var(--dim-2plus);
+
+  list-style-type: none;
+  margin-inline: 0;
+  margin-block: 0 var(--rlh);
   padding: 0;
 }
 
-ul {
-  padding-inline-start: var(--dim-2p5);
-
-  @media (--tablet) {
-    padding-inline-start: 0;
-  }
-}
-
-li {
-  margin-bottom: var(--dim-1);
-}
-
-li:last-child {
-  margin-bottom: 0;
-}
-
-/* Unordered list markers. The first section is for Safari, which doesn’t support
-   ::marker. */
-:where(ul:not([class], nav ul)) > li {
-  --list-marker-size: 0.25rem; /* 4px */
-  padding-inline-start: calc(var(--dim-1) + var(--list-marker-size));
+/* List items */
+:is(ul, ol) > li {
   position: relative;
-}
 
-:where(ul:not([class], nav ul)) > li::before {
-  background-color: var(--color-brand);
-  border-radius: 50%;
-  content: '';
-  position: absolute;
-  top: calc(0.75em - var(--list-marker-size) / 2);
-  inset-inline-start: 0;
-  block-size: var(--list-marker-size);
-  inline-size: var(--list-marker-size);
-}
+  &:not(:last-child),
+  p:not(:last-child) {
+    margin-bottom: var(--list-gap);
+  }
 
-/* Modern browsers */
-@supports selector(::marker) {
-  @supports not (-webkit-hyphenate-limit-after: 1) {
-    :where(ul:not([class], nav ul)) > li {
-      padding-inline-start: 0;
-      position: revert;
-    }
-
-    :where(ul:not([class], nav ul)) > li::before {
-      content: none;
-    }
-
-    :where(ul:not([class], nav ul)) > li::marker {
-      color: var(--color-brand);
-      content: '\2022\00a0';
-    }
+  p:last-child {
+    margin-bottom: 0;
   }
 }
 
-/* Ordered list counter */
+/* UL */
+ul:not([role='list']) {
+  padding-inline-start: var(--list-padding);
+}
+
+ul > li::before {
+  color: var(--color-brand);
+  content: '•';
+  line-height: 1;
+  text-transform: none;
+  position: absolute;
+  top: 0.2em;
+  left: -20px;
+}
+
+/* OL */
 ol {
-  counter-reset: item;
+  /* <ol start="9" style="--ol-start: 9"> */
+  counter-reset: list-counter var(--ol-start, 0);
 }
 
 ol > li {
-  counter-increment: item;
   padding-inline-start: calc(2ch + var(--dim-1));
-  position: relative;
-}
 
-ol > li::before {
-  content: counter(item) '.';
-  font-variant-numeric: tabular-nums;
-  line-height: 1.5;
-  position: absolute;
-  inset-inline-start: 0;
-  text-align: right;
-  width: 2ch;
+  &::before {
+    color: var(--color-text-02);
+    content: counter(list-counter, decimal) '.';
+    counter-increment: list-counter;
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 /* Nested lists */
-:is(ul, ol) :is(ul, ol) {
-  margin-block: var(--dim-1) 0;
-}
-
-/* Paragraphs in lists */
-:is(ul, ol) p {
-  margin-bottom: var(--dim-1);
-}
-
-:is(ul, ol) p:last-child {
-  margin-bottom: 0;
+li > ul,
+li > ol {
+  margin-block: var(--list-gap) 0;
+  padding-inline-start: var(--list-indent);
 }
 
 /* Description list */
@@ -219,7 +205,7 @@ dl {
 
   @media (--phone-l) {
     display: grid;
-    gap: var(--dim-1) var(--lh);
+    gap: var(--dim-1) var(--rlh);
     grid-template-columns: var(--grid-columns);
   }
 }
@@ -269,7 +255,7 @@ table {
   --table-border-width: var(--border-width);
   --cell-height: var(--dim-6);
   --cell-padding-x: var(--dim-2);
-  --cell-padding-y: var(--dim-1p5);
+  --cell-padding-y: var(--dim-1plus);
 
   border-collapse: collapse;
   border-spacing: 0;

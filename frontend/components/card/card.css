@@ -10,7 +10,7 @@
     --card-body-color: var(--color-text-02);
     --card-radius: var(--radius-base);
     --card-shadow: var(--shadow-z1);
-    --card-padding: var(--dim-2p5);
+    --card-padding: var(--dim-2plus);
     --card-gap: calc(var(--card-padding) / 2);
     --card-max-w: var(--width-lg);
 
@@ -26,7 +26,7 @@
     position: relative;
     width: min(100%, var(--card-max-w));
 
-    @media (--phone-l) { --card-padding: var(--lh); }
+    @media (--phone-l) { --card-padding: var(--rlh); }
     @media (--tablet)  { --card-padding: var(--dim-4); }
   }
 
@@ -84,7 +84,7 @@
   }
 
   :scope > figure img {
-    border-radius: calc(var(--card-radius) - var(--dim-0p5));
+    border-radius: calc(var(--card-radius) - var(--dim-0plus));
   }
 
   :scope > :is(section, .card-body) {
@@ -129,7 +129,7 @@
   /* #region: MODIFIERS                                                       */
   /* ------------------------------------------------------------------------ */
 
-  &.card-elevated {
+  :scope.card-elevated {
     --card-shadow: var(--shadow-z2);
   }
 

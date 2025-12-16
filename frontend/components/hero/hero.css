@@ -85,7 +85,7 @@
   }
 
   .grid {
-    --grid-gap: var(--dim-1p5);
+    --grid-gap: var(--dim-1plus);
   }
 
   @media (--tablet-l) {

@@ -29,7 +29,7 @@ label {
   color: var(--color-text);
   display: block;
   font-weight: 500;
-  margin-bottom: var(--dim-0p5);
+  margin-bottom: var(--dim-0plus);
 }
 
 :--text-field {
@@ -68,7 +68,7 @@ select:not([multiple]) {
   background-image: var(--icon-chevron-down);
   background-position: center right var(--dim-1);
   background-repeat: no-repeat;
-  background-size: var(--lh);
+  background-size: var(--rlh);
   padding-inline-end: var(--dim-6);
   overflow-x: clip;
 
@@ -82,8 +82,8 @@ select:not([multiple]) {
 [type='radio'] {
   cursor: pointer;
   margin: 0;
-  width: var(--dim-2p5);
-  height: var(--dim-2p5);
+  width: var(--dim-2plus);
+  height: var(--dim-2plus);
 }
 
 [type='checkbox'] + label,

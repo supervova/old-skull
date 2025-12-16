@@ -7,10 +7,10 @@
     --accordion-border-color: var(--color-border, hsl(0 0% 0% / 0.08));
     --accordion-summary-color: var(--color-text);
     --accordion-summary-color-active: var(--color-text-02);
-    --accordion-summary-padding-block: var(--lh);
+    --accordion-summary-padding-block: var(--rlh);
     --accordion-summary-padding-inline-end: var(--dim-5);
     --accordion-marker-size: var(--dim-4);
-    --accordion-marker-offset: var(--dim-2p5);
+    --accordion-marker-offset: var(--dim-2plus);
     --accordion-marker-bg: transparent;
     --accordion-marker-bg-active: var(--color-fill);
     --accordion-marker-border: 1px solid var(--color-border);
@@ -47,7 +47,7 @@
     }
   }
 
-  &::details-content {
+  :scope::details-content {
     color: var(--color-text-02);
     transition:
       content-visibility var(--duration-200) var(--easing-base),
@@ -100,10 +100,10 @@
 /* -------------------------------------------------------------------------- */
 
 .accordion + :not(.accordion) {
-  margin-top: var(--lh);
+  margin-top: var(--rlh);
 
   @media (--tablet) {
-    margin-top: calc(var(--lh) * 2);
+    margin-top: calc(var(--rlh) * 2);
   }
 }
 
@@ -118,28 +118,29 @@
   With subheading
 */
 summary:has(.accordion-header-hgroup) {
-  --accordion-summary-padding-block: calc(var(--lh) / 2)
+  --accordion-summary-padding-block: calc(var(--rlh) / 2)
 }
 
+/* Multiline summary: title + subtitle */
 .accordion-header-hgroup {
   flex: 1 1 auto;
-}
 
-.accordion-header-hgroup strong {
-  display: block;
-  font-weight: inherit;
-}
+  strong {
+    display: block;
+    font-weight: inherit;
+  }
 
-.accordion-header-hgroup .text-02 {
-  @mixin text-truncate;
+  .text-02 {
+    @mixin text-truncate;
 
-  display: block;
-  font-weight: 400;
-}
+    display: block;
+    font-weight: 400;
+  }
 
-.accordion-header-hgroup .accordion-marker {
-  top: 50%;
-  translate: 0 -50%;
+  .accordion-marker {
+    top: 50%;
+    translate: 0 -50%;
+  }
 }
 
 /* Body */

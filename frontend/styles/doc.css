@@ -14,7 +14,7 @@ html {
   text-size-adjust: 100%;
 
   /* Hide scrollbar when drawer is open */
-  &:has(.drawer-open) {
+  &:has(.drawer.is-open) {
     scrollbar-color: transparent transparent;
   }
 
@@ -41,19 +41,19 @@ html {
 
     &::-webkit-scrollbar-thumb {
       background-color: var(--color-scroll-thumb);
-      border: var(--dim-0p5) solid transparent;
+      border: var(--dim-0plus) solid transparent;
       border-radius: var(--radius-pill);
     }
 
-    &:has(.drawer-open)::-webkit-scrollbar {
+    &:has(.drawer.is-open)::-webkit-scrollbar {
       background: transparent;
     }
 
-    &:has(.drawer-open)::-webkit-scrollbar-track {
+    &:has(.drawer.is-open)::-webkit-scrollbar-track {
       background: transparent;
     }
 
-    &:has(.drawer-open)::-webkit-scrollbar-thumb {
+    &:has(.drawer.is-open)::-webkit-scrollbar-thumb {
       background-color: transparent;
       border-color: transparent;
     }

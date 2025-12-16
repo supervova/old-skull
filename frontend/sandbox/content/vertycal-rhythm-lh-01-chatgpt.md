@@ -221,16 +221,16 @@
   --num-8:   64;
 
   /* Rhythm reference */
-  --lh: var(--num-3);
+  --rlh: var(--num-3);
 
   /* Sizing tokens (dim = dimension; pxtorem will convert these). It's it's more
      convenient than DRY with the advanced-variables plugin or
      calc(var(--num-1) * var(--px2rem)); */
-  --dim-0p5: 4px;
+  --dim-0plus: 4px;
   --dim-1:   8px;
-  --dim-1p5: 12px;
+  --dim-1plus: 12px;
   --dim-2:   16px;
-  --dim-2p5: 20px;
+  --dim-2plus: 20px;
   --dim-3:   24px;
   --dim-4:   32px;
   --dim-5:   40px;
@@ -244,32 +244,32 @@
 
   /* Fixed caption */
   --font-size-fine-print: 12px;
-  --line-height-fine-print: calc(var(--num-2) / var(--lh) * 1rlh);
+  --line-height-fine-print: calc(var(--num-2) / var(--rlh) * 1rlh);
 
   /* Scale-based sizes */
   --font-size-body-sm: calc(var(--font-size-base) / var(--scale)); /* ~14px */
-  --line-height-body-sm: calc(var(--num-2p5) / var(--lh) * 1rlh);
+  --line-height-body-sm: calc(var(--num-2p5) / var(--rlh) * 1rlh);
 
   --font-size-h3: calc(var(--font-size-base) * var(--scale)); /* ~20.4px */
-  --line-height-h3: calc(var(--num-3) / var(--lh) * 1rlh);
+  --line-height-h3: calc(var(--num-3) / var(--rlh) * 1rlh);
 
   --font-size-h2: calc(var(--font-size-h3) * var(--scale)); /* ~24.5px */
-  --line-height-h2: calc(var(--num-4) / var(--lh) * 1rlh);
+  --line-height-h2: calc(var(--num-4) / var(--rlh) * 1rlh);
 
   --font-size-title: calc(var(--font-size-h2) * var(--scale)); /* ~29.4px */
-  --line-height-title: calc(var(--num-4) / var(--lh) * 1rlh);
+  --line-height-title: calc(var(--num-4) / var(--rlh) * 1rlh);
 
   --font-size-hero: calc(var(--font-size-title) * var(--scale)); /* ~35.3px */
-  --line-height-hero: calc(var(--num-6) / var(--lh) * 1rlh);
+  --line-height-hero: calc(var(--num-6) / var(--rlh) * 1rlh);
 
   /* Fallback for browsers without rlh support */
   @supports not (line-height: 1rlh) {
-    --line-height-fine-print: calc(var(--num-2) / var(--lh));
-    --line-height-body-sm: calc(var(--num-2p5) / var(--lh));
-    --line-height-h3: calc(var(--num-3) / var(--lh));
-    --line-height-h2: calc(var(--num-4) / var(--lh));
-    --line-height-title: calc(var(--num-4) / var(--lh));
-    --line-height-hero: calc(var(--num-6) / var(--lh));
+    --line-height-fine-print: calc(var(--num-2) / var(--rlh));
+    --line-height-body-sm: calc(var(--num-2p5) / var(--rlh));
+    --line-height-h3: calc(var(--num-3) / var(--rlh));
+    --line-height-h2: calc(var(--num-4) / var(--rlh));
+    --line-height-title: calc(var(--num-4) / var(--rlh));
+    --line-height-hero: calc(var(--num-6) / var(--rlh));
   }
 
   @media (width >= 768px) {
@@ -277,10 +277,10 @@
     --num-5: 40;
 
     --font-size-h3: calc(var(--font-size-base) * var(--scale));
-    --line-height-h3: calc(var(--num-5) / var(--lh) * 1rlh);
+    --line-height-h3: calc(var(--num-5) / var(--rlh) * 1rlh);
 
     @supports not (line-height: 1rlh) {
-      --line-height-h3: calc(var(--num-5) / var(--lh));
+      --line-height-h3: calc(var(--num-5) / var(--rlh));
     }
   }
 }
@@ -303,15 +303,15 @@
   line-height: 24px;
 
   /* Ритм */
-  --lh: 1rlh; /* 24px */
+  --rlh: 1rlh; /* 24px */
 
   /* Универсальные значения для отступов и размеров небольших элементов */
-  --dim-0p5: calc(var(--lh) / 6);      /* 4px — для мелких отступов и высоты строки мелких надписей  */
-  --dim-1: calc(var(--lh) / 3);         /* 8px — единица сетки интерфейса */
-  --dim-1p5: calc(var(--dim-1) * 1.5); /* 12px — сетка интерфейса */
+  --dim-0plus: calc(var(--rlh) / 6);      /* 4px — для мелких отступов и высоты строки мелких надписей  */
+  --dim-1: calc(var(--rlh) / 3);         /* 8px — единица сетки интерфейса */
+  --dim-1plus: calc(var(--dim-1) * 1.5); /* 12px — сетка интерфейса */
   --dim-2: calc(var(--dim-1) * 2);     /* 16px */
-  --dim-2p5: calc(var(--dim-1) * 2.5); /* 20px */
-  --dim-3: calc(var(--dim-1) * 3);     /* 24px = --lh */
+  --dim-2plus: calc(var(--dim-1) * 2.5); /* 20px */
+  --dim-3: calc(var(--dim-1) * 3);     /* 24px = --rlh */
   --dim-4: calc(var(--dim-1) * 4);     /* 32px */
   --dim-5: calc(var(--dim-1) * 5);     /* 40px */
   --dim-6: calc(var(--dim-1) * 6);     /* 48px */
@@ -327,10 +327,10 @@
   --line-height-fine-print: var(--dim-2);
 
   --font-size-body-sm: calc(var(--font-size-base) / var(--scale)); /* ~14px */
-  --line-height-body-sm: var(--dim-2p5);
+  --line-height-body-sm: var(--dim-2plus);
 
   --font-size-h3: calc(var(--font-size-base) * var(--scale)); /* ~20.4px */
-  --line-height-h3: var(--lh);
+  --line-height-h3: var(--rlh);
 
   --font-size-h2: calc(var(--font-size-h3) * var(--scale)); /* ~24.5px */
   --line-height-h2: var(--dim-4);
@@ -352,20 +352,20 @@
 
 body {
   font-size: var(--font-size-base); /* 17px */
-  line-height: var(--lh); /* 24px */
+  line-height: var(--rlh); /* 24px */
   color: var(--color-text, #111);
 }
 
 /* Межблочные интервалы — 1 строка */
 p, ul, ol, blockquote, pre, table {
-  margin-block: 0 var(--lh); /* отступ снизу – 24px */
+  margin-block: 0 var(--rlh); /* отступ снизу – 24px */
 }
 
 /* Утилиты ритма */
 .mb-0 { margin-bottom: 0; }
 .mb-1 { margin-bottom: var(--dim-1); } /* 8px */
 .mb-2 { margin-bottom: var(--dim-2); } /* 16px */
-.mb-3 { margin-bottom: var(--lh); } /* 24px */
+.mb-3 { margin-bottom: var(--rlh); } /* 24px */
 .mb-4 { margin-bottom: var(--dim-4); } /* 32px */
 
 /* -------------------------------------------------------------------------- */
@@ -391,22 +391,22 @@ h1, .h1 {
 h2, .h2 {
   font-size: var(--font-size-h2);
   line-height: var(--line-height-h2);
-  margin-top: var(--margin-top-h2, calc(var(--lh) * 2));
+  margin-top: var(--margin-top-h2, calc(var(--rlh) * 2));
   margin-bottom: var(--margin-bottom-h2, 0);
 }
 
 h3, .h3 {
   font-size: var(--font-size-h3);
   line-height: var(--line-height-h3);
-  margin-top: var(--margin-top-h3, calc(var(--lh) * 2));
+  margin-top: var(--margin-top-h3, calc(var(--rlh) * 2));
   margin-bottom: var(--margin-bottom-h3, 0);
 }
 
 h4, .h4,
 h5, h6 {
   font-size: var(--font-size-base);
-  line-height: var(--lh);
-  margin-top: var(--margin-top-h3, calc(var(--lh) * 2));
+  line-height: var(--rlh);
+  margin-top: var(--margin-top-h3, calc(var(--rlh) * 2));
   margin-bottom: var(--margin-bottom-h3, 0);
 }
 
@@ -445,8 +445,8 @@ small, .text-xs {
 }
 
 .card {
-  padding: var(--lh);
-  margin-block: 0 var(--lh);
+  padding: var(--rlh);
+  margin-block: 0 var(--rlh);
 }
 ```
 
@@ -466,11 +466,11 @@ small, .text-xs {
   --num-7:   56;
   --num-8:   64;
 
-  --dim-0p5: calc(--dim-0p5 * var(--px2rem));
+  --dim-0plus: calc(--dim-0plus * var(--px2rem));
   --dim-1:   calc(--dim-1   * var(--px2rem));
-  --dim-1p5: calc(--dim-1p5 * var(--px2rem));
+  --dim-1plus: calc(--dim-1plus * var(--px2rem));
   --dim-2:   calc(--dim-2   * var(--px2rem));
-  --dim-2p5: calc(--dim-2p5 * var(--px2rem));
+  --dim-2plus: calc(--dim-2plus * var(--px2rem));
   --dim-3:   calc(--dim-3   * var(--px2rem));
   --dim-4:   calc(--dim-4   * var(--px2rem));
   --dim-5:   calc(--dim-5   * var(--px2rem));

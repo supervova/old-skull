@@ -3,11 +3,11 @@
 /* -------------------------------------------------------------------------- */
 
 [type='range'] {
-  --range-height: var(--dim-0p5);
+  --range-height: var(--dim-0plus);
   --range-radius: var(--radius-pill);
   --range-bg: var(--color-border);
   --range-fill: var(--color-brand);
-  --range-thumb: var(--dim-2p5);
+  --range-thumb: var(--dim-2plus);
   --range-thumb-bg: var(--color-bg);
   --range-thumb-border: color-mix(in oklch, var(--color-brand) 40%, var(--color-bg));
   --range-focus: var(--color-focus);

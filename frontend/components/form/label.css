@@ -7,7 +7,7 @@ label {
   --label-font-size: var(--font-size-base);
   --label-letter-spacing: var(--letter-spacing-base, normal);
   --label-line-height: var(--line-height-base);
-  --label-margin-bottom: var(--dim-0p5);
+  --label-margin-bottom: var(--dim-0plus);
 
   color: var(--label-color);
   cursor: pointer;
@@ -68,7 +68,7 @@ label {
     --float-label-line-height: var(--line-height-base);
     --float-label-line-height-active: var(--line-height-fine-print);
     --float-label-top: var(--dim-2);
-    --float-label-top-active: var(--dim-0p5);
+    --float-label-top-active: var(--dim-0plus);
     --float-label-left: var(--padding-x-input);
     --float-label-transition: all var(--duration-200) var(--easing-base);
 

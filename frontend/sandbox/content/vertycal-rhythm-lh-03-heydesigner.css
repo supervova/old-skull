@@ -7,20 +7,20 @@
   --fs: 106.25%;
 
   /* Line-height */
-  --lh: 1.6471rem;
+  --rlh: 1.6471rem;
 
   /* Type scale */
   --ts: 1.2;
 
   @media screen and (width >= 764px) {
     --fs: 112.5%;
-    --lh: 1.6667rem;
+    --rlh: 1.6667rem;
   }
 }
 
 html {
   font-size: var(--fs);
-  scroll-padding-top: var(--lh);
+  scroll-padding-top: var(--rlh);
   scroll-behavior: smooth;
 }
 
@@ -30,12 +30,12 @@ body {
   font-family: InterVariable, -apple-system, BlinkMacSystemFont, "segoe ui", Helvetica, Arial, sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol";
   font-size: var(--fsr);
   font-weight: 400;
-  line-height: var(--lh);
+  line-height: var(--rlh);
 }
 
 h1 {
   font-size: calc(var(--fsr) * var(--ts) * var(--ts) * var(--ts));
-  line-height: calc(var(--lh) * 1.5);
+  line-height: calc(var(--rlh) * 1.5);
 }
 
 h2 {
@@ -60,7 +60,7 @@ small {
 sup {
   vertical-align: bottom;
   position: relative;
-  top: calc(var(--lh) / -4);
+  top: calc(var(--rlh) / -4);
 }
 
 .btn {
@@ -71,7 +71,7 @@ sup {
   font-size: calc(var(--fsr) / var(--ts));
 }
 
-/* Padding'и и margin'ы – все высчитываются на базе (--lh) */
+/* Padding'и и margin'ы – все высчитываются на базе (--rlh) */
 .header {
-  padding-block: calc(var(--lh) * 2);
+  padding-block: calc(var(--rlh) * 2);
 }

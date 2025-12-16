@@ -17,7 +17,7 @@ let globalHandlersBound = false;
 const isPopoverOpen = (popover) =>
   isDetailsPopover(popover)
     ? popover.hasAttribute('open')
-    : popover.classList.contains('popover-open');
+    : popover.classList.contains('is-open');
 
 /**
  * Sets the open state of a popover.
@@ -40,9 +40,9 @@ const setPopoverState = (popover, isOpen) => {
     // For custom popovers, toggle class directly
     // @starting-style in CSS handles initial animation
     if (isOpen) {
-      popover.classList.add('popover-open');
+      popover.classList.add('is-open');
     } else {
-      popover.classList.remove('popover-open');
+      popover.classList.remove('is-open');
     }
 
     if (summary && body) {

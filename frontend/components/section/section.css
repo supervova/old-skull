@@ -1,6 +1,6 @@
 .section {
-  margin-top: var(--spacer-max);
-  padding-block: var(--spacer);
+  margin-top: var(--spacer-xxl);
+  padding-block: var(--spacer-lg);
 }
 
 .section-header-centered {

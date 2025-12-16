@@ -1,7 +1,7 @@
 /**
  * Vite's entry point for the demo page.
- * Here we simply import the SCSS core so that Vite will process it through
- * the Sass plugin and insert it into the <style>.
+ * Here we import the CSS core so that Vite will process it and insert it into
+ * the <style>.
  */
 import '../frontend/main.css';
 import '../frontend/pages/example/example.css';

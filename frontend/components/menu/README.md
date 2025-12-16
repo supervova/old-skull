@@ -1,90 +1,118 @@
-# Меню
+# Menu
 
-## Разметка
+The **menu** component represents a list of links or commands, designed for navigation or performing actions. It is often used as a primary navigation element, as well as within dropdowns, sidebars, and other components.
+
+## Structure and Usage
+
+### Basic Markup
+
+In its simplest form, a menu is an unordered list `<ul>` with the class `.menu`, wrapped in a `<nav>` tag for semantic purposes. Each menu item is a link `<a>` with the class `.menu-link`.
 
 ```html
 <nav>
   <ul class="menu">
-    <li><a class="menu-link" href="#">
-      <span class="menu-label">Menu Item</span>
-    </a></li>
-    <li><a class="menu-link" href="#">
-      <span class="menu-label">Menu Item</span>
-    </a></li>
-    <li><a class="menu-link" href="#">
-      <span class="menu-label">Menu Item</span>
-    </a></li>
+    <li>
+      <a href="#" class="menu-link">
+        <span class="menu-label">Profile</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="menu-link">
+        <span class="menu-label">Settings</span>
+      </a>
+    </li>
   </ul>
 </nav>
 ```
 
-Атрибуты `role` использовать только в том случае, если меню почему-то не обёрнуто тегом `nav`.
+### Menu with Icons
+
+To add icons, use the `.icon` component. The icon's position is controlled by additional classes on the link.
+
+- `.menu-item-icon-start`: icon at the beginning, text to the right.
+- `.menu-item-icon-end`: icon at the end, text to the left.
+- `.menu-item-icons`: for two icons at both ends.
 
 ```html
-<ul role="menu" aria-label="Lorem Ipsum">
-  <li role="none">
-    <a href="#" role="menuitem">
-      <span class="label">Menu Item</span>
-    </a>
-  </li>
-  <li role="none">
-    <a href="#" role="menuitem">
-      <span class="label">Menu Item</span>
-    </a>
-  </li>
-  <li role="none">
-    <a href="#" role="menuitem">
-      <span class="label">Menu Item</span>
+<ul class="menu">
+  <li>
+    <a href="#" class="menu-link menu-item-icon-start">
+      <svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg>
+      <span class="menu-label">Profile</span>
     </a>
   </li>
 </ul>
 ```
 
-## Управление фокусом
+### Divider
 
-Отличный пример задачи, который можно поручить LLM.
-
-Для нескрываемых элементов, нуждающихся в фокусе, но не фокусируемых по умолчанию — например, кликабельных `li` — устанавливается tabindex: `0`.
-
-Для скрытых интерактивных элементов устанавливается tabindex: `-1`. Причем атрибут назначается не только элементам без «врожденной» фокусировки но и фокусируемым, вроде `<a>`.
+To visually separate menu items, use an empty `<li>` with the class `.menu-divider`.
 
 ```html
-<li><a href="#" tabindex="-1">
-  <span class="label">Menu Item</span>
-</a></li>
+<ul class="menu">
+  <li>...</li>
+  <li class="menu-divider" role="separator"></li>
+  <li>...</li>
+</ul>
 ```
 
-При открытии виджета, в котором такие элементы содержатся — модальное окно, выпадающее или контекстное меню — первый из таких элементов, который должен попасть в фокус, меняет значение атрибута `tabindex` на `0`.
+### Action Buttons
 
-Затем значения меняются по нажатию клавиш-стрелок:
+If a menu item should perform an action (e.g., "Logout") rather than navigate to a link, use a `<button>` with the class `.menu-action`.
 
-- у элемента, который был в фокусе последним `tabindex` становится равным `-1`;
-- у следующего в очереди на фокус `tabindex` становится равным `0`;
-- вместе с изменением `tabindex`'а на этом элементе вызывается метод
-  `element.focus()`.
-
-Впрочем, при открытии скрываемых виджетов фокус может переводиться и на фокусируемого по умолчанию потомка:
-
-```js
-function openDialog() {
-  const modal = document.getElementById('modal');
-  const firstInput = modal.querySelector('input[type="text"]');
-  modal.classList.add('is-open');
-  firstInput.focus();
-}
+```html
+<ul class="menu">
+  <li>
+    <button class="menu-action menu-item-icon-start">
+      <svg class="icon" aria-hidden="true"><use href="#icon-logout"></use></svg>
+      <span class="menu-label">Logout</span>
+    </button>
+  </li>
+</ul>
 ```
 
-При закрытии виджетов «по требованию» следует возвращать фокус на элемент их открывший: `.focus()`.
+## States
 
-## Роль радиокнопок
+### Active Item
+
+To indicate the current page or active section, use the `aria-current="page"` attribute on the link. Styles will be applied automatically.
 
 ```html
 <li>
-  <ul role="group" data-option="font-color" aria-label="Text Color">
-    <li role="menuitemradio" aria-checked="true">Black</li>
-    <li role="menuitemradio" aria-checked="false">Blue</li>
-    <li role="menuitemradio" aria-checked="false">Red</li>
-    <li role="menuitemradio" aria-checked="false">Green</li>
+  <a href="#" class="menu-link" aria-current="page">
+    <span class="menu-label">Current Section</span>
+  </a>
+</li>
+```
+
+## Accessibility
+
+### ARIA Roles
+
+- **`<nav>`**: Always wrap navigation menus in a `<nav>` tag so screen readers can correctly identify them as navigation blocks.
+- **`role="menu"`**: Use this role for `<ul>` only if the menu is not within a `<nav>` and serves as an application menu (e.g., a context menu).
+- **`role="menuitem"`**: Applied to `<a>` links or `<button>` buttons within a menu with `role="menu"`.
+
+### Radio Groups in Menus
+
+To create a group of mutually exclusive options (e.g., sorting selection), you can use `role="menuitemradio"`.
+
+```html
+<li role="none">
+  <ul role="group" aria-label="Sort by">
+    <li role="menuitemradio" aria-checked="true">By Date</li>
+    <li role="menuitemradio" aria-checked="false">By Popularity</li>
   </ul>
 </li>
 ```
+
+### Focus Management in Dynamic Menus
+
+For custom widgets (e.g., dropdown menus) that appear and disappear, focus management must be implemented using JavaScript to ensure keyboard accessibility.
+
+**Recommended Pattern**:
+
+1. For hidden interactive elements within the menu, set `tabindex="-1"`.
+2. When the menu opens, programmatically set focus to the first element by changing its `tabindex` to `0` and calling the `.focus()` method.
+3. Implement navigation between items using arrow keys (Up/Down), moving `tabindex="0"` and focus between elements.
+4. When the menu closes, return focus to the element that opened it.

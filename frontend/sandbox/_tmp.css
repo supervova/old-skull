@@ -4,20 +4,20 @@
 
 body {
   font-size: var(--font-size-base); /* 17px */
-  line-height: var(--lh); /* 24px */
+  line-height: var(--rlh); /* 24px */
   color: var(--color-text, #111);
 }
 
 /* Межблочные интервалы — 1 строка */
 p, ul, ol, blockquote, pre, table {
-  margin-block: 0 var(--lh); /* отступ снизу – 24px */
+  margin-block: 0 var(--rlh); /* отступ снизу – 24px */
 }
 
 /* Утилиты ритма */
 .mb-0 { margin-bottom: 0; }
 .mb-1 { margin-bottom: var(--dim-1); } /* 8px */
 .mb-2 { margin-bottom: var(--dim-2); } /* 16px */
-.mb-3 { margin-bottom: var(--lh); } /* 24px */
+.mb-3 { margin-bottom: var(--rlh); } /* 24px */
 .mb-4 { margin-bottom: var(--dim-4); } /* 32px */
 
 /* -------------------------------------------------------------------------- */
@@ -43,22 +43,22 @@ h1, .h1 {
 h2, .h2 {
   font-size: var(--font-size-h2);
   line-height: var(--line-height-h2);
-  margin-top: var(--margin-top-h2, calc(var(--lh) * 2));
+  margin-top: var(--margin-top-h2, calc(var(--rlh) * 2));
   margin-bottom: var(--margin-bottom-h2, 0);
 }
 
 h3, .h3 {
   font-size: var(--font-size-h3);
   line-height: var(--line-height-h3);
-  margin-top: var(--margin-top-h3, calc(var(--lh) * 2));
+  margin-top: var(--margin-top-h3, calc(var(--rlh) * 2));
   margin-bottom: var(--margin-bottom-h3, 0);
 }
 
 h4, .h4,
 h5, h6 {
   font-size: var(--font-size-base);
-  line-height: var(--lh);
-  margin-top: var(--margin-top-h3, calc(var(--lh) * 2));
+  line-height: var(--rlh);
+  margin-top: var(--margin-top-h3, calc(var(--rlh) * 2));
   margin-bottom: var(--margin-bottom-h3, 0);
 }
 
@@ -98,6 +98,6 @@ small, .text-xs {
 }
 
 .card {
-  padding: var(--lh);
-  margin-block: 0 var(--lh);
+  padding: var(--rlh);
+  margin-block: 0 var(--rlh);
 }

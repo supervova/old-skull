@@ -11,7 +11,7 @@
     --drawer-open: -50% 0;
     --drawer-header-height: var(--dim-7);
     --drawer-footer-height: 80px;
-    --margin-top-subhead: var(--lh);
+    --margin-top-subhead: var(--rlh);
 
     animation:
       drawer-out calc(var(--duration-200) * 0.8) var(--easing-disappearance) forwards;
@@ -31,7 +31,7 @@
   }
 
   /* MODIFIERS */
-  &.drawer-horizontal {
+  :scope.drawer-horizontal {
     --drawer-radius: var(--radius-base);
 
     border-radius: var(--drawer-radius) var(--drawer-radius) 0 0;
@@ -42,12 +42,12 @@
     height: 312px;
     max-height: calc(90vh - var(--dim-5));
 
-    & .drawer-header {
+    .drawer-header {
       border-radius: calc(var(--drawer-radius) - 1px) calc(var(--drawer-radius) - 1px) 0 0;
     }
   }
 
-  &.drawer-vertical {
+  :scope.drawer-vertical {
     --drawer-closed: 100% 0;
     --drawer-open: 0 0;
 
@@ -59,7 +59,7 @@
   }
 
   :scope[open],
-  &.drawer-open {
+  :scope.is-open {
     animation: drawer-in var(--duration-200) var(--easing-appearance) forwards;
     box-shadow: var(--drawer-shadow);
     translate: var(--drawer-open);
@@ -69,10 +69,10 @@
   .drawer-header,
   .drawer-body,
   .drawer-footer {
-    padding-inline: var(--dim-2p5);
+    padding-inline: var(--dim-2plus);
 
     @media (--phone-l) {
-      padding-inline: var(--lh);
+      padding-inline: var(--rlh);
     }
 
     @media (--tablet) {
@@ -98,7 +98,7 @@
     margin: 0;
 
     /* Additional space for close button */
-    padding-inline-end: var(--lh);
+    padding-inline-end: var(--rlh);
   }
 
   .drawer-header .btn-close {
@@ -113,8 +113,8 @@
     flex: 1;
     flex-direction: column;
     grid-area: body;
-    padding-top: var(--lh);
-    padding-bottom: calc(var(--drawer-footer-height) + var(--lh));
+    padding-top: var(--rlh);
+    padding-bottom: calc(var(--drawer-footer-height) + var(--rlh));
     overflow: hidden auto;
     overscroll-behavior-y: contain;
     scrollbar-width: thin;
@@ -144,14 +144,14 @@
     z-index: 1;
   }
 
-  &.drawer-horizontal .drawer-footer {
+  :scope.drawer-horizontal .drawer-footer {
     box-shadow: var(--shadow-z1);
     border-radius: calc(var(--radius-base) + var(--dim-1));
     padding: var(--dim-1);
     overflow: visible;
     left: auto;
-    right: var(--dim-1p5);
-    bottom: var(--dim-1p5);
+    right: var(--dim-1plus);
+    bottom: var(--dim-1plus);
   }
 }
 

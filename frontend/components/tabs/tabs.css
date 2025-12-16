@@ -5,7 +5,7 @@
 @scope (.tabs) {
   :scope {
     --tabs-panel-height: auto;
-    --tabs-gap: var(--dim-0p5);
+    --tabs-gap: var(--dim-0plus);
 
     display: flex;
     flex-direction: column;
@@ -14,9 +14,9 @@
   }
 
   :scope > .tabs-content {
-    block-size: 100%;
     display: grid;
     place-content: center;
+    height: 100%;
   }
 
   :scope > .tabs-content > * {
@@ -54,10 +54,10 @@
   background-color: var(--tabs-nav-bg);
   border-radius: var(--tabs-nav-radius);
   display: flex;
-  gap: var(--dim-0p5);
+  gap: var(--dim-0plus);
   list-style: none;
   margin: 0;
-  padding: var(--dim-0p5);
+  padding: var(--dim-0plus);
 }
 
 .tabs-nav > li {
@@ -75,7 +75,7 @@
 .tabs-nav [role='tab'] {
   --tabs-tab-height: var(--dim-4);
   --tabs-tab-radius: var(--radius-sm);
-  --tabs-tab-gap: var(--dim-1p5);
+  --tabs-tab-gap: var(--dim-1plus);
 
   align-items: center;
   background: transparent;
@@ -91,7 +91,7 @@
   justify-content: center;
   line-height: var(--line-height-body-sm);
   max-width: 100%;
-  padding-inline: var(--dim-1p5);
+  padding-inline: var(--dim-1plus);
   scroll-snap-align: start;
   text-decoration: none;
   text-transform: none;
@@ -160,7 +160,7 @@
 /* -------------------------------------------------------------------------- */
 
 [role='tabpanel'] > ul {
-  margin-block: var(--lh) calc(var(--lh) * 2);
+  margin-block: var(--rlh) calc(var(--rlh) * 2);
   padding-inline-start: var(--dim-2);
 }
 

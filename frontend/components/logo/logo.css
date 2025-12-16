@@ -11,7 +11,7 @@
 
     @media (--phone-l) {
       display: block;
-      padding-top: var(--dim-0p5);
+      padding-top: var(--dim-0plus);
     }
   }
 
@@ -24,6 +24,6 @@
     display: block;
     letter-spacing: var(--letter-spacing-fine-print);
     text-transform: lowercase;
-    margin-top: var(--dim-0p5);
+    margin-top: var(--dim-0plus);
   }
 }

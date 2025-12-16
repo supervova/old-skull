@@ -1,18 +1,16 @@
 /* Add the utility .w-fit when a tooltip wraps inline elements. */
-@scope (.tooltip, .tooltip-rich) {
-  :scope {
+.tooltip,
+.tooltip-rich {
+  --tooltip-bg: hsl(var(--h) var(--s-min) 16%);
+  --tooltip-color: hsl(0 0% 100% / 0.87);
+  --tooltip-arrow-width: var(--dim-1);
+  --tooltip-padding: var(--rlh);
+  --tooltip-width: var(--width-sm);
 
-    --tooltip-bg: hsl(var(--h) var(--s-min) 16%);
-    --tooltip-color: hsl(0 0% 100% / 0.87);
-    --tooltip-arrow-width: var(--dim-1);
-    --tooltip-padding: var(--lh);
-    --tooltip-width: var(--width-sm);
-
-    position: relative;
-  }
+  position: relative;
 }
 
-@scope (.tooltip) {
+.tooltip {
   &::before,
   &::after {
     opacity: 0;
@@ -50,7 +48,7 @@
     display: none;
   }
 
-  :scope:is(:active, :focus-visible) {
+  &:is(:active, :focus-visible) {
     overflow: visible;
 
     &::before,
@@ -61,7 +59,7 @@
   }
 
   @media (any-hover: hover) and (pointer: fine) {
-    :scope:hover {
+    &:hover {
       overflow: visible;
       &::before,
       &::after {
@@ -71,115 +69,113 @@
     }
   }
 
-  :scope:not(.tooltip-right, .tooltip-bottom, .tooltip-left)::before,
-  :scope:not(.tooltip-right, .tooltip-bottom, .tooltip-left)::after {
-    bottom: 100%;
-    left: 50%;
+  &:not(.tooltip-right, .tooltip-bottom, .tooltip-left) {
+    &::before,
+    &::after {
+      bottom: 100%;
+      left: 50%;
+    }
+
+    &::after {
+      translate: -50% var(--rlh);
+    }
+
+    &::before {
+      border-top-color: var(--tooltip-bg);
+      margin-inline-start: calc(var(--tooltip-arrow-width) / -2);
+      translate: 0 var(--tooltip-arrow-width);
+    }
+
+    &:is(:hover, :focus-visible, :active)::before {
+      translate: 0;
+    }
+
+    &:is(:hover, :focus-visible, :active)::after {
+      translate: -50% calc(var(--tooltip-arrow-width) * -1);
+    }
   }
 
-  :scope:not(.tooltip-right, .tooltip-bottom, .tooltip-left)::after {
-    translate: -50% var(--lh);
-  }
+  &.tooltip-bottom,
+  &.tooltip-left,
+  &.tooltip-right {
+    &::before,
+    &::after {
+      left: 50%;
+      top: 100%;
+    }
 
-  :scope:not(.tooltip-right, .tooltip-bottom, .tooltip-left)::before {
-    border-top-color: var(--tooltip-bg);
-    margin-inline-start: calc(var(--tooltip-arrow-width) / -2);
-    translate: 0 var(--tooltip-arrow-width);
-  }
+    &::before {
+      border-bottom-color: var(--tooltip-bg);
+      translate: 0 calc(var(--tooltip-arrow-width) * -1);
+    }
 
-  :scope:not(.tooltip-right, .tooltip-bottom, .tooltip-left):is(:hover, :focus-visible, :active)::before {
-    translate: 0;
-  }
+    &::after {
+      translate: -50% calc(var(--rlh) * -1);
+    }
 
-  :scope:not(.tooltip-right, .tooltip-bottom, .tooltip-left):is(:hover, :focus-visible, :active)::after {
-    translate: -50% calc(var(--tooltip-arrow-width) * -1);
-  }
+    &:is(:hover, :focus-visible, :active)::before {
+      translate: 0;
+    }
 
-  &.tooltip-bottom::before,
-  &.tooltip-left::before,
-  &.tooltip-right::before,
-  &.tooltip-bottom::after,
-  &.tooltip-left::after,
-  &.tooltip-right::after {
-    left: 50%;
-    top: 100%;
-  }
-
-  &.tooltip-bottom::before,
-  &.tooltip-left::before,
-  &.tooltip-right::before {
-    border-bottom-color: var(--tooltip-bg);
-    translate: 0 calc(var(--tooltip-arrow-width) * -1);
-  }
-
-  &.tooltip-bottom::after,
-  &.tooltip-left::after,
-  &.tooltip-right::after {
-    translate: -50% calc(var(--lh) * -1);
-  }
-
-  &.tooltip-bottom:is(:hover, :focus-visible, :active)::before,
-  &.tooltip-left:is(:hover, :focus-visible, :active)::before,
-  &.tooltip-right:is(:hover, :focus-visible, :active)::before {
-    translate: 0;
-  }
-
-  &.tooltip-bottom:is(:hover, :focus-visible, :active)::after,
-  &.tooltip-left:is(:hover, :focus-visible, :active)::after,
-  &.tooltip-right:is(:hover, :focus-visible, :active)::after {
-    translate: -50% var(--tooltip-arrow-width);
+    &:is(:hover, :focus-visible, :active)::after {
+      translate: -50% var(--tooltip-arrow-width);
+    }
   }
 
   @media (--tablet) {
-    &.tooltip-left::before,
-    &.tooltip-left::after {
-      left: auto;
-      right: 100%;
-      top: auto;
+    &.tooltip-left {
+      &::before,
+      &::after {
+        left: auto;
+        right: 100%;
+        top: auto;
+      }
+
+      &::before {
+        border-bottom-color: transparent;
+        border-inline-start-color: var(--tooltip-bg);
+        border-top-color: transparent;
+        top: calc(50% - calc(var(--tooltip-arrow-width) / 2));
+        translate: var(--rlh);
+      }
+
+      &::after {
+        top: 50%;
+        translate: var(--rlh) -50%;
+      }
+
+      &:is(:hover, :focus-visible, :active)::after {
+        translate: calc(var(--tooltip-arrow-width) * -1) -50%;
+      }
     }
 
-    &.tooltip-left::before {
-      border-bottom-color: transparent;
-      border-inline-start-color: var(--tooltip-bg);
-      border-top-color: transparent;
-      top: calc(50% - calc(var(--tooltip-arrow-width) / 2));
-      translate: var(--lh);
-    }
+    &.tooltip-right {
+      &::before,
+      &::after {
+        left: 100%;
+        top: auto;
+      }
 
-    &.tooltip-left::after {
-      top: 50%;
-      translate: var(--lh) -50%;
-    }
+      &::before {
+        border-bottom-color: transparent;
+        border-inline-end-color: var(--tooltip-bg);
+        border-top-color: transparent;
+        top: calc(50% - calc(var(--tooltip-arrow-width) / 2));
+        translate: calc(var(--rlh) * -1);
+      }
 
-    &.tooltip-left:is(:hover, :focus-visible, :active)::after {
-      translate: calc(var(--tooltip-arrow-width) * -1) -50%;
-    }
+      &::after {
+        top: 50%;
+        translate: calc(var(--rlh) * -1) -50%;
+      }
 
-    &.tooltip-right::before,
-    &.tooltip-right::after {
-      left: 100%;
-      top: auto;
-    }
+      &:is(:hover, :focus-visible, :active)::after {
+        translate: var(--tooltip-arrow-width) -50%;
+      }
 
-    &.tooltip-right::before {
-      border-bottom-color: transparent;
-      border-inline-end-color: var(--tooltip-bg);
-      border-top-color: transparent;
-      top: calc(50% - calc(var(--tooltip-arrow-width) / 2));
-      translate: calc(var(--lh) * -1);
-    }
-
-    &.tooltip-right::after {
-      top: 50%;
-      translate: calc(var(--lh) * -1) -50%;
-    }
-
-    &.tooltip-right:is(:hover, :focus-visible, :active)::after {
-      translate: var(--tooltip-arrow-width) -50%;
-    }
-
-    &.tooltip-right:is(:hover, :focus-visible, :active) ~ * {
-      z-index: -1;
+      &:is(:hover, :focus-visible, :active) ~ * {
+        z-index: -1;
+      }
     }
   }
 }

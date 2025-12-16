@@ -2,51 +2,49 @@
 /* #region: BASE                                                              */
 /* -------------------------------------------------------------------------- */
 
-@scope (.progress-spinner) {
-  :scope {
-    --spinner-size: var(--lh);
-    --spinner-stroke: var(--dim-0p5);
-    --spinner-dur: 1s;
-    --spinner-primary: var(--color-brand);
-    --spinner-accent: var(--color-success);
-    --spinner-blend: darken;
+.progress-spinner {
+  --spinner-size: var(--rlh);
+  --spinner-stroke: var(--dim-0plus);
+  --spinner-dur: 1s;
+  --spinner-primary: var(--color-brand);
+  --spinner-accent: var(--color-success);
+  --spinner-blend: darken;
 
-    aspect-ratio: 1;
-    box-sizing: border-box;
-    display: grid;
-    margin: auto;
-    width: var(--spinner-size);
-  }
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  display: grid;
+  margin: auto;
+  width: var(--spinner-size);
+}
 
-  &::before,
-  &::after {
-    animation: spinner var(--spinner-dur) linear infinite;
-    border: var(--spinner-stroke) solid transparent;
-    border-radius: 50%;
-    content: '';
-    grid-area: 1 / 1;
-    mix-blend-mode: var(--spinner-blend);
-  }
+.progress-spinner::before,
+.progress-spinner::after {
+  animation: spinner var(--spinner-dur) linear infinite;
+  border: var(--spinner-stroke) solid transparent;
+  border-radius: 50%;
+  content: '';
+  grid-area: 1 / 1;
+  mix-blend-mode: var(--spinner-blend);
+}
 
-  &::before {
-    border-right-color: var(--spinner-primary);
-    border-top-color: var(--spinner-primary);
-  }
+.progress-spinner::before {
+  border-right-color: var(--spinner-primary);
+  border-top-color: var(--spinner-primary);
+}
 
-  &::after {
-    animation-direction: reverse;
-    border-bottom-color: var(--spinner-accent);
-    border-left-color: var(--spinner-accent);
-  }
+.progress-spinner::after {
+  animation-direction: reverse;
+  border-bottom-color: var(--spinner-accent);
+  border-left-color: var(--spinner-accent);
+}
 
-  :root[data-theme='dark'] :scope {
+:root[data-theme='dark'] .progress-spinner {
+  --spinner-blend: lighten;
+}
+
+@media (prefers-color-scheme: dark) {
+  .progress-spinner {
     --spinner-blend: lighten;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :scope {
-      --spinner-blend: lighten;
-    }
   }
 }
 
@@ -63,7 +61,7 @@
   background-size: 1em auto;
   content: '';
   display: inline-block;
-  margin-inline-start: var(--dim-0p5);
+  margin-inline-start: var(--dim-0plus);
   vertical-align: -2px;
   width: 1em;
   height: 1em;

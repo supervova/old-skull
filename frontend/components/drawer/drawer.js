@@ -9,7 +9,7 @@ const isDrawerOpen = (drawer) => {
   if (drawer.tagName === 'DIALOG') {
     return drawer.hasAttribute('open');
   }
-  return drawer.classList.contains('drawer-open');
+  return drawer.classList.contains('is-open');
 };
 
 /**
@@ -25,7 +25,7 @@ const setDrawerOpen = (drawer, isOpen) => {
       drawer.removeAttribute('open');
     }
   } else {
-    toggleClass(drawer, 'drawer-open', isOpen);
+    toggleClass(drawer, 'is-open', isOpen);
   }
 };
 

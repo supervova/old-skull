@@ -90,14 +90,14 @@ html:has(.modal[open]) {
 
 .modal-close::before,
 .modal-close::after {
-  content: '';
-  position: absolute;
-  inset: 50%;
-  inline-size: 14px;
-  block-size: 2px;
-  border-radius: 999px;
   background: rgb(15 23 42 / 0.8);
+  border-radius: 999px;
+  content: '';
+  inset: 50%;
+  position: absolute;
   translate: -50% -50%;
+  width: 14px;
+  height: 2px;
 }
 
 .modal-close::before {

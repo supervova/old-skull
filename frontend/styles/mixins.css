@@ -1,7 +1,7 @@
 /* stylelint-disable custom-property-pattern */
 
 /**
- * TEXT FORMAT
+ * Text formatting mixin
  * Using: .title { @mixin text-format base; }
  */
 @define-mixin text-format $level {
@@ -11,8 +11,7 @@
   line-height: var(--line-height-$(level));
 }
 
-
-/* TEXT TRUNCATION */
+/* Text truncation */
 @define-mixin text-truncate {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -20,7 +19,7 @@
 }
 
 /**
- * MULTI-LINE TEXT TRUNCATION
+ * Multi-line text truncation
  *
  * Using:
  * .title   { @mixin line-clamp; }
@@ -28,12 +27,12 @@
  * .heading { @mixin line-clamp var(--rows); }
  */
 /* stylelint-disable-next-line length-zero-no-unit */
-@define-mixin line-clamp $rows: 2, $lh: 1.2 {
+@define-mixin line-clamp $rows: 2, $lh: 1.5 {
   --rows: $(rows);
   --lh: $(lh);
 
   /* Fallback w/o lh */
-  --height: calc(var(--rows) * var(--lh) * 1em);
+  --height: calc(var(--rows) * var(--rlh) * 1em);
 
   /* Modern solution w/ lh */
   @supports (height: 1lh) {
@@ -49,6 +48,7 @@
   height: var(--height);
 }
 
+/* Focus state */
 @define-mixin state-focus {
   border-radius: inherit;
   outline: var(--focus-outline, 0.125rem) solid var(--color-focus, AccentColor, -webkit-focus-ring-color);

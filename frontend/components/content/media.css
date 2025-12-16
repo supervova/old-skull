@@ -16,7 +16,7 @@ video {
 
 figure,
 iframe {
-  margin-block: 0 var(--media-margin-bottom, var(--lh));
+  margin-block: 0 var(--media-margin-bottom, var(--rlh));
 }
 
 figcaption {

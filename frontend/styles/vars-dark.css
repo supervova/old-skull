@@ -40,6 +40,8 @@
   --color-border-bold: hsl(var(--h) var(--s-min) 99% / 0.12);
   --color-border: hsl(var(--h) var(--s-min) 99% / 0.08);
   --color-link: hsl(var(--h-blue) var(--s-02) 70%);
+  --color-link-hover: color-mix(in oklch, var(--color-link) 90%, #fff);
+  --color-link-visited: color-mix(in oklch, var(--color-link) 85%, #000);
   --color-code: hsl(var(--h-purple) var(--s-02) 70%);
 
   --color-text-inverse: hsl(var(--h) var(--s-min) 14%);

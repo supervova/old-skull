@@ -16,7 +16,7 @@
     --popover-body-translate-block: var(--popover-body-offset);
     --popover-body-width: var(--width-sm);
     --popover-layer: 40;
-    --popover-max-inline: calc(100vw - var(--dim-2p5) * 2);
+    --popover-max-inline: calc(100vw - var(--dim-2plus) * 2);
 
     position: relative;
     width: fit-content;
@@ -28,7 +28,7 @@
   /* #region: BODY                                                            */
   /* ------------------------------------------------------------------------ */
 
-  &::details-content {
+  :scope::details-content {
     transition: content-visibility var(--duration-200) var(--easing-base);
     transition-behavior: allow-discrete;
   }
@@ -60,7 +60,7 @@
   /* Initial state for opening animation */
   @starting-style {
     :scope[open] > .popover-body,
-    &.popover-open > .popover-body {
+    :scope.is-open > .popover-body {
       --popover-body-translate-block: var(--popover-body-offset);
       opacity: 0;
     }
@@ -72,7 +72,7 @@
 
   /* Open state */
   :scope[open] .popover-body,
-  &.popover-open > .popover-body {
+  :scope.is-open > .popover-body {
     --popover-body-translate-block: 0;
     opacity: 1;
     pointer-events: auto;
@@ -93,25 +93,25 @@
   }
 
   /* Chevron indicator */
-  &.popover-chevron summary {
+  :scope.popover-chevron summary {
     align-items: center;
     display: flex;
   }
 
-  &.popover-chevron summary::after {
+  :scope.popover-chevron summary::after {
     background-image: var(--icon-chevron-down);
     background-position: center;
     background-repeat: no-repeat;
     content: '';
     display: block;
     height: var(--dim-2);
-    margin-inline-start: var(--dim-0p5);
+    margin-inline-start: var(--dim-0plus);
     transition: rotate var(--duration-50) var(--easing-base);
     width: var(--dim-2);
   }
 
-  &.popover-chevron[open] summary::after,
-  &.popover-chevron.popover-open summary::after {
+  :scope.popover-chevron[open] summary::after,
+  :scope.popover-chevron.is-open summary::after {
     rotate: 180deg;
   }
 
@@ -125,37 +125,37 @@
 @scope (.popover) {
 
   /* Position above trigger */
-  &.popover-up > .popover-body {
+  :scope.popover-up > .popover-body {
     --popover-body-translate-block: calc(var(--popover-body-offset) * -1);
     inset-block-end: 100%;
   }
 
   @starting-style {
-    &.popover-up[open] > .popover-body,
-    &.popover-up.popover-open > .popover-body {
+    :scope.popover-up[open] > .popover-body,
+    :scope.popover-up.is-open > .popover-body {
       --popover-body-translate-block: var(--popover-body-offset);
     }
   }
 
-  &.popover-up[open] > .popover-body,
-  &.popover-up.popover-open > .popover-body {
+  :scope.popover-up[open] > .popover-body,
+  :scope.popover-up.is-open > .popover-body {
     --popover-body-translate-block: 0;
   }
 
   /* Align to end (right in LTR) */
-  &.popover-end > .popover-body {
+  :scope.popover-end > .popover-body {
     @media (--phone-l) {
       inset-inline: auto 0;
     }
   }
 
   /* Align body to center */
-  &.popover-center > .popover-body {
+  :scope.popover-center > .popover-body {
     --popover-body-inset-inline-start: 50%;
     --popover-body-translate-inline: -50%;
   }
 
-  &.phone\:popover-center > .popover-body {
+  :scope.phone\:popover-center > .popover-body {
     @media (--phone) {
       --popover-body-inset-inline-start: 50%;
       --popover-body-translate-inline: -50%;
@@ -188,31 +188,31 @@
     }
 
     /* Modifier: place above the trigger */
-    &.popover-up > .popover-body {
+    :scope.popover-up > .popover-body {
       inset-area: top start;
     }
 
     /* Inline alignment: end (logical inline end) */
-    &.popover-end > .popover-body {
+    :scope.popover-end > .popover-body {
       inset-area: bottom end;
     }
 
     /* Inline alignment: center */
-    &.popover-center > .popover-body {
+    :scope.popover-center > .popover-body {
       inset-area: bottom center;
     }
 
     /* Combinations with "up" */
-    &.popover-up.popover-end > .popover-body {
+    :scope.popover-up.popover-end > .popover-body {
       inset-area: top end;
     }
 
-    &.popover-up.popover-center > .popover-body {
+    :scope.popover-up.popover-center > .popover-body {
       inset-area: top center;
     }
 
     /* Phone-only center variant */
-    &.phone\:popover-center > .popover-body {
+    :scope.phone\:popover-center > .popover-body {
       @media (--phone) {
         inset-area: bottom center;
       }

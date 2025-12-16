@@ -23,7 +23,7 @@
   max-width: 100%;
 
   &:not(:has(> .hero)) {
-    padding-top: var(--spacer);
+    padding-top: var(--spacer-lg);
   }
 
   @media (--tablet) {

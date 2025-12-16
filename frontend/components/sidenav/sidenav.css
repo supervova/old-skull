@@ -7,7 +7,7 @@
     --sidenav-height: 5.5rem;
     --sidenav-height-desktop: var(--dim-6);
     --sidenav-menu-height: 5rem;
-    --sidenav-item-gap: var(--dim-0p5);
+    --sidenav-item-gap: var(--dim-0plus);
     --sidenav-dot-size: var(--dim-1);
     --sidenav-label-color: var(--color-text-02);
     --sidenav-label-size: var(--font-size-body-sm);
@@ -33,7 +33,7 @@
     display: flex;
     justify-content: space-between;
     padding-block-start: var(--dim-1);
-    padding-inline: var(--dim-2p5);
+    padding-inline: var(--dim-2plus);
     position: relative;
     height: var(--sidenav-height);
   }
@@ -59,7 +59,7 @@
     letter-spacing: var(--sidenav-label-letter-spacing);
     line-height: var(--sidenav-label-line-height);
     position: absolute;
-    inset-block-start: var(--lh);
+    inset-block-start: var(--rlh);
     inset-inline-start: var(--dim-6);
   }
 
@@ -72,8 +72,8 @@
     inset-inline: 0;
     justify-content: space-around;
     padding-block:
-      var(--dim-0p5)
-      calc(var(--dim-0p5) + env(safe-area-inset-bottom));
+      var(--dim-0plus)
+      calc(var(--dim-0plus) + env(safe-area-inset-bottom));
     padding-inline: var(--dim-1);
     position: fixed;
     height: calc(var(--sidenav-menu-height) + env(safe-area-inset-bottom));
@@ -100,7 +100,7 @@
     gap: var(--sidenav-item-gap);
     height: 100%;
     justify-content: center;
-    padding-block: var(--dim-1p5) var(--dim-1);
+    padding-block: var(--dim-1plus) var(--dim-1);
     text-align: center;
     text-decoration: none;
     transition:
@@ -141,13 +141,13 @@
     position: relative;
   }
 
-  .sidenav-item-open [data-role='popover-summary'] {
+  .sidenav-item.is-open [data-role='popover-summary'] {
     background-color: var(--color-fill);
   }
 
   .sidenav-item-more .popover-body {
     inset-block-end: 100%;
-    inset-inline-end: var(--dim-1p5);
+    inset-inline-end: var(--dim-1plus);
     translate: 0 var(--dim-5);
   }
 
@@ -169,8 +169,8 @@
   }
 
   .avatar.sidenav-avatar {
-    block-size: var(--dim-5);
-    inline-size: var(--dim-5);
+    width: var(--dim-5);
+    height: var(--dim-5);
   }
 
   .sidenav-user-menu .popover-body {
@@ -258,7 +258,7 @@
       flex-direction: column;
       gap: var(--sidenav-item-gap);
       justify-content: center;
-      padding-block: var(--dim-1p5) var(--dim-1);
+      padding-block: var(--dim-1plus) var(--dim-1);
     }
 
     .sidenav-item-more .menu-label {
@@ -275,7 +275,7 @@
       border-radius: 0;
       flex-direction: column;
       gap: var(--sidenav-item-gap);
-      padding-block: var(--dim-1p5) var(--dim-1);
+      padding-block: var(--dim-1plus) var(--dim-1);
     }
 
     .sidenav-user-menu {

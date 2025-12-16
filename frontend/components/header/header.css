@@ -6,8 +6,8 @@
     --header-position: static;
     --header-padding-top: 0;
     --header-padding-bottom: 0;
-    --header-padding-start: var(--dim-2p5);
-    --header-padding-end: var(--dim-2p5);
+    --header-padding-start: var(--dim-2plus);
+    --header-padding-end: var(--dim-2plus);
     --header-width: 100%;
 
     padding-block: var(--header-padding-top) var(--header-padding-bottom);
@@ -30,15 +30,15 @@
     }
   }
 
-  &.header-search {
+  :scope.header-search {
     --header-bg: transparent;
     --header-bg-filter: none;
   }
 
-  > .container {
+  :scope > .container {
     display: flex;
     align-items: center;
-    gap: var(--gap-base);
+    gap: var(--gap);
     justify-content: space-between;
   }
 }

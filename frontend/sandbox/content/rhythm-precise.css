@@ -83,7 +83,7 @@ h5, h6 {
 
 /* Eyebrow: category or section label above the title */
 .eyebrow {
-  --eyebrow-margin-bottom: calc(-1 * var(--dim-0p5));
+  --eyebrow-margin-bottom: calc(-1 * var(--dim-0plus));
   padding-block: var(--padding-block-fine-print) var(--padding-block-fine-print);
 }
 

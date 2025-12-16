@@ -8,7 +8,7 @@
 
 .grid {
   display: grid;
-  gap: var(--grid-gap, var(--gap-base));
+  gap: var(--grid-gap, var(--gap));
   grid-template-columns: var(--grid-columns, 1fr);
   grid-template-rows: var(--grid-rows, auto);
 
