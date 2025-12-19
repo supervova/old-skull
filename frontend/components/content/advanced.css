@@ -128,3 +128,36 @@ ins {
   }
 
 /* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: PROSE – HYPHENS                                                             */
+/* -------------------------------------------------------------------------- */
+
+.prose {
+  hyphens: auto;
+  line-break: auto;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  widows: 2;
+  orphans: 2;
+  word-break: normal;
+
+  /* Reset for headlines */
+  :is(h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, h6) {
+    hyphens: none;
+    overflow-wrap: normal;
+    text-wrap: balance;
+    word-break: normal;
+  }
+
+  /* Long tokens in text */
+  :is(a, code, kbd) {
+    overflow-wrap: anywhere;
+  }
+
+  :is(pre, code) {
+    hyphens: none;
+  }
+}
+
+/* #endregion */

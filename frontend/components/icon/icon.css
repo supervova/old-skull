@@ -1,7 +1,3 @@
-/* -------------------------------------------------------------------------- */
-/* #region: BASE                                                              */
-/* -------------------------------------------------------------------------- */
-
 .icon {
   --icon-fill: transparent;
   --icon-stroke: var(--color-icon);
@@ -24,12 +20,6 @@
   }
 }
 
-/* #region: MODIFIERS */
-
-.icon.icon-sm {
+.icon-sm {
   --icon-size: var(--dim-2plus);
 }
-
-/* #endregion */
-
-/* #endregion */

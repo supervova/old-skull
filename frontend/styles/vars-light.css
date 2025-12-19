@@ -53,8 +53,6 @@
   --color-text-03-neutral: hsl(0 0% 0% / 0.38);
   --color-border-neutral: hsl(0 0% 0% / 0.08);
 
-  --color-focus: color-mix(in oklch, var(--color-brand) 55%, transparent);
-
   /* #endregion */
 
   /* ------------------------------------------------------------------------ */
@@ -80,6 +78,8 @@
   --color-bg-success: hsl(var(--h-green) var(--s) 83%);
   --color-text-success: hsl(var(--h-green) var(--s) 25%);
   --color-text-02-success: hsl(var(--h-green) var(--s) 32%);
+
+  --color-focus: color-mix(in oklch, var(--color-brand) 55%, transparent);
 
   /* #endregion */
 

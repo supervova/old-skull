@@ -6,7 +6,7 @@ Styles for formatting the main content: text, lists, images, tables, etc.
 
 - Headings `h1-h6` and paragraphs `p` automatically balance line breaks (`text-wrap: balance`).
 - For small text above a heading (rubric, tag, sub-headline), the `.eyebrow` class is used.
-- Links `<a>` are styled taking into account `:hover`, `:focus-visible`, and `:active` states. The `[aria-current]` attribute highlights the active link.
+- Links `<a>` are styled taking into account `:hover`, and `:active` states. The `[aria-current]` attribute highlights the active link.
 - Standard tags `<strong>`, `<em>`, and `<mark>` are used for highlighting. The `<ins>` tag is used to denote added text and is highlighted in green with plus signs.
 
 ## Lists

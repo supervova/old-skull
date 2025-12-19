@@ -15,7 +15,6 @@ button,
   --button-color-hover: var(--button-color);
   --button-border-color: transparent;
   --button-border-width: 0;
-  --button-height: var(--dim-6);
   --button-padding-x: var(--rlh);
   --button-gap: var(--dim-1);
   --button-radius: var(--radius-base);
@@ -29,6 +28,8 @@ button,
   --button-shadow: none;
   --button-shadow-hover: none;
   --button-decoration-hover: none;
+  --button-width: auto;
+  --button-height: var(--dim-6);
 
   appearance: none;
   background: var(--button-bg);
@@ -52,6 +53,7 @@ button,
   position: relative;
   transition: var(--button-transition);
   user-select: none;
+  width: var(--button-width);
   height: var(--button-height);
 
   &:disabled {

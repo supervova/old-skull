@@ -11,6 +11,12 @@
   line-height: var(--line-height-$(level));
 }
 
+@define-mixin text-format-padding $level {
+  padding-block:
+    var(--padding-top-$(level), 0)
+    var(--padding-bottom-$(level), 0);
+}
+
 /* Text truncation */
 @define-mixin text-truncate {
   text-overflow: ellipsis;
@@ -50,7 +56,6 @@
 
 /* Focus state */
 @define-mixin state-focus {
-  border-radius: inherit;
   outline: var(--focus-outline, 0.125rem) solid var(--color-focus, AccentColor, -webkit-focus-ring-color);
   outline-offset: var(--focus-offset, 0);
 }

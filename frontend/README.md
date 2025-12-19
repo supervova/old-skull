@@ -89,35 +89,13 @@ The project has a well-thought-out structure where each directory fulfills a spe
 
 ## CSS Architecture and Naming
 
-### LSD Methodology (Layer → Scope → DOM)
+### LSD Methodology (Layer + Scope + Design tokens)
 
-1. **Layer**: Specificity is managed through cascade layers defined in `main.css` (`base`, `components`, `utils`). This avoids specificity conflicts and the use of `!important`.
-2. **Scope**: Component styles are encapsulated using `@scope`. This is another tool for preventing style conflicts.
-3. **DOM (Document Structure)**: Within `@scope`, we prefer to style HTML tags directly (`h2`, `summary`, `footer`). This makes the markup cleaner and more semantic. Classes are used only for child elements that cannot be uniquely styled via a tag, or for creating variations.
+To take advantage of the cascade without drowning in style conflicts, the LSD combination works well:
 
-```css
-@scope (.card) {
-  /* Styles for the root element .card */
-  :scope {
-    background: var(--card-bg);
-    /* ... */
-  }
-
-  /* Styling child tags */
-  header {
-    /* ... */
-  }
-
-  h3 {
-    /* ... */
-  }
-
-  /* Styling a child element by class */
-  .card-body {
-    /* ... */
-  }
-}
-```
+- `@layer` for controlling order
+- `@scope` (or simply :where(.my-comp)) for scoping
+- `Design tokens` as variable “contracts” for overrides.
 
 ### Class Naming System
 
