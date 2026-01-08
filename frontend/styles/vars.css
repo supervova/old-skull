@@ -114,6 +114,7 @@
 
   /* Body copy line height */
   --spacer: var(--dim-3);
+  --spacer-flow: var(--dim-2);
 
   --spacer-lg: var(--spacer);
   --spacer-xl: var(--dim-4);

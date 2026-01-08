@@ -36,22 +36,32 @@ h3, .h3 {
 
 h1, .h1 {
   @mixin text-format title;
+
+  &:not(header *) {
+    margin-block: 0 var(--margin-bottom-title, calc(var(--spacer-flow) * 3));
+  }
 }
 
 h2, .h2 {
   @mixin text-format h2;
+  margin-block: 0 var(--margin-bottom-h2, var(--spacer-flow));
 }
 
 h3, .h3 {
   @mixin text-format h3;
+  margin-block: 0 var(--margin-bottom-h3, var(--spacer-flow));
 }
 
 h4, .h4, h5, h6 {
   @mixin text-format base;
   font-weight: var(--font-weight-strong, 600);
+  margin-block: 0;
 }
 
-/* Extra spacing is controlled by vertical-rhythm files. */
+:where(address, blockquote, div, dl, figure, form, ol, p, pre, table, ul)
+  + :is(h2, .h2, h3, .h3, h4, .h4, h5, h6) {
+  margin-top: var(--margin-top-subhead, calc(var(--spacer-flow) * 3));
+}
 
 /* #endregion */
 
@@ -61,6 +71,18 @@ h4, .h4, h5, h6 {
 
 p, li, dd {
   text-wrap: pretty;
+}
+
+:is(address, dd, dt, li, p) {
+  padding-block: var(--padding-top-base, 0px) var(--padding-bottom-base, 0px);
+}
+
+:is(address, blockquote, dl, figure, ol, p, pre, table, ul) {
+  margin-block: 0 var(--spacer-flow);
+}
+
+.scroll-x {
+  margin-block: 0 var(--spacer-flow);
 }
 
 a {
@@ -129,6 +151,10 @@ ol {
 /* List items */
 :is(ul, ol) > li {
   position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: var(--list-gap);
+  }
 }
 
 /* UL */
@@ -137,7 +163,7 @@ ul:not([role='list']) {
 }
 
 ul {
-  --list-bullet-top: 0.2em;
+  --list-bullet-top: calc(0.2em + var(--padding-top-base, 0px));
   list-style-type: none;
 
   > li::before {
@@ -153,7 +179,7 @@ ul {
 
 /* OL */
 ol {
-  --list-number-top: 0;
+  --list-number-top: var(--padding-top-base, 0px);
 
   /* <ol start="9" style="--ol-start: 9"> */
   counter-reset: list-counter var(--ol-start, 0);
@@ -198,10 +224,19 @@ dt {
 
 dd {
   margin-left: 0;
+}
 
-  p {
-    margin-bottom: var(--dim-1);
-  }
+:is(dd, li) {
+  & p { margin-bottom: 0; }
+
+  & > p:first-child { padding-top: 0; }
+
+  & > p:last-child { padding-bottom: 0; }
+}
+
+li:has(> ul, > ol) {
+  margin-block: var(--list-gap) 0;
+  padding-bottom: 0;
 }
 
 /* #endregion */

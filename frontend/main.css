@@ -13,12 +13,10 @@
 @import url('./styles/vars-dark.css') layer(base);
 @import url('./styles/doc.css') layer(base);
 
-@import url('./components/content/rhythm.css') layer(base);
-/* Optional: enables pixel-perfect baseline compensation via `--padding-*` vars */
-@import url('./components/content/rhythm-compensation.css') layer(base);
-
 @import url('./components/icon/icon.css') layer(components.mvp);
 @import url('./components/content/mvp.css') layer(components.mvp);
+/* Optional: enables pixel-perfect baseline compensation via `--padding-*` vars */
+/* @import url('./components/content/rhythm-compensation.css') layer(base); */
 @import url('./components/button/button.css') layer(components.mvp);
 @import url('./components/form/mvp.css') layer(components.mvp);
 @import url('./components/layout/containers.css') layer(components.mvp);

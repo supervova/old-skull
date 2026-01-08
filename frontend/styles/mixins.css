@@ -9,6 +9,9 @@
   font-weight: var(--font-weight-$(level), 400);
   letter-spacing: var(--letter-spacing-$(level), normal);
   line-height: var(--line-height-$(level));
+  padding-block:
+    var(--padding-top-$(level), 0px)
+    var(--padding-bottom-$(level), 0px);
 }
 
 @define-mixin text-format-padding $level {
