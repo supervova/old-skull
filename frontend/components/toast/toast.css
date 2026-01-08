@@ -17,10 +17,10 @@
     display: flex;
     flex-direction: column;
     gap: var(--dim-2);
-    padding: var(--dim-2plus) var(--rlh) var(--rlh);
+    padding: var(--dim-2plus) var(--spacer) var(--spacer);
     position: fixed;
-    bottom: var(--rlh);
-    left: var(--rlh);
+    bottom: var(--spacer);
+    left: var(--spacer);
     max-width: var(--width-base);
     min-width: var(--width-sm);
     z-index: calc(var(--z-drawer) + 1);

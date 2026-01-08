@@ -15,7 +15,7 @@ button,
   --button-color-hover: var(--button-color);
   --button-border-color: transparent;
   --button-border-width: 0;
-  --button-padding-x: var(--rlh);
+  --button-padding-x: var(--spacer);
   --button-gap: var(--dim-1);
   --button-radius: var(--radius-base);
   --button-font-size: var(--font-size-base);

@@ -3,7 +3,7 @@
 /* -------------------------------------------------------------------------- */
 
 .progress-spinner {
-  --spinner-size: var(--rlh);
+  --spinner-size: var(--spacer);
   --spinner-stroke: var(--dim-0plus);
   --spinner-dur: 1s;
   --spinner-primary: var(--color-brand);

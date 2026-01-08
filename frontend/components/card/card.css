@@ -26,7 +26,7 @@
     position: relative;
     width: min(100%, var(--card-max-w));
 
-    @media (--phone-l) { --card-padding: var(--rlh); }
+    @media (--phone-l) { --card-padding: var(--spacer); }
     @media (--tablet)  { --card-padding: var(--dim-4); }
   }
 
@@ -39,6 +39,10 @@
   /* Default padding for all direct children */
   :scope > * { padding-inline: var(--card-padding); }
 
+  figure {
+    margin: 0 0 var(--dim-2);
+  }
+
   header {
     display: grid;
 
@@ -49,6 +53,7 @@
 
   header .eyebrow {
     grid-row: 1;
+    margin-bottom: 0;
   }
 
   header :is(h2, h3, .card-title) {

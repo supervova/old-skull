@@ -68,7 +68,7 @@ The value of the variables is inherited by nested grids. But they can be changed
 By default, gaps are the same vertically or horizontally. To set different gaps, you can use the `row-gap` and `column-gap` properties or separate values in the variable.
 
 ```css
---grid-gap: var(--dim-4) var(--rlh);
+--grid-gap: var(--dim-4) var(--spacer);
 ```
 
 ### Offsets

@@ -11,7 +11,7 @@
     --drawer-open: -50% 0;
     --drawer-header-height: var(--dim-7);
     --drawer-footer-height: 80px;
-    --margin-top-subhead: var(--rlh);
+    --margin-top-subhead: var(--spacer);
 
     animation:
       drawer-out calc(var(--duration-200) * 0.8) var(--easing-disappearance) forwards;
@@ -72,7 +72,7 @@
     padding-inline: var(--dim-2plus);
 
     @media (--phone-l) {
-      padding-inline: var(--rlh);
+      padding-inline: var(--spacer);
     }
 
     @media (--tablet) {
@@ -98,7 +98,7 @@
     margin: 0;
 
     /* Additional space for close button */
-    padding-inline-end: var(--rlh);
+    padding-inline-end: var(--spacer);
   }
 
   .drawer-header .btn-close {
@@ -113,8 +113,8 @@
     flex: 1;
     flex-direction: column;
     grid-area: body;
-    padding-top: var(--rlh);
-    padding-bottom: calc(var(--drawer-footer-height) + var(--rlh));
+    padding-top: var(--spacer);
+    padding-bottom: calc(var(--drawer-footer-height) + var(--spacer));
     overflow: hidden auto;
     overscroll-behavior-y: contain;
     scrollbar-width: thin;

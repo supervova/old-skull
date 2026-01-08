@@ -7,7 +7,7 @@
     --accordion-border-color: var(--color-border, hsl(0 0% 0% / 0.08));
     --accordion-summary-color: var(--color-text);
     --accordion-summary-color-active: var(--color-text-02);
-    --accordion-summary-padding-block: var(--rlh);
+    --accordion-summary-padding-block: var(--spacer);
     --accordion-summary-padding-inline-end: var(--dim-5);
     --accordion-marker-size: var(--dim-4);
     --accordion-marker-offset: var(--dim-2plus);
@@ -100,10 +100,10 @@
 /* -------------------------------------------------------------------------- */
 
 .accordion + :not(.accordion) {
-  margin-top: var(--rlh);
+  margin-top: var(--spacer);
 
   @media (--tablet) {
-    margin-top: calc(var(--rlh) * 2);
+    margin-top: calc(var(--spacer) * 2);
   }
 }
 
@@ -118,7 +118,7 @@
   With subheading
 */
 summary:has(.accordion-header-hgroup) {
-  --accordion-summary-padding-block: calc(var(--rlh) / 2)
+  --accordion-summary-padding-block: calc(var(--spacer) / 2)
 }
 
 /* Multiline summary: title + subtitle */

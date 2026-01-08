@@ -2,7 +2,7 @@
   --icon-fill: transparent;
   --icon-stroke: var(--color-icon);
   --icon-stroke-width: 2;
-  --icon-size: var(--rlh);
+  --icon-size: var(--spacer);
 
   display: inline-block;
   fill: var(--icon-fill);

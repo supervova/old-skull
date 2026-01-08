@@ -1,3 +1,7 @@
+/* -------------------------------------------------------------------------- */
+/* #region: CONTAINERS                                                        */
+/* -------------------------------------------------------------------------- */
+
 .form, form {
   --form-bg: var(--color-bg);
   --form-border-color: var(--color-border-bold);
@@ -14,8 +18,8 @@ fieldset {
   border-radius: var(--form-border-radius);
   padding: 0;
 
-  &:not(:first-child) {
-    margin-top: var(--dim-6);
+  &:not(:last-child) {
+    margin-bottom: var(--dim-6);
   }
 }
 
@@ -31,6 +35,19 @@ label {
   font-weight: 500;
   margin-bottom: var(--dim-0plus);
 }
+
+form > :is(p, div:not([class])),
+form :where(.grid) > p {
+  margin-block: 0 var(--dim-2);
+  padding: 0;
+  position: relative;
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: INPUTS                                                            */
+/* -------------------------------------------------------------------------- */
 
 :--text-field {
   appearance: none;
@@ -68,7 +85,7 @@ select:not([multiple]) {
   background-image: var(--icon-chevron-down);
   background-position: center right var(--dim-1);
   background-repeat: no-repeat;
-  background-size: var(--rlh);
+  background-size: var(--spacer);
   padding-inline-end: var(--dim-6);
   overflow-x: clip;
 
@@ -93,3 +110,5 @@ select:not([multiple]) {
   margin-inline-start: var(--dim-1);
   vertical-align: middle;
 }
+
+/* #endregion */

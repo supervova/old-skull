@@ -100,43 +100,34 @@
   /* #region: RHYTHM & SPACING                                                        */
   /* ------------------------------------------------------------------------ */
 
-  /* Baseline & micro spacing tokens: 1rlh = 24px (8px rhythm) for small
-     margins/padding and minor element sizes. */
-
-  font-size: 16px;
-  line-height: 1.5;
-
-  --rlh: 1rlh; /* 24px */
-
-  @supports not (line-height: 1rlh) {
-    --rlh: 1.5rem;
-  }
-
-  /* Sizing tokens (dim = dimension */
-  --dim-0plus: calc(var(--rlh) / 6);      /* 4px */
-  --dim-1: calc(var(--rlh) / 3);        /* 8px */
+  --dim-1:     8px;
+  --dim-0plus: calc(var(--dim-1) / 2);   /* 4px */
   --dim-1plus: calc(var(--dim-1) * 1.5); /* 12px */
-  --dim-2: calc(var(--dim-1) * 2);     /* 16px */
+  --dim-2:     calc(var(--dim-1) * 2);   /* 16px */
   --dim-2plus: calc(var(--dim-1) * 2.5); /* 20px */
-  --dim-3: calc(var(--dim-1) * 3);     /* 24px = --rlh */
-  --dim-4: calc(var(--dim-1) * 4);     /* 32px */
-  --dim-5: calc(var(--dim-1) * 5);     /* 40px */
-  --dim-6: calc(var(--dim-1) * 6);     /* 48px */
-  --dim-7: calc(var(--dim-1) * 7);     /* 56px */
-  --dim-8: calc(var(--dim-1) * 8);     /* 64px */
+  --dim-3:     calc(var(--dim-1) * 3);   /* 24px */
+  --dim-4:     calc(var(--dim-1) * 4);   /* 32px */
+  --dim-5:     calc(var(--dim-1) * 5);   /* 40px */
+  --dim-6:     calc(var(--dim-1) * 6);   /* 48px */
+  --dim-7:     calc(var(--dim-1) * 7);   /* 56px */
+  --dim-8:     calc(var(--dim-1) * 8);   /* 64px */
 
-  --gap: var(--dim-2);
-  --gap-lg: var(--dim-4);
-  --spacer-lg: var(--rlh);
+  /* Body copy line height */
+  --spacer: var(--dim-3);
+
+  --spacer-lg: var(--spacer);
   --spacer-xl: var(--dim-4);
   --spacer-xxl: var(--dim-8);
 
+  --gap: var(--dim-2);
+  --gap-lg: var(--dim-4);
+
   @media (--tablet) {
-    --spacer-lg: calc(var(--rlh) * 3);
+    --spacer-lg: calc(var(--spacer) * 3);
     --spacer-xl: var(--dim-8);
     --spacer-xxl: calc(var(--dim-8) * 2);
 
-    --gap: var(--rlh);
+    --gap: var(--spacer);
   }
 
   @media (--tablet-l) {
@@ -156,73 +147,66 @@
   --font-family-base: var(--font-family-sans), var(--font-family-emoji);
   --font-family-titles: 'Manrope', sans-serif;
 
-  --scale: 1.25; /* major third, 4:5 */
-
-  /* Typography scale */
-  --font-size-base: 17px; /* pxtorem will convert it */
   --font-weight-base: 400;
   --font-weight-strong: 600;
-  --letter-spacing-base: 0.011em;
-  --line-height-base: 1rlh;
-  --padding-top-base: 6px;
-  --padding-bottom-base: 2px;
 
-  /* Fixed fine print */
+  /* A typographic scale using a major third ratio (4:5 or 1.25)  */
+  /* pxtorem will convert it */
+  --font-size-title: 33px;
+  --font-weight-title: 500;
+  --letter-spacing-title: -0.3px;
+  --line-height-title: var(--dim-5);
+
+  /* On mobile, the hero title and the title have the same size. */
+  --font-size-hero: var(--font-size-title);
+  --font-weight-hero: 700;
+  --letter-spacing-hero: var(--letter-spacing-title);
+  --line-height-hero: var(--line-height-title);
+
+  --font-size-h2: 27px;
+  --font-weight-h2: 500;
+  --letter-spacing-h2: -0.2px;
+  --line-height-h2: var(--dim-4);
+
+  --font-size-h3: 21px;
+  --font-weight-h3: 600;
+  --letter-spacing-h3: 0;
+  --line-height-h3: 1rlh;
+
+  --font-size-base: 17px;
+  --letter-spacing-base: 0.011em;
+  --line-height-base: calc(24 / 17);
+
+  --font-size-body-sm: 14px;
+  --font-weight-body-sm: 400;
+  --letter-spacing-body-sm: 0;
+  --line-height-body-sm: var(--dim-2plus);
+
   --font-size-fine-print: 12px;
   --font-weight-fine-print: 400;
   --letter-spacing-fine-print: 0.1px;
   --line-height-fine-print: var(--dim-2);
 
-  /* Scale-based sizes */
-  --font-size-body-sm: calc(var(--font-size-base) / var(--scale)); /* ~14px */
-  --font-weight-body-sm: 400;
-  --letter-spacing-body-sm: 0;
-  --line-height-body-sm: var(--dim-2plus);
-
-  --font-size-h3: calc(var(--font-size-base) * var(--scale)); /* 21.25px */
-  --font-weight-h3: 600;
-  --letter-spacing-h3: 0;
-  --line-height-h3: 1rlh;
-
-  --font-size-h2: calc(var(--font-size-h3) * var(--scale)); /* ~26.6px */
-  --font-weight-h2: 500;
-  --letter-spacing-h2: -0.2px;
-  --line-height-h2: var(--dim-4);
-
-  --font-size-title: calc(var(--font-size-h2) * var(--scale)); /* ~33.2px */
-  --font-weight-title: 500;
-  --letter-spacing-title: -0.3px;
-  --line-height-title: var(--dim-5);
-
-  --font-size-hero: var(--font-size-title); /* Same size as the title for now */
-  --font-weight-hero: 700;
-  --letter-spacing-hero: var(--letter-spacing-title);
-  --line-height-hero: var(--line-height-title);
-
   @media (--tablet) {
-    --scale: 1.414; /* 1:√2, augmented fourth */
+    /* Increases the scale factor to 1.414 (1:√2, augmented fourth). */
 
-    /* Fixed size on larger screens */
-    --font-size-body-sm: 14px;
+    --font-size-title: 48px;
+    --letter-spacing-title: -1px;
+    --line-height-title: var(--dim-7);
 
-    /* h3 ~24px */
-    --font-weight-h3: 500;
-    --line-height-h3: var(--dim-4);
-
-    /* h2 ~34px */
+    --font-size-h2: 34px;
     --letter-spacing-h2: -0.5px;
     --line-height-h2: var(--dim-5);
 
-    /* Title ~48px */
-    --letter-spacing-title: -1px;
-    --line-height-title: var(--dim-7);
+    --font-size-h3: 24px;
+    --font-weight-h3: 500;
+    --line-height-h3: var(--dim-4);
   }
 
   @media (--tablet-l) {
-    /* Hero ~68px */
-    --font-size-hero: calc(var(--font-size-title) * var(--scale)); /* 41.5px */
+    --font-size-hero: 68px;
     --letter-spacing-hero: -2px;
-    --line-height-hero: calc(var(--rlh) * 3);
+    --line-height-hero: calc(var(--spacer) * 3); /* 72px */
   }
 
   /* #endregion */
@@ -234,7 +218,7 @@
   --radius-xs: var(--dim-0plus);
   --radius-sm: var(--dim-1);
   --radius-base: var(--dim-2);
-  --radius-lg: var(--rlh);
+  --radius-lg: var(--spacer);
   --radius-xl: var(--dim-4);
   --radius-pill: 100vmax;
 
@@ -324,13 +308,13 @@
   --button-height: var(--dim-6);
 
   @media (--phone-l) {
-    --padding-inline-xl: var(--rlh);
+    --padding-inline-xl: var(--spacer);
   }
 
   @media (--tablet) {
     --sidenav-width: 96px;
 
-    --padding-inline-md: var(--rlh);
+    --padding-inline-md: var(--spacer);
     --padding-inline-xl: var(--dim-5);
   }
 

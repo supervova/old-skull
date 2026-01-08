@@ -14,14 +14,14 @@ video {
 /* #region: FIGURES AND IFRAMES                                               */
 /* -------------------------------------------------------------------------- */
 
-figure,
-iframe {
-  margin-block: 0 var(--media-margin-bottom, var(--rlh));
+figure {
+  display: grid;
+  gap: var(--dim-2);
+  margin: var(--figure-margin, 0);
 }
 
 figcaption {
   color: var(--color-text-02);
-  margin-top: var(--dim-2);
 }
 
 /* #endregion */
@@ -75,4 +75,3 @@ figure img {
 }
 
 /* #endregion */
-

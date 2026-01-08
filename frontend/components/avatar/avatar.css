@@ -35,7 +35,7 @@
 
   /* Modifier: size large */
   :scope.avatar-xl {
-    --avatar-size: calc(var(--rlh) * 4);
+    --avatar-size: calc(var(--spacer) * 4);
   }
 }
 

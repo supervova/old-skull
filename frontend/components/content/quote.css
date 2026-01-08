@@ -1,5 +1,5 @@
 blockquote {
-  --quot-size: calc(var(--rlh) * 4);
+  --quot-size: calc(var(--spacer) * 4);
   --quot-color: var(--color-border);
   --quot-font: Georgia, serif;
 

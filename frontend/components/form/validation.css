@@ -59,7 +59,7 @@
   height: 0;
   opacity: 0;
   overflow: hidden;
-  padding-block: var(--rlh);
+  padding-block: var(--spacer);
   padding-inline: var(--form-error-box-padding-inline);
   transition:
     height var(--duration-500) var(--easing-base),
@@ -70,7 +70,7 @@
   &:not(:empty) {
     display: block;
     height: auto;
-    margin-block-end: var(--rlh);
+    margin-block-end: var(--spacer);
     opacity: 1;
 
     @starting-style {

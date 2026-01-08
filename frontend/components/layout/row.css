@@ -14,7 +14,7 @@
 @media (--tablet) {
   .row {
     --row-columns: 2;
-    --row-gap: var(--rlh);
+    --row-gap: var(--spacer);
     flex-flow: row wrap;
   }
 
@@ -37,7 +37,7 @@
 @media (--tablet-l) {
   .tablet-l\:row {
     --row-columns: 2;
-    --row-gap: var(--rlh);
+    --row-gap: var(--spacer);
     flex-flow: row wrap;
   }
 

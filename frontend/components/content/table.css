@@ -29,7 +29,6 @@ tfoot td {
 
 /* Horizontal scroll wrapper utilities */
 .scroll-x table {
-  margin: 0;
   max-width: none;
   min-width: 100%;
   width: auto;
@@ -51,4 +50,3 @@ tfoot td {
 }
 
 /* #endregion */
-

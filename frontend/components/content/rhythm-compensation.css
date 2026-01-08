@@ -1,0 +1,50 @@
+/* BASELINE-COMPENSATION PADDINGS */
+
+:root {
+  --padding-top-hero: 1px;
+  --padding-bottom-hero: 7px;
+
+  --padding-top-title: 1px;
+  --padding-bottom-title: 7px;
+
+  --padding-top-h2: 7px;
+  --padding-bottom-h2: 1px;
+
+  --padding-top-h3: 6px;
+  --padding-bottom-h3: 2px;
+
+  --padding-top-base: 7px;
+  --padding-bottom-base: 1px;
+
+  --padding-top-body-sm: 1px;
+  --padding-bottom-body-sm: 3px;
+
+  --padding-top-label: 1px;
+  --padding-bottom-label: 3px;
+
+  --padding-top-fine-print: 4px;
+  --padding-bottom-fine-print: 4px;
+
+  --padding-bottom-list: 16px;
+  --padding-bottom-li: 10px;
+
+  @media (--tablet) {
+    --padding-top-hero: 2px;
+    --padding-bottom-hero: 6px;
+
+    --padding-top-title: 2px;
+    --padding-bottom-title: 6px;
+
+    --padding-top-h2: 7px;
+    --padding-bottom-h2: 1px;
+
+    --padding-top-h3: 7px;
+    --padding-bottom-h3: 1px;
+  }
+
+  @media (--tablet-l) {
+    --padding-top-hero: 2px;
+    --padding-bottom-hero: 6px;
+  }
+}
+

@@ -36,5 +36,5 @@ select[multiple] {
   background-image: none;
   overflow-y: auto;
   padding-inline-end: var(--dim-2);
-  max-height: calc(var(--rlh) * 7);
+  max-height: calc(var(--spacer) * 7);
 }

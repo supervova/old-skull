@@ -160,7 +160,7 @@
 /* -------------------------------------------------------------------------- */
 
 [role='tabpanel'] > ul {
-  margin-block: var(--rlh) calc(var(--rlh) * 2);
+  margin-block: var(--spacer) calc(var(--spacer) * 2);
   padding-inline-start: var(--dim-2);
 }
 

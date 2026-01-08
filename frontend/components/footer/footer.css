@@ -32,7 +32,7 @@
     flex-direction: column;
     gap: var(--dim-1);
     list-style: none;
-    margin: var(--rlh) 0;
+    margin: var(--spacer) 0;
     padding: 0;
   }
 
@@ -72,7 +72,7 @@
   @media (--tablet-l) {
     :scope > .container {
       flex-direction: row;
-      gap: var(--rlh);
+      gap: var(--spacer);
       padding-block-end: var(--dim-6);
     }
 

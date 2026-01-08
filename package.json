@@ -39,7 +39,7 @@
     "rules": {
       "alpha-value-notation": "number",
       "at-rule-empty-line-before": null,
-      "at-rule-no-unknown": null,
+      "at-rule-no-unknown": [true, { "ignoreAtRules": ["mixin", "define-mixin"] }],
       "at-rule-no-vendor-prefix": true,
       "color-named": "never",
       "comment-empty-line-before": [
@@ -167,6 +167,7 @@
         "rootValue": 16,
         "propList": [
           "--font-size*",
+          "!--font-size-doc",
           "--form-padding-y",
           "--letter-spacing*",
           "--padding-bottom*",
@@ -179,11 +180,14 @@
           "letter-spacing",
           "line-height",
           "margin*",
+          "max-height",
+          "max-width",
           "min-height",
+          "min-width",
           "padding*",
           "vertical-align",
-          "word-spacing",
-          "!--font-size-doc"
+          "width",
+          "word-spacing"
         ],
         "selectorBlackList": [],
         "exclude": null,

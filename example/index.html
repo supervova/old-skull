@@ -1,572 +1,666 @@
 <!doctype html>
 <html lang="en" prefix="og: http://ogp.me/ns#">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-    <title>Old Skull CSS Demo</title>
-    <meta name="description" content="Old Skull is a modern, scalable, and maintainable CSS architecture for web sites and applications.">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Old Skull CSS Demo</title>
+  <meta name="description" content="Old Skull is a modern, scalable, and maintainable CSS architecture for web sites and applications.">
 
-    <meta property="og:title" content="Old Skull CSS Demo">
-    <meta property="og:description" content="Old Skull is a modern, scalable, and maintainable CSS architecture for web sites and applications.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://supervova.github.io/old-skull/play/">
-    <meta property="og:image" content="assets/img/cover.png">
-    <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:title" content="Old Skull CSS Demo">
+  <meta property="og:description" content="Old Skull is a modern, scalable, and maintainable CSS architecture for web sites and applications.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://supervova.github.io/old-skull/play/">
+  <meta property="og:image" content="assets/img/cover.png">
+  <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="canonical" href="https://supervova.github.io/old-skull/play/">
-    <link rel="icon" href="assets/icons/favicon.ico" sizes="32x32">
-    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
-    <link rel="manifest" href="manifest.json">
+  <link rel="canonical" href="https://supervova.github.io/old-skull/play/">
+  <link rel="icon" href="assets/icons/favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="manifest" href="manifest.json">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;600;700&display=swap">
-  </head>
-  <body>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;600;700&display=swap">
 
-    <!-- Header: logo + topnav + user menu -->
-    <header class="header d-none">
+  <!-- Debugging styles -->
+  <style>
+    .hero-content,
+    [id='section-typography'] {
+      --color-line: rgb(0 0 0 / 0.2);
+      --color-step: rgb(255 0 255 / 0.2);
+      --line-thickness: 0.0625rem; /* 1px */
+
+      position: relative;
+    }
+
+    .hero-content:hover::after,
+    [id='section-typography']:hover::after {
+      background-image:
+        /* major lines */
+        repeating-linear-gradient(to bottom, var(--color-line) 0 var(--line-thickness), transparent var(--line-thickness) var(--dim-3)),
+        /* minor lines */ repeating-linear-gradient(to bottom, var(--color-step) 0 var(--line-thickness), transparent var(--line-thickness) var(--dim-1));
+      content: '';
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      z-index: 1000;
+    }
+
+    [id='section-typography'] :is(h1, h2, h3, h4, dl, p, ol, ul, a):hover {
+      background: hsla(240, 100%, 50%, 0.24);
+    }
+
+    [id='section-typography'] table {
+      background-color: hsla(30, 100%, 50%, 0.12);
+    }
+
+    @media only screen and (max-width: 568px) {
+      .phone\:d-none {
+        display: none;
+      }
+
+      .img-on-grid {
+        height: 144px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header: logo + topnav + user menu -->
+  <header class="header d-none">
+    <div class="container">
+
+      <!-- Logo -->
+      <a class="logo" href="/" aria-label="Old Skull CSS">
+        <img class="logo-mark" src="/assets/img/logomark.svg" aria-hidden="true" alt="">
+        <span class="logo-text">
+          <img src="/assets/img/logotype.svg" alt="Old Skull CSS">
+          <span class="logo-tagline">CSS Framework</span>
+        </span>
+      </a>
+
+      <!-- Main nav -->
+      <nav class="topnav" aria-label="Main menu">
+        <ul>
+
+          <li>
+            <a class="topnav-link" href="#section-start">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="/assets/icons/sprite.svg#icon-paperplane"></use>
+              </svg>
+              <span class="topnav-label">Quick Start</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="topnav-link" href="#section-components">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="/assets/icons/sprite.svg#icon-cubes"></use>
+              </svg>
+              <span class="topnav-label">Components</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="topnav-link" href="#section-benefits">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="/assets/icons/sprite.svg#icon-star"></use>
+              </svg>
+              <span class="topnav-label">Benefits</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Aside -->
+      <nav class="header-aside" aria-label="Profile menu and search">
+        <button class="btn btn-icon" type="button" aria-label="Open search">
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="/assets/icons/sprite.svg#icon-search"></use>
+          </svg>
+        </button>
+
+        <details class="user-menu popover popover-chevron" data-role="popover">
+          <summary class="" aria-label="Open author menu">
+            <span class="avatar" data-fallback="VN"></span>
+          </summary>
+          <div class="popover-body">
+            <ul class="menu">
+              <li><a href="https://super-mark.ru/en#section-about" target="_blank" rel="noopener">About author</a></li>
+              <li><a href="https://dribbble.com/supervova" target="_blank" rel="noopener">Author's portfolio</a></li>
+            </ul>
+          </div>
+        </details>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Header: search + user menu -->
+  <header class="header header-search is-open">
+    <div class="container">
+
+      <!-- Search -->
+      <form class="search" action="/search" method="get" role="search">
+        <label class="visually-hidden" for="search-input">Search the site</label>
+        <input id="search-input" type="search" name="q" placeholder="Search…" autocomplete="search" required />
+        <button class="btn-ghost" type="submit" aria-label="Submit search">
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="/assets/icons/sprite.svg#icon-search"></use>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Aside -->
+      <nav class="header-aside" aria-label="Profile menu and search">
+        <details class="user-menu popover popover-chevron" data-role="popover">
+          <summary class="" aria-label="Open author menu">
+            <span class="avatar" data-fallback="VN"></span>
+          </summary>
+          <div class="popover-body">
+            <ul class="menu">
+              <li><a href="https://super-mark.ru/en#section-about" target="_blank" rel="noopener">About author</a></li>
+              <li><a href="https://dribbble.com/supervova" target="_blank" rel="noopener">Author's portfolio</a></li>
+            </ul>
+          </div>
+        </details>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- Hero -->
+    <section class="hero">
       <div class="container">
+        <figure class="hero-image">
+          <img src="/assets/img/hero.png" srcset="/assets/img/hero@2x.png 2x" alt="">
+        </figure>
+        <div class="hero-content">
+          <h1>A Tailwind-free CSS framework, <span class="text-02">powered by LLM assistants</span></h1>
+          <p><span class="nobr">The Old Skull ☠️ CSS</span> framework combines handcrafted CSS architecture with AI-powered generation – so every component stays clean, consistent, and ready for production.</p>
 
-        <!-- Logo -->
-        <a class="logo" href="/" aria-label="Old Skull CSS">
-          <img class="logo-mark" src="/assets/img/logomark.svg" aria-hidden="true" alt="">
-          <span class="logo-text">
-            <img src="/assets/img/logotype.svg" alt="Old Skull CSS">
-            <span class="logo-tagline">CSS Framework</span>
-          </span>
-        </a>
-
-        <!-- Main nav -->
-        <nav class="topnav" aria-label="Main menu">
-          <ul>
-
-            <li>
-              <a class="topnav-link" href="#section-start">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="/assets/icons/sprite.svg#icon-paperplane"></use>
-                </svg>
-                <span class="topnav-label">Quick Start</span>
-              </a>
-            </li>
-
-            <li>
-              <a class="topnav-link" href="#section-components">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="/assets/icons/sprite.svg#icon-cubes"></use>
-                </svg>
-                <span class="topnav-label">Components</span>
-              </a>
-            </li>
-
-            <li>
-              <a class="topnav-link" href="#section-benefits">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="/assets/icons/sprite.svg#icon-star"></use>
-                </svg>
-                <span class="topnav-label">Benefits</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-        <!-- Aside -->
-        <nav class="header-aside" aria-label="Profile menu and search">
-          <button class="btn btn-icon" type="button" aria-label="Open search">
-            <svg class="icon" aria-hidden="true" focusable="false">
-              <use href="/assets/icons/sprite.svg#icon-search"></use>
-            </svg>
-          </button>
-
-          <details class="user-menu popover popover-chevron" data-role="popover">
-            <summary class="" aria-label="Open author menu">
-              <span class="avatar" data-fallback="VN"></span>
-            </summary>
-            <div class="popover-body">
-              <ul class="menu">
-                <li><a href="https://super-mark.ru/en#section-about" target="_blank" rel="noopener">About author</a></li>
-                <li><a href="https://dribbble.com/supervova" target="_blank" rel="noopener">Author's portfolio</a></li>
-              </ul>
-            </div>
-          </details>
-        </nav>
-      </div>
-    </header>
-
-    <!-- Header: search + user menu -->
-    <header class="header header-search is-open">
-      <div class="container">
-
-        <!-- Search -->
-        <form class="search" action="/search" method="get" role="search">
-          <label class="visually-hidden" for="search-input">Search the site</label>
-          <input id="search-input" type="search" name="q" placeholder="Search…" autocomplete="search" required />
-          <button class="btn-ghost" type="submit" aria-label="Submit search">
-            <svg class="icon" aria-hidden="true" focusable="false">
-              <use href="/assets/icons/sprite.svg#icon-search"></use>
-            </svg>
-          </button>
-        </form>
-
-        <!-- Aside -->
-        <nav class="header-aside" aria-label="Profile menu and search">
-          <details class="user-menu popover popover-chevron" data-role="popover">
-            <summary class="" aria-label="Open author menu">
-              <span class="avatar" data-fallback="VN"></span>
-            </summary>
-            <div class="popover-body">
-              <ul class="menu">
-                <li><a href="https://super-mark.ru/en#section-about" target="_blank" rel="noopener">About author</a></li>
-                <li><a href="https://dribbble.com/supervova" target="_blank" rel="noopener">Author's portfolio</a></li>
-              </ul>
-            </div>
-          </details>
-        </nav>
-      </div>
-    </header>
-
-    <!-- MAIN -->
-    <main class="main">
-
-      <!-- Hero -->
-      <section class="hero">
-        <div class="container">
-          <figure class="hero-image">
-            <img src="/assets/img/hero.png" srcset="/assets/img/hero@2x.png 2x" alt="">
-          </figure>
-          <div class="hero-content">
-            <h1>A Tailwind-free CSS framework, <span class="text-02">powered by LLM assistants</span></h1>
-            <p><span class="nobr">The Old Skull ☠️ CSS</span> framework combines handcrafted CSS architecture with AI-powered generation – so every component stays clean, consistent, and ready for production.</p>
-
-            <div class="grid grid-max-content">
-              <a class="btn btn-primary" href="#" data-role="link">Let's Rock</a>
-              <button class="btn btn-secondary" type="button">And Roll!</button>
-            </div>
+          <div class="grid grid-max-content">
+            <a class="btn btn-primary" href="#" data-role="link">Let's Rock</a>
+            <button class="btn btn-secondary" type="button">And Roll!</button>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Intro -->
-      <section class="container max-w-xl mx-auto py-half-max" aria-label="Что это такое?">
+    <!-- Intro -->
+    <section class="container max-w-xl mx-auto py-half-max" aria-label="Что это такое?">
 
-        <figure class="avatar avatar-xl mx-auto">
-          <span class="tooltip" data-tooltip="Vladimir 'Old Skull' Nikishin, author">
-            <img src="/assets/img/i-am-madison-av.jpg" alt="Vladimir Nikishin, author">
+      <figure class="avatar avatar-xl mx-auto">
+        <span class="tooltip" data-tooltip="Vladimir 'Old Skull' Nikishin, author">
+          <img src="/assets/img/i-am-madison-av.jpg" alt="Vladimir Nikishin, author">
+        </span>
+      </figure>
+
+      <blockquote class="text-02">Are you already “too old for this shit”? Tired of the “CSS-in-JS soup” and endless Tailwind utility chains? But still believe in semantics – and love adopting new CSS features as soon as Can I Use hits 90%? Well, buddy, welcome home – to our cozy, old-school-cool <s>Bootstrap</s> Old Skull. A CSS framework and boilerplate built together with ChatGPT, Claude, and Gemini. Packed with cutting-edge CSS features – and total creative freedom. You&rsquo;re not stuck tweaking variables here – grab any component and restyle it to fit your design vision. <span class="nobr">It&rsquo;s free!</span></blockquote>
+    </section>
+
+    <!-- TMP -->
+    <div class="container">
+      <form class="grid grid-12">
+        <p class="tablet:col-4">
+          <input name="country-code" type="text" aria-label="Country code" inputmode="numeric" maxlength="3" pattern="\\d{3}" required />
+        </p>
+        <p class="tablet:col-8">
+          <input name="phone" type="text" aria-label="Phone number" inputmode="numeric" maxlength="9" pattern="\\d{8,9}" required />
+        </p>
+      </form>
+    </div>
+
+    <!-- Quick Start -->
+    <section class="section section-start" id="section-start">
+      <div class="container">
+        <div class="section-copy">
+          <h2 class="h1 text-gradient">Quick Start</h2>
+          <p>Copy the entire repository and use it as a project starter.</p>
+          <pre><code>git clone https://github.com/supervova/old-skull.git</code></pre>
+
+          <ul>
+            <li>Enable or disable the necessary files inside <code>frontend/main.css</code>.</li>
+            <li>Adjust values in <code>frontend/theme/vars*.css</code>.</li>
+            <li>Rewrite global styles and component styles freely – if you know CSS well, there&rsquo;s no need to limit yourself to variables or simple overrides. CSS is one of the most creative areas in software development.</li>
+          </ul>
+
+          <button class="btn btn-link" data-role="open-modal" aria-haspopup="dialog" aria-controls="modal-start">
+            More
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/assets/icons/sprite.svg#icon-modal"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Components -->
+    <section class="section" id="section-components"></section>
+
+    <!-- Cards -->
+    <section class="mt-2lh" id="section-cards">
+      <h2 class="visually-hidden">Features</h2>
+      <div class="container">
+        <div class="grid tablet-l:grid gap-3">
+          <article class="card card-elevated">
+            <figure>
+              <img src="/assets/img/i-am-madison-av.jpg" srcset="/assets/img/i-am-madison-av@2x.jpg 2x" alt="Vladimir Nikishin" loading="lazy">
+            </figure>
+            <header>
+              <p class="eyebrow"><s>Lorem Ipsum</s></p>
+              <h3><a class="card-link" href="#">Sass is not dead, but I use CSS+PostCSS</a></h3>
+            </header>
+            <div class="card-body">
+              <p>The placeholder text consists of excerpts from conversations between the author – Vladimir Nikishin – and ChatGPT or my students.</p>
+            </div>
+            <time datetime="2025-08-08">August 8, 2025</time>
+          </article>
+
+          <article class="card">
+            <figure>
+              <img src="/assets/img/i-am-cossack.jpg" srcset="/assets/img/i-am-cossack@2x.jpg 2x" alt="Vladimir Nikishin" loading="lazy">
+            </figure>
+            <header>
+              <p class="eyebrow">Less utilities</p>
+              <h3><a class="card-link" href="#">Semantic is the King</a></h3>
+            </header>
+            <div class="card-body">
+              <p>Master the art of breaking the grid: add an asymmetric accent or make one child stand out – even a soft shadow, like in the card on the left, will do.</p>
+            </div>
+            <time datetime="2025-08-08">August 8, 2025</time>
+          </article>
+
+          <article class="card">
+            <figure>
+              <img src="/assets/img/i-am-captain.jpg" srcset="/assets/img/i-am-captain@2x.jpg 2x" alt="Vladimir Nikishin" loading="lazy">
+            </figure>
+            <header>
+              <p class="eyebrow">Energetic Wildcard</p>
+              <h3><a class="card-link" href="#">Dummy text</a></h3>
+            </header>
+            <div class="card-body">
+              <p>Open a new project, run pnpm add — the difference shows immediately.</p>
+            </div>
+            <time datetime="2025-08-08">August 8, 2025</time>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Typography -->
+    <section class="section" id="section-typography">
+      <div class="prose">
+        <h2 class="h1">Typography & Vertical Rhythm</h2>
+
+        <p>"Key idea: switch the design by changing only CSS variables."</p>
+
+        <p>A Card is a flexible and reusable UI container used to group related information. It commonly includes content such as a title, image, summary, action buttons, and optionally metadata. Cards are ideal for presenting information in a modular, scannable, and responsive format.</p>
+        <p>To make sure the image-generation model understands that you want a close-up portrait, use phrases like these in your prompt — they’re universal and work well across most models (DALL·E, Midjourney, Stable Diffusion, etc.).</p>
+        <p>Why it works: <code>margin-top: var(--flow-space)</code> takes the variable value from the computed style of the element itself — the one that the “owl” selector (<code>&gt; * + *</code>) applies to. We just locally override <code>--flow-space</code> on the specific headings, and their margins change accordingly. Rule order doesn’t matter, since <code>var()</code> is resolved after the cascade.</p>
+        <p>You’re adding lengths (<code>1em</code>, padding values) to a “bare” number <code>0</code>. Inside <code>calc()</code>, it’s treated as a number type, which can’t be combined with length units (<code>px</code>, <code>rem</code>, <code>em</code>, etc.). As a result, the expression becomes invalid at computed-value time, and the property is ignored. Use a zero with a unit: <code>0px</code> or <code>0rem</code>.</p>
+
+        <h2>Corepack attaches a packageManager; run it only in the repo you intend</h2>
+
+        <p>If a page isn’t registered, rewrites won’t help — the route doesn’t exist.</p>
+
+        <figure class="figure-wide">
+          <span class="media-border">
+            <img src="/assets/img/prose.jpg" srcset="/assets/img/prose@2x.jpg 2x" alt="Vladimir Nikishin" loading="lazy">
           </span>
+          <figcaption>Example image with caption</figcaption>
         </figure>
 
-        <blockquote class="text-02">Are you already “too old for this shit”? Tired of the “CSS-in-JS soup” and endless Tailwind utility chains? But still believe in semantics – and love adopting new CSS features as soon as Can I Use hits 90%? Well, buddy, welcome home – to our cozy, old-school-cool <s>Bootstrap</s> Old Skull. A CSS framework and boilerplate built together with ChatGPT, Claude, and Gemini. Packed with cutting-edge CSS features – and total creative freedom. You&rsquo;re not stuck tweaking variables here – grab any component and restyle it to fit your design vision. <span class="nobr">It&rsquo;s free!</span></blockquote>
-      </section>
+        <blockquote>
+          "The things that make me different are the things that make me."
+          <footer>
+            <cite>— A.A. Milne, Winnie-the-Pooh</cite>
+          </footer>
+        </blockquote>
 
-      <!-- TMP -->
-      <div class="container">
-        <form class="grid grid-12">
-          <p class="tablet:col-4">
-            <input name="country-code" type="text" aria-label="Country code" inputmode="numeric" maxlength="3" pattern="\\d{3}" required />
-          </p>
-          <p class="tablet:col-8">
-            <input name="phone" type="text" aria-label="Phone number" inputmode="numeric" maxlength="9" pattern="\\d{8,9}" required />
-          </p>
-        </form>
-      </div>
+        <h3>Headings Hierarchy</h3>
+        <p>This section demonstrates the vertical rhythm and spacing between different heading levels.</p>
 
-      <!-- Quick Start -->
-      <section class="section section-start" id="section-start">
-        <div class="container">
-          <div class="section-copy">
-            <h2 class="h1 text-gradient">Quick Start</h2>
-            <p>Copy the entire repository and use it as a project starter.</p>
-            <pre><code>git clone https://github.com/supervova/old-skull.git</code></pre>
+        <h4>Heading Level 4</h4>
+        <p>Regular paragraph text follows the established baseline grid.</p>
 
+        <h5>Do not use level-5 or level-6 headings — it’s better to restructure the page.</h5>
+        <p>Notice how consistent spacing creates visual harmony.</p>
+
+        <h6>In this framework, they don’t really differ from H4 anyway</h6>
+        <p>"pnpm stores one copy of each version and links it, saving disk space."</p>
+
+        <h3>Text Elements</h3>
+        <p>In this paragraph, you’ll find examples of inline text formatting: <strong>bold</strong>, <em>italic</em>, <a href="#" data-role="link">link</a>, <code>code</code>, <mark>highlighted text</mark>, <del>deleted text</del>, and <ins>inserted text</ins>.</p>
+
+        <h3>Lists</h3>
+
+        <ul>
+          <li>Unordered item</li>
+          <li>Another point</li>
+          <li>
+            With nested unordered list
             <ul>
-              <li>Enable or disable the necessary files inside <code>frontend/main.css</code>.</li>
-              <li>Adjust values in <code>frontend/theme/vars*.css</code>.</li>
-              <li>Rewrite global styles and component styles freely – if you know CSS well, there&rsquo;s no need to limit yourself to variables or simple overrides. CSS is one of the most creative areas in software development.</li>
+              <li>Sub-item one</li>
+              <li>Sub-item two</li>
             </ul>
+          </li>
+          <li>
+            With nested ordered list
+            <ol>
+              <li>First</li>
+              <li>Second</li>
+            </ol>
+          </li>
+          <li>Another point</li>
+          <li>
+            <p>Use $1 in rewrites (not :1) — that’s why it crashed earlier.</p>
+            <p>Sint, autem! Consectetur, iusto velit? Ipsam aliquid totam, atque laborum sequi perspiciatis quae corrupti et quod amet eaque itaque laboriosam?</p>
+          </li>
+          <li>The last one</li>
+        </ul>
 
-            <button class="btn btn-link" data-role="open-modal" aria-haspopup="dialog" aria-controls="modal-start">
-              More
-              <svg class="icon" aria-hidden="true" focusable="false">
-                <use href="/assets/icons/sprite.svg#icon-modal"></use>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </section>
+        <ol>
+          <li>Ordered item</li>
+          <li>Another step</li>
+          <li>
+            With nested unordered list
+            <ul>
+              <li>Tip A</li>
+              <li>Tip B</li>
+            </ul>
+          </li>
+          <li>
+            With nested ordered list
+            <ol>
+              <li>Alpha</li>
+              <li>Beta</li>
+            </ol>
+          </li>
+        </ol>
 
-      <!-- Components -->
-      <section class="section" id="section-components"></section>
+        <dl>
+          <dt>Definition Term.</dt>
+          <dd>
+            <p>Definition description showing proper indentation and spacing</p>
+            <p>The second paragraph of the definition.</p>
+          </dd>
+          <dt>Another Term.</dt>
+          <dd>Another description maintaining consistent rhythm</dd>
+        </dl>
+      </div>
+    </section>
 
-      <!-- Cards -->
-      <section class="mt-2lh" id="section-cards">
-        <h2 class="visually-hidden">Features</h2>
-        <div class="container">
-          <div class="grid tablet-l:grid gap-3">
-            <article class="card card-elevated">
-              <figure>
-                <img src="/assets/img/i-am-madison-av.jpg" srcset="/assets/img/i-am-madison-av@2x.jpg 2x" alt="Vladimir Nikishin" loading="lazy">
-              </figure>
-              <header>
-                <p class="eyebrow"><s>Lorem Ipsum</s></p>
-                <h3><a class="card-link" href="#">Sass is not dead, but I use CSS+PostCSS</a></h3>
-              </header>
-              <div class="card-body">
-                <p>The placeholder text consists of excerpts from conversations between the author – Vladimir Nikishin – and ChatGPT or my students.</p>
-              </div>
-              <time datetime="2025-08-08">August 8, 2025</time>
-            </article>
+    <!-- Stats -->
+    <div class="container">
+      <div class="stats">
+        <figure class="stat">
+          <span class="eyebrow">up to</span>
+          <span class="stat-value">33<small>%</small></span>
+          <span class="stat-caption">after the CryptoAPI release</span>
+        </figure>
+        <figure class="stat stat-accent">
+          <span class="eyebrow">up to</span>
+          <span class="stat-value">61<small>%</small></span>
+          <span class="stat-caption">faster order placement</span>
+        </figure>
+        <figure class="stat">
+          <span class="eyebrow">up to</span>
+          <span class="stat-value">24<small>%</small></span>
+          <span class="stat-caption">ARPU growth in 6 months</span>
+        </figure>
+        <figure class="stat">
+          <span class="eyebrow">from 29 to</span>
+          <span class="stat-value">56</span>
+          <span class="stat-caption">NPS in 6 months</span>
+        </figure>
+      </div>
+    </div>
 
-            <article class="card">
-              <figure>
-                <img src="/assets/img/i-am-cossack.jpg" srcset="/assets/img/i-am-cossack@2x.jpg 2x" alt="Vladimir Nikishin" loading="lazy">
-              </figure>
-              <header>
-                <p class="eyebrow">Less utilities</p>
-                <h3><a class="card-link" href="#">Semantic is the King</a></h3>
-              </header>
-              <div class="card-body">
-                <p>Master the art of breaking the grid: add an asymmetric accent or make one child stand out – even a soft shadow, like in the card on the left, will do.</p>
-              </div>
-              <time datetime="2025-08-08">August 8, 2025</time>
-            </article>
-
-            <article class="card">
-              <figure>
-                <img src="/assets/img/i-am-captain.jpg" srcset="/assets/img/i-am-captain@2x.jpg 2x" alt="Vladimir Nikishin" loading="lazy">
-              </figure>
-              <header>
-                <p class="eyebrow">Energetic Wildcard</p>
-                <h3><a class="card-link" href="#">Dummy text</a></h3>
-              </header>
-              <div class="card-body">
-                <p>Open a new project, run pnpm add — the difference shows immediately.</p>
-              </div>
-              <time datetime="2025-08-08">August 8, 2025</time>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Typography -->
-      <section class="section" id="section-typography">
-        <div class="prose">
-          <h2 class="h1">Typography & Vertical Rhythm</h2>
-
-          <p>"Key idea: switch the design by changing only CSS variables."</p>
-
-          <p>A Card is a flexible and reusable UI container used to group related information. It commonly includes content such as a title, image, summary, action buttons, and optionally metadata. Cards are ideal for presenting information in a modular, scannable, and responsive format.</p>
-          <p>To make sure the image-generation model understands that you want a close-up portrait, use phrases like these in your prompt — they’re universal and work well across most models (DALL·E, Midjourney, Stable Diffusion, etc.).</p>
-          <p>Why it works: <code>margin-top: var(--flow-space)</code> takes the variable value from the computed style of the element itself — the one that the “owl” selector (<code>&gt; * + *</code>) applies to. We just locally override <code>--flow-space</code> on the specific headings, and their margins change accordingly. Rule order doesn’t matter, since <code>var()</code> is resolved after the cascade.</p>
-          <p>You’re adding lengths (<code>1em</code>, padding values) to a “bare” number <code>0</code>. Inside <code>calc()</code>, it’s treated as a number type, which can’t be combined with length units (<code>px</code>, <code>rem</code>, <code>em</code>, etc.). As a result, the expression becomes invalid at computed-value time, and the property is ignored. Use a zero with a unit: <code>0px</code> or <code>0rem</code>.</p>
-
-          <h2>Corepack attaches a packageManager; run it only in the repo you intend</h2>
-
-          <p>If a page isn’t registered, rewrites won’t help — the route doesn’t exist.</p>
-
-          <figure class="figure-wide">
-            <span class="media-border">
-              <img src="/assets/img/prose.jpg" srcset="/assets/img/prose@2x.jpg 2x" alt="Vladimir Nikishin" loading="lazy">
-            </span>
-            <figcaption>Example image with caption</figcaption>
-          </figure>
-
-          <blockquote>
-            "The things that make me different are the things that make me."
-            <footer>
-              <cite>— A.A. Milne, Winnie-the-Pooh</cite>
-            </footer>
-          </blockquote>
-
-          <h3>Headings Hierarchy</h3>
-          <p>This section demonstrates the vertical rhythm and spacing between different heading levels.</p>
-
-          <h4>Heading Level 4</h4>
-          <p>Regular paragraph text follows the established baseline grid.</p>
-
-          <h5>Do not use level-5 or level-6 headings — it’s better to restructure the page.</h5>
-          <p>Notice how consistent spacing creates visual harmony.</p>
-
-          <h6>In this framework, they don’t really differ from H4 anyway</h6>
-          <p>"pnpm stores one copy of each version and links it, saving disk space."</p>
-
-          <h3>Text Elements</h3>
-          <p>In this paragraph, you’ll find examples of inline text formatting: <strong>bold</strong>, <em>italic</em>, <a href="#" data-role="link">link</a>, <code>code</code>, <mark>highlighted text</mark>, <del>deleted text</del>, and <ins>inserted text</ins>.</p>
-
-          <h3>Lists</h3>
-
-          <ul>
-            <li>Unordered item</li>
-            <li>Another point</li>
-            <li>
-              With nested unordered list
-              <ul>
-                <li>Sub-item one</li>
-                <li>Sub-item two</li>
-              </ul>
-            </li>
-            <li>
-              With nested ordered list
-              <ol>
-                <li>First</li>
-                <li>Second</li>
-              </ol>
-            </li>
-            <li>Another point</li>
-            <li>
-              <p>Use $1 in rewrites (not :1) — that’s why it crashed earlier.</p>
-              <p>Sint, autem! Consectetur, iusto velit? Ipsam aliquid totam, atque laborum sequi perspiciatis quae corrupti et quod amet eaque itaque laboriosam?</p>
-            </li>
-            <li>The last one</li>
-          </ul>
-
-          <ol>
-            <li>Ordered item</li>
-            <li>Another step</li>
-            <li>
-              With nested unordered list
-              <ul>
-                <li>Tip A</li>
-                <li>Tip B</li>
-              </ul>
-            </li>
-            <li>
-              With nested ordered list
-              <ol>
-                <li>Alpha</li>
-                <li>Beta</li>
-              </ol>
-            </li>
-          </ol>
-
-          <dl>
-            <dt>Definition Term.</dt>
-            <dd>
-              <p>Definition description showing proper indentation and spacing</p>
-              <p>The second paragraph of the definition.</p>
-            </dd>
-            <dt>Another Term.</dt>
-            <dd>Another description maintaining consistent rhythm</dd>
-          </dl>
-        </div>
-      </section>
-
-      <!-- Stats -->
+    <!-- Table -->
+    <section class="section" id="section-table">
       <div class="container">
-        <div class="stats">
-          <figure class="stat">
-            <span class="eyebrow">up to</span>
-            <span class="stat-value">33<small>%</small></span>
-            <span class="stat-caption">after the CryptoAPI release</span>
-          </figure>
-          <figure class="stat stat-accent">
-            <span class="eyebrow">up to</span>
-            <span class="stat-value">61<small>%</small></span>
-            <span class="stat-caption">faster order placement</span>
-          </figure>
-          <figure class="stat">
-            <span class="eyebrow">up to</span>
-            <span class="stat-value">24<small>%</small></span>
-            <span class="stat-caption">ARPU growth in 6 months</span>
-          </figure>
-          <figure class="stat">
-            <span class="eyebrow">from 29 to</span>
-            <span class="stat-value">56</span>
-            <span class="stat-caption">NPS in 6 months</span>
-          </figure>
+        <h2>Table</h2>
+        <div class="scroll-x">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Role</th>
+                <th class="text-end" scope="col">Stuff</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Doe</td>
+                <td>Active</td>
+                <td>Admin</td>
+                <td class="text-end">20,25</td>
+                <td class="text-center">Edit</td>
+              </tr>
+              <tr>
+                <td>Jane Smith</td>
+                <td>Inactive</td>
+                <td>User</td>
+                <td class="text-end">444,00</td>
+                <td class="text-center">Edit</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+    </section>
 
-      <!-- Table -->
-      <section class="section" id="section-table">
-        <div class="container">
-          <h2>Table</h2>
-          <div class="scroll-x">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Role</th>
-                  <th class="text-end" scope="col">Stuff</th>
-                  <th class="text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>John Doe</td>
-                  <td>Active</td>
-                  <td>Admin</td>
-                  <td class="text-end">20,25</td>
-                  <td class="text-center">Edit</td>
-                </tr>
-                <tr>
-                  <td>Jane Smith</td>
-                  <td>Inactive</td>
-                  <td>User</td>
-                  <td class="text-end">444,00</td>
-                  <td class="text-center">Edit</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+    <!-- Forms -->
+    <section class="section" id="section-forms">
+      <div class="container">
+        <h2>Search</h2>
+        <form class="search" action="/" method="get" role="search">
+          <label for="search-input" class="visually-hidden">Search the site</label>
 
-      <!-- Forms -->
-      <section class="section" id="section-forms">
-        <div class="container">
-          <h2>Search</h2>
-          <form class="search" action="/" method="get" role="search">
-            <label for="search-input" class="visually-hidden">Search the site</label>
+          <input
+            type="search"
+            id="search-input"
+            name="q"
+            autocomplete="off"
+            required
+            placeholder="Search…"
+          >
 
-            <input
-              type="search"
-              id="search-input"
-              name="q"
-              autocomplete="off"
-              required
-              placeholder="Search…"
-            >
+          <button class="btn-ghost btn-icon" type="submit" aria-label="Submit search">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/assets/icons/sprite.svg#icon-search"></use>
+            </svg>
+          </button>
+        </form>
 
-            <button class="btn-ghost btn-icon" type="submit" aria-label="Submit search">
-              <svg class="icon" aria-hidden="true" focusable="false">
-                <use href="/assets/icons/sprite.svg#icon-search"></use>
-              </svg>
-            </button>
-          </form>
+        <h2>Base Form</h2>
 
-          <h2>Base Form</h2>
-
-          <form>
-            <div class="grid">
-              <p>
-                <label for="form-text">Text Input</label>
-                <input id="form-text" name="text" placeholder="Enter text" type="text">
-                <small role="alert">Message</small>
-              </p>
-
-              <p>
-                <label for="form-email">Email Input</label>
-                <input id="form-email" name="email" placeholder="Enter email" type="email">
-              </p>
-            </div>
-
-            <div class="grid">
-              <p>
-                <label for="form-select">Select Dropdown</label>
-                <select id="form-select" name="select" required>
-                  <option value="">Choose option...</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                </select>
-              </p>
-
-              <p>
-                <label class="d-flex" for="form-range">Range Slider</label>
-                <input class="mt-2h" id="form-range" max="100" min="0" name="range" type="range" value="50">
-              </p>
-            </div>
-
+        <form>
+          <div class="grid">
             <p>
-              <label for="form-textarea">Textarea</label>
-              <textarea id="form-textarea" name="textarea" placeholder="Enter longer text"></textarea>
+              <label for="form-text">Text Input</label>
+              <input id="form-text" name="text" placeholder="Enter text" type="text">
+              <small role="alert">Message</small>
             </p>
 
-            <div class="grid">
-              <p>
-                <label for="form-date">Date</label>
-                <input id="form-date" name="date" type="date">
-              </p>
+            <p>
+              <label for="form-email">Email Input</label>
+              <input id="form-email" name="email" placeholder="Enter email" type="email">
+            </p>
+          </div>
 
-              <p>
-                <label for="form-time">Time</label>
-                <input id="form-time" name="time" type="time">
-              </p>
+          <div class="grid">
+            <p>
+              <label for="form-select">Select Dropdown</label>
+              <select id="form-select" name="select" required>
+                <option value="">Choose option...</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </select>
+            </p>
 
-              <p>
-                <label for="form-file">File browser</label>
-                <input id="form-file" name="file" type="file">
-              </p>
-            </div>
+            <p>
+              <label class="d-flex" for="form-range">Range Slider</label>
+              <input class="mt-2h" id="form-range" max="100" min="0" name="range" type="range" value="50">
+            </p>
+          </div>
 
-            <div class="grid">
-              <p>
-                <label for="form-valid">Valid State</label>
-                <input id="form-valid" name="valid" type="text" aria-invalid="false" placeholder="Valid input">
-              </p>
+          <p>
+            <label for="form-textarea">Textarea</label>
+            <textarea id="form-textarea" name="textarea" placeholder="Enter longer text"></textarea>
+          </p>
 
-              <p>
-                <label for="form-invalid">Invalid State</label>
-                <input id="form-invalid" name="invalid" type="text" aria-invalid="true" placeholder="Invalid input">
-              </p>
+          <div class="grid">
+            <p>
+              <label for="form-date">Date</label>
+              <input id="form-date" name="date" type="date">
+            </p>
 
-              <p>
-                <label for="form-disabled">Disabled State</label>
-                <input id="form-disabled" name="disabled" type="text" disabled placeholder="Disabled input">
-              </p>
-            </div>
+            <p>
+              <label for="form-time">Time</label>
+              <input id="form-time" name="time" type="time">
+            </p>
 
-            <fieldset class="grid grid-cols-fr-auto gap-2">
-              <input name="newsletter" type="email" autocomplete="email" placeholder="Your email">
-              <input type="submit" value="Subscribe">
+            <p>
+              <label for="form-file">File browser</label>
+              <input id="form-file" name="file" type="file">
+            </p>
+          </div>
+
+          <div class="grid">
+            <p>
+              <label for="form-valid">Valid State</label>
+              <input id="form-valid" name="valid" type="text" aria-invalid="false" placeholder="Valid input">
+            </p>
+
+            <p>
+              <label for="form-invalid">Invalid State</label>
+              <input id="form-invalid" name="invalid" type="text" aria-invalid="true" placeholder="Invalid input">
+            </p>
+
+            <p>
+              <label for="form-disabled">Disabled State</label>
+              <input id="form-disabled" name="disabled" type="text" disabled placeholder="Disabled input">
+            </p>
+          </div>
+
+          <fieldset class="grid grid-cols-fr-auto gap-2">
+            <input name="newsletter" type="email" autocomplete="email" placeholder="Your email">
+            <input type="submit" value="Subscribe">
+          </fieldset>
+
+          <div class="grid">
+            <fieldset>
+              <legend>Checkboxes</legend>
+              <label for="form-checkbox-01">
+                <input id="form-checkbox-01" name="checkbox-01" type="checkbox" checked>
+                Option 1
+              </label>
+              <label for="form-checkbox-02">
+                <input id="form-checkbox-02" name="checkbox-02" type="checkbox">
+                Option 2
+              </label>
             </fieldset>
 
-            <div class="grid">
-              <fieldset>
-                <legend>Checkboxes</legend>
-                <label for="form-checkbox-01">
-                  <input id="form-checkbox-01" name="checkbox-01" type="checkbox" checked>
-                  Option 1
-                </label>
-                <label for="form-checkbox-02">
-                  <input id="form-checkbox-02" name="checkbox-02" type="checkbox">
-                  Option 2
-                </label>
-              </fieldset>
+            <fieldset>
+              <legend>Radio Buttons</legend>
+              <label for="form-radio-01">
+                <input id="form-radio-01" name="radio" type="radio" value="1" checked>
+                Choice 1
+              </label>
+              <label for="form-radio-02">
+                <input id="form-radio-02" name="radio" type="radio" value="2">
+                Choice 2
+              </label>
+            </fieldset>
 
-              <fieldset>
-                <legend>Radio Buttons</legend>
-                <label for="form-radio-01">
-                  <input id="form-radio-01" name="radio" type="radio" value="1" checked>
-                  Choice 1
-                </label>
-                <label for="form-radio-02">
-                  <input id="form-radio-02" name="radio" type="radio" value="2">
-                  Choice 2
-                </label>
-              </fieldset>
+            <fieldset>
+              <legend>Switches</legend>
+              <label for="form-switch-01">
+                Toggle 1
+                <input id="form-switch-01" name="switch-01" type="checkbox" role="switch" checked>
+              </label>
+              <label for="form-switch-02">
+                Toggle 2
+                <input id="form-switch-02" name="switch-02" type="checkbox" role="switch" >
+              </label>
+            </fieldset>
+          </div>
+        </form>
 
-              <fieldset>
-                <legend>Switches</legend>
-                <label for="form-switch-01">
-                  Toggle 1
-                  <input id="form-switch-01" name="switch-01" type="checkbox" role="switch" checked>
-                </label>
-                <label for="form-switch-02">
-                  Toggle 2
-                  <input id="form-switch-02" name="switch-02" type="checkbox" role="switch" >
-                </label>
-              </fieldset>
+        <h3>Buttons</h3>
+        <!-- Bring us back -->
+      </div>
+    </section>
+
+    <!-- Components -->
+    <section class="section" id="section-components-init">
+      <div class="container">
+        <h2>Interactive Components</h2>
+
+        <h3 class="mb-lh">Popovers and menu</h3>
+        <div class="grid grid-auto">
+          <details class="popover phone:popover-center mx-auto" data-role="popover">
+            <summary class="btn">
+              Default
+            </summary>
+            <div class="popover-body">
+              <ul class="menu">
+                <li><a href="#section-preview">Preview</a></li>
+                <li><a href="#section-typography">Typography</a></li>
+                <li><a href="#section-forms">Forms</a></li>
+                <li><a href="#section-components">Components</a></li>
+              </ul>
             </div>
-          </form>
+          </details>
 
-          <h3>Buttons</h3>
-          <!-- Bring us back -->
-        </div>
-      </section>
+          <nav class="box box-fit">
+            <ul class="menu">
+              <li>
+                <a class="menu-item-icon-start" href="https://super-mark.ru/en" target="_blank" rel="noopener">
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="/assets/icons/sprite.svg#icon-home"></use>
+                  </svg>
+                  <span class="menu-label">Diagnostics</span>
+                </a>
+              </li>
+              <li class="menu-divider" role="separator"></li>
+              <li>
+                <a class="menu-item-icon-start" href="https://super-mark.ru/en" target="_blank" rel="noopener">
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="/assets/icons/sprite.svg#icon-star"></use>
+                  </svg>
+                  <span class="menu-label">Design</span>
+                </a>
+              </li>
+              <li>
+                <a class="menu-item-icon-start" href="https://super-mark.ru/en" target="_blank" rel="noopener">
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="/assets/icons/sprite.svg#icon-star"></use>
+                  </svg>
+                  <span class="menu-label">Development: React, CSS, Vanilla JS, HTML</span>
+                </a>
+              </li>
+              <li>
+                <a class="menu-item-icon-start" href="https://super-mark.ru/en" target="_blank" rel="noopener">
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="/assets/icons/sprite.svg#icon-star"></use>
+                  </svg>
+                  <span class="menu-label">Marketing</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
 
-      <!-- Components -->
-      <section class="section" id="section-components-init">
-        <div class="container">
-          <h2>Interactive Components</h2>
-
-          <h3 class="mb-lh">Popovers and menu</h3>
-          <div class="grid grid-auto">
-            <details class="popover phone:popover-center mx-auto" data-role="popover">
-              <summary class="btn">
-                Default
-              </summary>
+          <div class="d-flex flex-col items-center">
+            <details class="popover popover-end phone:popover-center mb-2" data-role="popover">
+              <summary class="btn">Right aligned on tablet+</summary>
               <div class="popover-body">
                 <ul class="menu">
                   <li><a href="#section-preview">Preview</a></li>
@@ -576,431 +670,380 @@
                 </ul>
               </div>
             </details>
-
-            <nav class="box box-fit">
-              <ul class="menu">
-                <li>
-                  <a class="menu-item-icon-start" href="https://super-mark.ru/en" target="_blank" rel="noopener">
-                    <svg class="icon" aria-hidden="true" focusable="false">
-                      <use href="/assets/icons/sprite.svg#icon-home"></use>
-                    </svg>
-                    <span class="menu-label">Diagnostics</span>
-                  </a>
-                </li>
-                <li class="menu-divider" role="separator"></li>
-                <li>
-                  <a class="menu-item-icon-start" href="https://super-mark.ru/en" target="_blank" rel="noopener">
-                    <svg class="icon" aria-hidden="true" focusable="false">
-                      <use href="/assets/icons/sprite.svg#icon-star"></use>
-                    </svg>
-                    <span class="menu-label">Design</span>
-                  </a>
-                </li>
-                <li>
-                  <a class="menu-item-icon-start" href="https://super-mark.ru/en" target="_blank" rel="noopener">
-                    <svg class="icon" aria-hidden="true" focusable="false">
-                      <use href="/assets/icons/sprite.svg#icon-star"></use>
-                    </svg>
-                    <span class="menu-label">Development: React, CSS, Vanilla JS, HTML</span>
-                  </a>
-                </li>
-                <li>
-                  <a class="menu-item-icon-start" href="https://super-mark.ru/en" target="_blank" rel="noopener">
-                    <svg class="icon" aria-hidden="true" focusable="false">
-                      <use href="/assets/icons/sprite.svg#icon-star"></use>
-                    </svg>
-                    <span class="menu-label">Marketing</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-
-            <div class="d-flex flex-col items-center">
-              <details class="popover popover-end phone:popover-center mb-2" data-role="popover">
-                <summary class="btn">Right aligned on tablet+</summary>
+            <details class="popover popover-up popover-end phone:popover-center" data-role="popover">
+              <summary class="btn">Popover on top</summary>
                 <div class="popover-body">
-                  <ul class="menu">
-                    <li><a href="#section-preview">Preview</a></li>
-                    <li><a href="#section-typography">Typography</a></li>
-                    <li><a href="#section-forms">Forms</a></li>
-                    <li><a href="#section-components">Components</a></li>
-                  </ul>
+                  <p>
+                    <label for="popover-title">Event Title</label>
+                    <input id="popover-title" name="title" type="text">
+                  </p>
+                  <p>
+                    <label for="popover-files">Attaching files…</label>
+                    <input id="popover-files" type="file" multiple>
+                  </p>
+                  <footer class="buttons">
+                    <button type="reset">Cancel</button>
+                    <button type="button">Delete</button>
+                    <button type="button">OK</button>
+                  </footer>
                 </div>
-              </details>
-              <details class="popover popover-up popover-end phone:popover-center" data-role="popover">
-                <summary class="btn">Popover on top</summary>
-                  <div class="popover-body">
-                    <p>
-                      <label for="popover-title">Event Title</label>
-                      <input id="popover-title" name="title" type="text">
-                    </p>
-                    <p>
-                      <label for="popover-files">Attaching files…</label>
-                      <input id="popover-files" type="file" multiple>
-                    </p>
-                    <footer class="buttons">
-                      <button type="reset">Cancel</button>
-                      <button type="button">Delete</button>
-                      <button type="button">OK</button>
-                    </footer>
-                  </div>
-              </details>
-            </div>
-            <!-- popover-left -->
+            </details>
           </div>
-
-          <h3>Tooltips</h3>
-          <div class="grid grid-auto mb-2">
-            <a class="btn tooltip" href="https://super-mark.ru/en" target="_blank" rel="noopener" data-tooltip="Developed by super-mark.ru"> Default </a>
-            <a class="btn tooltip tooltip-right" href="https://super-mark.ru/en" target="_blank" rel="noopener" data-tooltip="Developed by super-mark.ru"> Right </a>
-            <a class="btn tooltip tooltip-bottom" href="https://super-mark.ru/en" target="_blank" rel="noopener" data-tooltip="Developed by super-mark.ru Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius hic, beatae dolores numquam repellendus magni nobis "> Bottom </a>
-
-            <span class="tooltip-rich tooltip-left d-flex">
-              <a class="btn w-100" href="https://super-mark.ru/en" target="_blank" rel="noopener" aria-describedby="tt-4"> Left </a>
-              <span class="tooltip-bubble" id="tt-4" role="tooltip">
-                Text with markup<br>
-                <b>Note:</b> links are supported —<br>
-                <a href="#">read more</a>
-              </span>
-            </span>
-          </div>
-
-          <h3>Accordions</h3>
-          <details class="accordion">
-            <summary>
-              Closed Accordion
-              <span class="accordion-marker">
-                <svg class="icon icon-sm" aria-hidden="true" focusable="false">
-                  <use href="/assets/icons/sprite.svg#icon-sm-chevron-down"></use>
-                </svg>
-              </span>
-            </summary>
-            <div class="accordion-body">
-              <p>Hidden content that expands when clicked.</p>
-            </div>
-          </details>
-          <details class="accordion" open>
-            <summary>
-              <span class="accordion-header-hgroup">
-                <strong>Open Accordion</strong>
-                <span class="text-02">You can use subheadings inside a summary element.</span>
-              </span>
-              <span class="accordion-marker">
-                <svg class="icon icon-sm" aria-hidden="true" focusable="false">
-                  <use href="/assets/icons/sprite.svg#icon-sm-chevron-down"></use>
-                </svg>
-              </span>
-            </summary>
-            <div class="accordion-body">
-              <p>This accordion is open by default, showing its content.</p>
-            </div>
-          </details>
-
-          <section aria-label="Dialogs & Drawers (Interactive Overlays)">
-            <div class="grid">
-              <div class="d-flex flex-col items-center">
-                <h3>Modal</h3>
-                <button type="button" data-role="open-modal" data-target="modal-example">Launch Modal</button>
-              </div>
-              <div class="d-flex flex-col items-center">
-                <h3>Drawer</h3>
-                <div class="d-flex gap-2 flex-wrap">
-                  <button class="mx-auto" type="button" data-role="open-drawer" data-target="drawer-vertical">Open Vertical</button>
-                  <button class="mx-auto" type="button" data-role="toggle-drawer" data-target="drawer-vertical" data-label-alt="Close Drawer">Toggle Vertical</button>
-                  <button class="mx-auto" type="button" data-role="open-drawer" data-target="drawer-horizontal">Open Horizontal</button>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="mt-3lh">
-            <h3>Progress & Loading</h3>
-            <div class="grid items-center">
-              <button class="progress-inline" aria-busy="true">Loading...</button>
-              <progress class="mb-0" id="progress" max="100" value="75"></progress>
-              <progress class="mb-0" id="progress-02"></progress>
-              <div class="progress-spinner"></div>
-            </div>
-          </section>
+          <!-- popover-left -->
         </div>
-      </section>
 
-      <!-- Features -->
-      <section class="section" id="section-benefits"></section>
+        <h3>Tooltips</h3>
+        <div class="grid grid-auto mb-2">
+          <a class="btn tooltip" href="https://super-mark.ru/en" target="_blank" rel="noopener" data-tooltip="Developed by super-mark.ru"> Default </a>
+          <a class="btn tooltip tooltip-right" href="https://super-mark.ru/en" target="_blank" rel="noopener" data-tooltip="Developed by super-mark.ru"> Right </a>
+          <a class="btn tooltip tooltip-bottom" href="https://super-mark.ru/en" target="_blank" rel="noopener" data-tooltip="Developed by super-mark.ru Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius hic, beatae dolores numquam repellendus magni nobis "> Bottom </a>
 
-      <!-- CTA -->
-      <section class="section" id="section-cta"></section>
+          <span class="tooltip-rich tooltip-left d-flex">
+            <a class="btn w-100" href="https://super-mark.ru/en" target="_blank" rel="noopener" aria-describedby="tt-4"> Left </a>
+            <span class="tooltip-bubble" id="tt-4" role="tooltip">
+              Text with markup<br>
+              <b>Note:</b> links are supported —<br>
+              <a href="#">read more</a>
+            </span>
+          </span>
+        </div>
 
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="container">
-        <small> Built with <a href="https://supervova.github.io/old-skull/">Old Skull CSS</a> </small>
-      </div>
-    </footer>
-
-    <!-- DRAWER VERTICAL -->
-    <dialog class="drawer drawer-vertical" id="drawer-vertical">
-      <header class="drawer-header">
-        <h2>Drawer</h2>
-        <button class="btn btn-close" type="button" data-role="close" data-target="drawer-vertical" aria-label="Close">
-          <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <use href="/assets/icons/sprite.svg#icon-sm-x-mark"></use>
-          </svg>
-        </button>
-      </header>
-      <div class="drawer-body">
-        <form class="mb-lh" id="filters-form">
-          <fieldset>
-            <legend>Actress age:</legend>
-            <div class="grid gap-2">
-              <p>
-                <label class="label visually-hidden" for="filter-age-min">From</label>
-                <input id="filter-age-min" name="price-min" type="number" step="1" min="1" value="35" placeholder="From">
-              </p>
-              <div>
-                <label class="label visually-hidden" for="filter-age-max">to</label>
-                <input id="filter-age-max" name="filter-age-max" type="number" step="1" min="2" value="50" placeholder="to">
-              </div>
-            </div>
-          </fieldset>
-        </form>
-
-        <p><b>Aimee-Ffion Edwards</b> is a Welsh actress best known for her roles in TV series such as Skins, Peaky Blinders, and Slow Horses. She is also a voice actress for video games and is fluent in both English and Welsh. </p>
-
-        <h3>Key roles</h3>
-        <ul>
-          <li><b>Skins:</b> She made her television debut in 2008 as Sketch, a manipulative art student.</li>
-          <li><b>Peaky Blinders:</b> She portrayed Esme Shelby, the wife of John Shelby, throughout 15 episodes.</li>
-          <li><b>Detectorists:</b> She played Sophie, an archaeology enthusiast, in the comedy series.</li>
-          <li><b>Slow Horses:</b> She appears as Shirley Dander in the Apple TV+ spy series.</li>
-          <li><b>Luther:</b> She had a role as Jenny Jones in the second series.</li>
-          <li><b>Voice acting:</b> She voiced characters in video games including Ranni the Witch in Elden Ring and Mio in Xenoblade Chronicles 3. </li>
-        </ul>
-
-        <h3>Career background</h3>
-        <p><b>Early life and education:</b> Edwards was born in Newport, Wales. She attended Welsh-medium schools and played youth rugby.</p>
-        <p><b>Singing:</b> Before acting, she was a trained classical singer and was a runner-up on the Welsh-language TV singing show Wawffactor in 2006.</p>
-        <p><b>Stage acting:</b> She is also an accomplished stage actress and made her Broadway debut in the play Jerusalem. </p>
-
-      </div>
-      <div class="drawer-footer">
-        <button class="btn" type="button" data-role="close" data-target="drawer-vertical">
-          Cancel
-        </button>
-        <button class="btn btn-primary" type="submit" form="filters-form">
-          Apply
-        </button>
-      </div>
-    </dialog>
-
-    <!-- DRAWER HORIZONTAL -->
-    <dialog class="drawer drawer-horizontal" id="drawer-horizontal">
-      <header class="drawer-header">
-        <h2>Drawer</h2>
-        <button class="btn btn-close" type="button" data-role="close" data-target="drawer-horizontal" aria-label="Close">
-          <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <use href="/assets/icons/sprite.svg#icon-sm-x-mark"></use>
-          </svg>
-        </button>
-      </header>
-      <div class="drawer-body">
-        <form class="mb-lh" id="filters-form-02">
-          <fieldset>
-            <legend>Actress age:</legend>
-            <div class="grid gap-2">
-              <p>
-                <label class="label visually-hidden" for="filter-age-min-02">From</label>
-                <input id="filter-age-min-02" name="price-min" type="number" step="1" min="1" value="35" placeholder="From">
-              </p>
-              <div>
-                <label class="label visually-hidden" for="filter-age-max-02">to</label>
-                <input id="filter-age-max-02" name="filter-age-max" type="number" step="1" min="2" value="50" placeholder="to">
-              </div>
-            </div>
-          </fieldset>
-        </form>
-
-
-        <p><b>Laura Birn</b> (born April 25, 1981) is a Finnish actress known for her roles in both Nordic and international films and television series. She is most notably recognized internationally for her portrayal of the robot Eto Demerzel in the Apple TV+ series Foundation (2021–present). </p>
-
-        <h3>Key Details</h3>
-        <ul>
-          <li>Full Name: Laura Eveliina Birn</li>
-          <li>Date of Birth: April 25, 1981</li>
-          <li>Birthplace: Helsinki, Finland</li>
-          <li>Nationality: Finnish</li>
-          <li>Occupation: Actress, writer, producer </li>
-        </ul>
-
-        <h3>Career Highlights</h3>
-        <p>Birn has built a diverse career, appearing in historical dramas, comedies, and art-house films. Her significant roles include: </p>
-
-        <ul>
-        <li><b>Foundation</b> (2021–present): Playing the complex and layered character of Eto Demerzel.</li>
-        <li><b>Purge</b> (2012): Her performance in this film earned her a Jussi Award for Best Leading Actress (the Finnish equivalent of an Oscar) and a nomination for a Satellite Award.</li>
-        <li><b>A Walk Among the Tombstones</b> (2014): A supporting role in this American film increased her international recognition.</li>
-        <li><b>The Crow</b> (2024): She appeared in this film as well.</li>
-        <li><b>Helene</b> (2020): Portraying the Finnish painter Helene Schjerfbeck. </li>
-        </ul>
-
-        <p>In 2024, a Finnish news magazine reported that, based on publicly available tax records, Birn is the most highly-paid Finnish actor of all time. </p>
-
-      </div>
-      <div class="drawer-footer">
-        <button class="btn" type="button" data-role="close" data-target="drawer-horizontal">
-          Cancel
-        </button>
-        <button class="btn btn-primary" type="submit">
-          Apply
-        </button>
-      </div>
-    </dialog>
-
-    <!-- MODAL: QUICK START -->
-    <dialog class="modal" id="modal-start">
-      <h3>Minimal Viable &lt;p&gt;</h3>
-      <p>Every front-end project starts with the basics: a clean reset, smart variables, proper HTML and BODY styles, solid typography, and a few essential utility classes. Put those together – and in under a minute, you&rsquo;ve got a solid foundation ready to build on.</p>
-    </dialog>
-
-    <!-- MODAL: EXAMPLE -->
-    <dialog id="modal-example">
-      <article>
-        <header>
-          <button aria-label="Close" data-role="close" data-target="modal-example" onclick="toggleModal(event)" rel="prev"></button>
-          <h3>Modal Example</h3>
-        </header>
-        <p>This is a sample modal dialog demonstrating the modal component.</p>
-        <p class="grid grid-center">
-          <button class="btn btn-primary">Primary</button>
-          <button class="btn">Default</button>
-          <button class="btn btn-icon">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
-            </svg>
-            <span class="visually-hidden">Icon Button</span>
-          </button>
-          <button class="btn btn-outline">Outline</button>
-          <button class="btn btn-ghost">Ghost</button>
-          <button class="btn btn-link">Link</button>
-        </p>
-
-        <form>
-          <div class="grid">
-            <input aria-label="First name" name="firstname" placeholder="First name" required type="text">
-            <input aria-label="Email address" autocomplete="email" name="email" placeholder="Email address" required type="email">
-            <button type="submit">Subscribe</button>
+        <h3>Accordions</h3>
+        <details class="accordion">
+          <summary>
+            Closed Accordion
+            <span class="accordion-marker">
+              <svg class="icon icon-sm" aria-hidden="true" focusable="false">
+                <use href="/assets/icons/sprite.svg#icon-sm-chevron-down"></use>
+              </svg>
+            </span>
+          </summary>
+          <div class="accordion-body">
+            <p>Hidden content that expands when clicked.</p>
           </div>
-          <fieldset>
-            <label for="form-terms">
-              <input id="form-terms" name="terms" role="switch" type="checkbox">
-              I agree to the <a href="#" data-role="link">Privacy Policy</a>
-            </label>
-          </fieldset>
-        </form>
-        <footer>
-          <button class="secondary" data-target="modal-example" onclick="toggleModal(event)">Cancel</button>
-          <button autofocus data-target="modal-example" onclick="toggleModal(event)">Confirm</button>
-        </footer>
-      </article>
-    </dialog>
+        </details>
+        <details class="accordion" open>
+          <summary>
+            <span class="accordion-header-hgroup">
+              <strong>Open Accordion</strong>
+              <span class="text-02">You can use subheadings inside a summary element.</span>
+            </span>
+            <span class="accordion-marker">
+              <svg class="icon icon-sm" aria-hidden="true" focusable="false">
+                <use href="/assets/icons/sprite.svg#icon-sm-chevron-down"></use>
+              </svg>
+            </span>
+          </summary>
+          <div class="accordion-body">
+            <p>This accordion is open by default, showing its content.</p>
+          </div>
+        </details>
 
-    <!-- MODAL: TOPNAV -->
-    <dialog class="modal" id="modal-topnav">
-              <!-- Main nav -->
-        <nav class="topnav" aria-label="Main menu">
-          <ul>
+        <section aria-label="Dialogs & Drawers (Interactive Overlays)">
+          <div class="grid">
+            <div class="d-flex flex-col items-center">
+              <h3>Modal</h3>
+              <button type="button" data-role="open-modal" data-target="modal-example">Launch Modal</button>
+            </div>
+            <div class="d-flex flex-col items-center">
+              <h3>Drawer</h3>
+              <div class="d-flex gap-2 flex-wrap">
+                <button class="mx-auto" type="button" data-role="open-drawer" data-target="drawer-vertical">Open Vertical</button>
+                <button class="mx-auto" type="button" data-role="toggle-drawer" data-target="drawer-vertical" data-label-alt="Close Drawer">Toggle Vertical</button>
+                <button class="mx-auto" type="button" data-role="open-drawer" data-target="drawer-horizontal">Open Horizontal</button>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <li class="topnav-home">
-              <a class="topnav-link" href="#" data-role="link">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="/assets/icons/sprite.svg#icon-home"></use>
-                </svg>
-                <span class="topnav-label">Home</span>
-              </a>
-            </li>
-
-            <li>
-              <a class="topnav-link" href="#" data-role="link">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="/assets/icons/sprite.svg#icon-box"></use>
-                </svg>
-                <span class="topnav-label">Products</span>
-              </a>
-            </li>
-
-            <li>
-              <a class="topnav-link" href="#" data-role="link">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="/assets/icons/sprite.svg#icon-recommendation"></use>
-                </svg>
-                <span class="topnav-label">Services</span>
-              </a>
-            </li>
-
-            <li class="topnav-more">
-              <details class="popover" data-role="popover">
-                <summary>
-                  <svg class="icon" aria-hidden="true" focusable="false">
-                    <use href="/assets/icons/sprite.svg#icon-more"></use>
-                  </svg>
-                   <span class="topnav-label">More</span>
-                </summary>
-                <div class="popover-body">
-                  <ul class="menu">
-
-                    <li>
-                      <a class="topnav-link" href="#" data-role="link">
-                        <svg class="icon" aria-hidden="true" focusable="false">
-                          <use href="/assets/icons/sprite.svg#icon-star"></use>
-                        </svg>
-                        <span class="topnav-label">About Us</span>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a class="topnav-link" href="#" data-role="link">
-                        <svg class="icon" aria-hidden="true" focusable="false">
-                          <use href="/assets/icons/sprite.svg#icon-case"></use>
-                        </svg>
-                        <span class="topnav-label">Careers</span>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a class="topnav-link" href="#" data-role="link">
-                        <svg class="icon" aria-hidden="true" focusable="false">
-                          <use href="/assets/icons/sprite.svg#icon-phone-mobile"></use>
-                        </svg>
-                        <span class="topnav-label">Contact Us</span>
-                      </a>
-                    </li>
-
-                  </ul>
-                </div>
-              </details>
-            </li>
-          </ul>
-        </nav>
-    </dialog>
-
-    <!-- TOAST -->
-    <div class="toast toast-warning toast-icon toast-warning" role="alert" aria-live="assertive" style="visibility: hidden; --toast-timer-duration: 8000ms">
-      <div class="toast-base">
-        <svg class="icon icon-warning" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-warning"></use></svg>
-        <div class="toast-copy"><span class="toast-message">Name already exists</span></div>
+        <section class="mt-3lh">
+          <h3>Progress & Loading</h3>
+          <div class="grid items-center">
+            <button class="progress-inline" aria-busy="true">Loading...</button>
+            <progress class="mb-0" id="progress" max="100" value="75"></progress>
+            <progress class="mb-0" id="progress-02"></progress>
+            <div class="progress-spinner"></div>
+          </div>
+        </section>
       </div>
-      <button class="btn btn-close" data-role="close" aria-label="Закрыть">
-        <svg class="icon icon-sm-x-mark icon-sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-sm-x-mark"></use></svg>
-      </button>
-      <div class="progress-bar progress-bar-warning" role="progressbar" aria-label="warning" aria-valuemin="0" aria-valuemax="100" aria-busy="true" aria-valuetext="warning">
-        <div class="progress-bar-fill"></div>
-      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="section-benefits"></section>
+
+    <!-- CTA -->
+    <section class="section" id="section-cta"></section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <small> Built with <a href="https://supervova.github.io/old-skull/">Old Skull CSS</a> </small>
     </div>
+  </footer>
 
-    <!-- Scripts -->
-    <script type="module" src="main.js"></script>
+  <!-- DRAWER VERTICAL -->
+  <dialog class="drawer drawer-vertical" id="drawer-vertical">
+    <header class="drawer-header">
+      <h2>Drawer</h2>
+      <button class="btn btn-close" type="button" data-role="close" data-target="drawer-vertical" aria-label="Close">
+        <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <use href="/assets/icons/sprite.svg#icon-sm-x-mark"></use>
+        </svg>
+      </button>
+    </header>
+    <div class="drawer-body">
+      <form class="mb-lh" id="filters-form">
+        <fieldset>
+          <legend>Actress age:</legend>
+          <div class="grid gap-2">
+            <p>
+              <label class="label visually-hidden" for="filter-age-min">From</label>
+              <input id="filter-age-min" name="price-min" type="number" step="1" min="1" value="35" placeholder="From">
+            </p>
+            <div>
+              <label class="label visually-hidden" for="filter-age-max">to</label>
+              <input id="filter-age-max" name="filter-age-max" type="number" step="1" min="2" value="50" placeholder="to">
+            </div>
+          </div>
+        </fieldset>
+      </form>
 
-  </body>
+      <p><b>Aimee-Ffion Edwards</b> is a Welsh actress best known for her roles in TV series such as Skins, Peaky Blinders, and Slow Horses. She is also a voice actress for video games and is fluent in both English and Welsh. </p>
+
+      <h3>Key roles</h3>
+      <ul>
+        <li><b>Skins:</b> She made her television debut in 2008 as Sketch, a manipulative art student.</li>
+        <li><b>Peaky Blinders:</b> She portrayed Esme Shelby, the wife of John Shelby, throughout 15 episodes.</li>
+        <li><b>Detectorists:</b> She played Sophie, an archaeology enthusiast, in the comedy series.</li>
+        <li><b>Slow Horses:</b> She appears as Shirley Dander in the Apple TV+ spy series.</li>
+        <li><b>Luther:</b> She had a role as Jenny Jones in the second series.</li>
+        <li><b>Voice acting:</b> She voiced characters in video games including Ranni the Witch in Elden Ring and Mio in Xenoblade Chronicles 3. </li>
+      </ul>
+
+      <h3>Career background</h3>
+      <p><b>Early life and education:</b> Edwards was born in Newport, Wales. She attended Welsh-medium schools and played youth rugby.</p>
+      <p><b>Singing:</b> Before acting, she was a trained classical singer and was a runner-up on the Welsh-language TV singing show Wawffactor in 2006.</p>
+      <p><b>Stage acting:</b> She is also an accomplished stage actress and made her Broadway debut in the play Jerusalem. </p>
+
+    </div>
+    <div class="drawer-footer">
+      <button class="btn" type="button" data-role="close" data-target="drawer-vertical">
+        Cancel
+      </button>
+      <button class="btn btn-primary" type="submit" form="filters-form">
+        Apply
+      </button>
+    </div>
+  </dialog>
+
+  <!-- DRAWER HORIZONTAL -->
+  <dialog class="drawer drawer-horizontal" id="drawer-horizontal">
+    <header class="drawer-header">
+      <h2>Drawer</h2>
+      <button class="btn btn-close" type="button" data-role="close" data-target="drawer-horizontal" aria-label="Close">
+        <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <use href="/assets/icons/sprite.svg#icon-sm-x-mark"></use>
+        </svg>
+      </button>
+    </header>
+    <div class="drawer-body">
+      <form class="mb-lh" id="filters-form-02">
+        <fieldset>
+          <legend>Actress age:</legend>
+          <div class="grid gap-2">
+            <p>
+              <label class="label visually-hidden" for="filter-age-min-02">From</label>
+              <input id="filter-age-min-02" name="price-min" type="number" step="1" min="1" value="35" placeholder="From">
+            </p>
+            <div>
+              <label class="label visually-hidden" for="filter-age-max-02">to</label>
+              <input id="filter-age-max-02" name="filter-age-max" type="number" step="1" min="2" value="50" placeholder="to">
+            </div>
+          </div>
+        </fieldset>
+      </form>
+
+
+      <p><b>Laura Birn</b> (born April 25, 1981) is a Finnish actress known for her roles in both Nordic and international films and television series. She is most notably recognized internationally for her portrayal of the robot Eto Demerzel in the Apple TV+ series Foundation (2021–present). </p>
+
+      <h3>Key Details</h3>
+      <ul>
+        <li>Full Name: Laura Eveliina Birn</li>
+        <li>Date of Birth: April 25, 1981</li>
+        <li>Birthplace: Helsinki, Finland</li>
+        <li>Nationality: Finnish</li>
+        <li>Occupation: Actress, writer, producer </li>
+      </ul>
+
+      <h3>Career Highlights</h3>
+      <p>Birn has built a diverse career, appearing in historical dramas, comedies, and art-house films. Her significant roles include: </p>
+
+      <ul>
+      <li><b>Foundation</b> (2021–present): Playing the complex and layered character of Eto Demerzel.</li>
+      <li><b>Purge</b> (2012): Her performance in this film earned her a Jussi Award for Best Leading Actress (the Finnish equivalent of an Oscar) and a nomination for a Satellite Award.</li>
+      <li><b>A Walk Among the Tombstones</b> (2014): A supporting role in this American film increased her international recognition.</li>
+      <li><b>The Crow</b> (2024): She appeared in this film as well.</li>
+      <li><b>Helene</b> (2020): Portraying the Finnish painter Helene Schjerfbeck. </li>
+      </ul>
+
+      <p>In 2024, a Finnish news magazine reported that, based on publicly available tax records, Birn is the most highly-paid Finnish actor of all time. </p>
+
+    </div>
+    <div class="drawer-footer">
+      <button class="btn" type="button" data-role="close" data-target="drawer-horizontal">
+        Cancel
+      </button>
+      <button class="btn btn-primary" type="submit">
+        Apply
+      </button>
+    </div>
+  </dialog>
+
+  <!-- MODAL: QUICK START -->
+  <dialog class="modal" id="modal-start">
+    <h3>Minimal Viable &lt;p&gt;</h3>
+    <p>Every front-end project starts with the basics: a clean reset, smart variables, proper HTML and BODY styles, solid typography, and a few essential utility classes. Put those together – and in under a minute, you&rsquo;ve got a solid foundation ready to build on.</p>
+  </dialog>
+
+  <!-- MODAL: EXAMPLE -->
+  <dialog id="modal-example">
+    <article>
+      <header>
+        <button aria-label="Close" data-role="close" data-target="modal-example" onclick="toggleModal(event)" rel="prev"></button>
+        <h3>Modal Example</h3>
+      </header>
+      <p>This is a sample modal dialog demonstrating the modal component.</p>
+      <p class="grid grid-center">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn">Default</button>
+        <button class="btn btn-icon">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+          </svg>
+          <span class="visually-hidden">Icon Button</span>
+        </button>
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-ghost">Ghost</button>
+        <button class="btn btn-link">Link</button>
+      </p>
+
+      <form>
+        <div class="grid">
+          <input aria-label="First name" name="firstname" placeholder="First name" required type="text">
+          <input aria-label="Email address" autocomplete="email" name="email" placeholder="Email address" required type="email">
+          <button type="submit">Subscribe</button>
+        </div>
+        <fieldset>
+          <label for="form-terms">
+            <input id="form-terms" name="terms" role="switch" type="checkbox">
+            I agree to the <a href="#" data-role="link">Privacy Policy</a>
+          </label>
+        </fieldset>
+      </form>
+      <footer>
+        <button class="secondary" data-target="modal-example" onclick="toggleModal(event)">Cancel</button>
+        <button autofocus data-target="modal-example" onclick="toggleModal(event)">Confirm</button>
+      </footer>
+    </article>
+  </dialog>
+
+  <!-- MODAL: TOPNAV -->
+  <dialog class="modal" id="modal-topnav">
+            <!-- Main nav -->
+      <nav class="topnav" aria-label="Main menu">
+        <ul>
+
+          <li class="topnav-home">
+            <a class="topnav-link" href="#" data-role="link">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="/assets/icons/sprite.svg#icon-home"></use>
+              </svg>
+              <span class="topnav-label">Home</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="topnav-link" href="#" data-role="link">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="/assets/icons/sprite.svg#icon-box"></use>
+              </svg>
+              <span class="topnav-label">Products</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="topnav-link" href="#" data-role="link">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="/assets/icons/sprite.svg#icon-recommendation"></use>
+              </svg>
+              <span class="topnav-label">Services</span>
+            </a>
+          </li>
+
+          <li class="topnav-more">
+            <details class="popover" data-role="popover">
+              <summary>
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="/assets/icons/sprite.svg#icon-more"></use>
+                </svg>
+                  <span class="topnav-label">More</span>
+              </summary>
+              <div class="popover-body">
+                <ul class="menu">
+
+                  <li>
+                    <a class="topnav-link" href="#" data-role="link">
+                      <svg class="icon" aria-hidden="true" focusable="false">
+                        <use href="/assets/icons/sprite.svg#icon-star"></use>
+                      </svg>
+                      <span class="topnav-label">About Us</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="topnav-link" href="#" data-role="link">
+                      <svg class="icon" aria-hidden="true" focusable="false">
+                        <use href="/assets/icons/sprite.svg#icon-case"></use>
+                      </svg>
+                      <span class="topnav-label">Careers</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="topnav-link" href="#" data-role="link">
+                      <svg class="icon" aria-hidden="true" focusable="false">
+                        <use href="/assets/icons/sprite.svg#icon-phone-mobile"></use>
+                      </svg>
+                      <span class="topnav-label">Contact Us</span>
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+            </details>
+          </li>
+        </ul>
+      </nav>
+  </dialog>
+
+  <!-- TOAST -->
+  <div class="toast toast-warning toast-icon toast-warning" role="alert" aria-live="assertive" style="visibility: hidden; --toast-timer-duration: 8000ms">
+    <div class="toast-base">
+      <svg class="icon icon-warning" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-warning"></use></svg>
+      <div class="toast-copy"><span class="toast-message">Name already exists</span></div>
+    </div>
+    <button class="btn btn-close" data-role="close" aria-label="Закрыть">
+      <svg class="icon icon-sm-x-mark icon-sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/sprite.svg#icon-sm-x-mark"></use></svg>
+    </button>
+    <div class="progress-bar progress-bar-warning" role="progressbar" aria-label="warning" aria-valuemin="0" aria-valuemax="100" aria-busy="true" aria-valuetext="warning">
+      <div class="progress-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="main.js"></script>
+
+</body>
 </html>

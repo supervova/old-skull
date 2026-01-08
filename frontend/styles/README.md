@@ -58,8 +58,8 @@ The project supports light and dark themes, which are defined in `vars-light.css
 
 ### 3. Spacing and Rhythm
 
-- **Vertical Rhythm**: ~~Based on the relative unit `rlh` (line-height unit). The `--rlh` variable equals `1rlh` (`1.5rem` as a fallback).~~
-- **Dimensional Scale**: A set of `--dim-*` variables (e.g., `--dim-1: calc(var(--rlh) / 3)`) is used to create a consistent system for margins, padding, and sizes.
+- **Vertical Rhythm**: Based on a baseline grid and compensating spacing.
+- **Dimensional Scale**: A set of `--dim-*` variables (e.g., `--dim-1: calc(var(--spacer) / 3)`) is used to create a consistent system for margins, padding, and sizes.
 
 ### 4. Shape and Elevation
 

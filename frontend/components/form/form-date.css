@@ -1,0 +1,50 @@
+:where(
+  input:is(
+    [type='date' i],
+    [type='datetime-local' i],
+    [type='month' i],
+    [type='time' i],
+    [type='week' i]
+  )
+) {
+  --icon-position: var(--dim-1);
+  --icon-size: var(--dim-3);
+
+  background-position: center right var(--icon-position);
+  background-repeat: no-repeat;
+  background-size: var(--icon-size) auto;
+  padding-inline-end: calc(var(--icon-size) + var(--icon-position));
+
+  &::-webkit-calendar-picker-indicator {
+    margin-inline:
+      var(--icon-position)
+      calc(var(--icon-size) * -1);
+    opacity: 0;
+    width: var(--icon-size);
+  }
+}
+
+:where(input:is([type='date' i], [type='datetime-local' i], [type='month' i], [type='week' i])) {
+  background-image: var(--icon-calendar);
+}
+
+/* Time */
+/* :where(input:is([type='time' i])) {
+  background-image: var(--icon-time);
+} */
+
+/* Calendar icons are hidden in Firefox */
+@supports (-moz-appearance: none) {
+  :where(
+    input:is(
+      [type='date' i],
+      [type='datetime-local' i],
+      [type='month' i],
+      [type='time' i],
+      [type='week' i]
+    )
+  ) {
+    background-image: none;
+    padding-inline-end: var(--form-padding-x, var(--dim-2));
+  }
+}

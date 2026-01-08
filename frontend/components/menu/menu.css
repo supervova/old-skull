@@ -34,12 +34,11 @@
     color: var(--menu-color);
     display: block;
     padding: 0;
-    position: relative;
     width: 100%;
-  }
 
-  li::marker {
-    display: none;
+    &::before {
+      content: none;
+    }
   }
 
   li > a {

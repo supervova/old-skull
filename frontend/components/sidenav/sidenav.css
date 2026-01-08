@@ -59,7 +59,7 @@
     letter-spacing: var(--sidenav-label-letter-spacing);
     line-height: var(--sidenav-label-line-height);
     position: absolute;
-    inset-block-start: var(--rlh);
+    inset-block-start: var(--spacer);
     inset-inline-start: var(--dim-6);
   }
 

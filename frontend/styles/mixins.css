@@ -38,7 +38,7 @@
   --lh: $(lh);
 
   /* Fallback w/o lh */
-  --height: calc(var(--rows) * var(--rlh) * 1em);
+  --height: calc(var(--rows) * var(--spacer) * 1em);
 
   /* Modern solution w/ lh */
   @supports (height: 1lh) {

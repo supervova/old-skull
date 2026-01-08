@@ -1,0 +1,127 @@
+/* -------------------------------------------------------------------------- */
+/* #region: RHYTHM VARIABLES                                                  */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  --spacer-flow: var(--dim-2);
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: HEADINGS                                                          */
+/* -------------------------------------------------------------------------- */
+
+.hero-title {
+  padding-block: var(--padding-top-hero, 0px) var(--padding-bottom-hero, 0px);
+}
+
+:is(h1:not(.hero-title), .h1) {
+  padding-block: var(--padding-top-title, 0px) var(--padding-bottom-title, 0px);
+
+  &:not(header *) {
+    margin-block: 0 var(--margin-bottom-title, calc(var(--spacer-flow) * 3));
+  }
+}
+
+:is(h2, .h2) {
+  margin-block: 0 var(--margin-bottom-h2, var(--spacer-flow));
+  padding-block: var(--padding-top-h2, 0px) var(--padding-bottom-h2, 0px);
+}
+
+:is(h3, .h3) {
+  margin-block: 0 var(--margin-bottom-h3, var(--spacer-flow));
+  padding-block: var(--padding-top-h3, 0px) var(--padding-bottom-h3, 0px);
+}
+
+:is(h4, .h4, h5, h6) {
+  margin-block: 0;
+  padding-block: var(--padding-top-base, 0px) var(--padding-bottom-base, 0px);
+}
+
+:where(address, blockquote, div, dl, figure, form, ol, p, pre, table, ul)
+  + :is(h2, .h2, h3, .h3, h4, .h4, h5, h6) {
+  margin-top: var(--margin-top-subhead, calc(var(--spacer-flow) * 3));
+}
+
+/* Eyebrow: category or section label above the title */
+.eyebrow {
+  margin-bottom: var(--eyebrow-margin-bottom, var(--dim-1));
+  padding-block: var(--padding-top-fine-print, 0px) var(--padding-bottom-fine-print, 0px);
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: BLOCKS                                                            */
+/* -------------------------------------------------------------------------- */
+
+:is(address, dd, dt, li, p) {
+  padding-block: var(--padding-top-base, 0px) var(--padding-bottom-base, 0px);
+}
+
+:is(address, blockquote, dl, ol, p, pre, table, ul) {
+  margin-block: 0 var(--spacer-flow);
+}
+
+.scroll-x {
+  margin-block: 0 var(--spacer-flow);
+
+  & > table {
+    margin: 0;
+  }
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: PROSE SPECIFIC                                                            */
+/* -------------------------------------------------------------------------- */
+
+.prose figure {
+  --figure-margin: 0 0 var(--spacer-flow);
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: LISTS                                                            */
+/* -------------------------------------------------------------------------- */
+
+ul {
+  --list-bullet-top: calc(0.2em + var(--padding-top-base, 0px));
+}
+
+ol {
+  --list-number-top: var(--padding-top-base, 0px);
+}
+
+li:not(:last-child) {
+  margin-bottom: var(--list-gap);
+}
+
+:is(dd, li) {
+  & p { margin-bottom: 0; }
+
+  & > p:first-child { padding-top: 0; }
+
+  & > p:last-child { padding-bottom: 0; }
+}
+
+li:has(> ul, > ol) {
+  margin-block: var(--list-gap) 0;
+  padding-bottom: 0;
+}
+
+/* #endregion */
+
+/* -------------------------------------------------------------------------- */
+/* #region: UTILITIES                                                         */
+/* -------------------------------------------------------------------------- */
+
+.text-sm {
+  padding-bottom: var(--padding-bottom-body-sm, 0px);
+  padding-top: var(--padding-top-body-sm, 0px);
+}
+
+/* #endregion */

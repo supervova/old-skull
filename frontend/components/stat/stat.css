@@ -5,7 +5,7 @@
 .stats {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--rlh);
+  gap: var(--spacer);
   padding: var(--dim-2plus) 0;
 
   @media (--tablet) {

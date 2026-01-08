@@ -36,32 +36,22 @@ h3, .h3 {
 
 h1, .h1 {
   @mixin text-format title;
-
-  &:not(header *) {
-    margin-bottom: var(--margin-bottom-title, var(--dim-7));
-  }
 }
 
 h2, .h2 {
   @mixin text-format h2;
-  margin-bottom: var(--margin-bottom-h2, var(--rlh));
 }
 
 h3, .h3 {
   @mixin text-format h3;
-  margin-bottom: var(--margin-bottom-h3, var(--dim-2));
 }
 
 h4, .h4, h5, h6 {
   @mixin text-format base;
   font-weight: var(--font-weight-strong, 600);
-  margin-bottom: 0;
 }
 
-:where(address, blockquote, div, dl, figure, form, ol, p, pre, table, ul)
-  + :is(h2, .h2, h3, .h3, h4, .h4, h5, h6) {
-  margin-top: var(--margin-top-subhead, var(--dim-6));
-}
+/* Extra spacing is controlled by vertical-rhythm files. */
 
 /* #endregion */
 
@@ -71,10 +61,6 @@ h4, .h4, h5, h6 {
 
 p, li, dd {
   text-wrap: pretty;
-}
-
-:where(p, pre, table) {
-  margin-block: 0 var(--rlh);
 }
 
 a {
@@ -136,24 +122,13 @@ ol {
   --list-gap: var(--dim-1);
   --list-indent: var(--dim-2plus);
 
-  list-style-type: none;
   margin-inline: 0;
-  margin-block: 0 var(--rlh);
   padding: 0;
 }
 
 /* List items */
 :is(ul, ol) > li {
   position: relative;
-
-  &:not(:last-child),
-  p:not(:last-child) {
-    margin-bottom: var(--list-gap);
-  }
-
-  p:last-child {
-    margin-bottom: 0;
-  }
 }
 
 /* UL */
@@ -161,20 +136,28 @@ ul:not([role='list']) {
   padding-inline-start: var(--list-padding);
 }
 
-ul > li::before {
-  color: var(--color-brand);
-  content: '•';
-  line-height: 1;
-  text-transform: none;
-  position: absolute;
-  top: 0.2em;
-  left: -20px;
+ul {
+  --list-bullet-top: 0.2em;
+  list-style-type: none;
+
+  > li::before {
+    color: var(--color-brand);
+    content: '•';
+    line-height: 1;
+    text-transform: none;
+    position: absolute;
+    top: var(--list-bullet-top);
+    left: -20px;
+  }
 }
 
 /* OL */
 ol {
+  --list-number-top: 0;
+
   /* <ol start="9" style="--ol-start: 9"> */
   counter-reset: list-counter var(--ol-start, 0);
+  list-style-type: none;
 }
 
 ol > li {
@@ -187,7 +170,7 @@ ol > li {
     font-variant-numeric: tabular-nums;
     text-align: end;
     position: absolute;
-    top: 0;
+    top: var(--list-number-top);
     left: 0;
   }
 }
@@ -195,7 +178,6 @@ ol > li {
 /* Nested lists */
 li > ul,
 li > ol {
-  margin-block: var(--list-gap) 0;
   padding-inline-start: var(--list-indent);
 }
 
@@ -205,7 +187,7 @@ dl {
 
   @media (--phone-l) {
     display: grid;
-    gap: var(--dim-1) var(--rlh);
+    gap: var(--dim-1) var(--spacer);
     grid-template-columns: var(--grid-columns);
   }
 }
@@ -232,10 +214,6 @@ img,
 svg,
 video {
   height: auto;
-}
-
-figure {
-  margin: 0;
 }
 
 figcaption {

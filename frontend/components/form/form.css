@@ -22,8 +22,10 @@ fieldset {
   position: relative;
 }
 
+form > p,
 .form-container > p,
 .form-container > div:not([class]) {
+  margin-block: 0 var(--dim-2);
   padding: 0;
   position: relative;
 }
@@ -112,7 +114,7 @@ fieldset {
   --form-field-padding-x: var(--padding-x-input);
   --form-field-text-color: var(--color-text);
   --form-field-border-color: transparent;
-  --form-field-min-height: calc(var(--rlh) * 2);
+  --form-field-min-height: calc(var(--spacer) * 2);
 }
 
 .form-field :is(:--text-field, [type='search']) {
@@ -148,7 +150,7 @@ fieldset {
 }
 
 .form-field textarea:not([rows]) {
-  height: calc(var(--rlh) * 6);
+  height: calc(var(--spacer) * 6);
 }
 
 .form-field.form-field-error {
@@ -170,14 +172,14 @@ fieldset {
   --form-field-padding-y: var(--dim-1);
   --form-field-padding-x: var(--dim-2);
   --form-field-font-size: var(--font-size-sm);
-  --form-field-min-height: calc(var(--rlh) * 1.5);
+  --form-field-min-height: calc(var(--spacer) * 1.5);
 }
 
 .form-field.form-field-lg {
   --form-field-padding-y: var(--dim-2);
-  --form-field-padding-x: var(--rlh);
+  --form-field-padding-x: var(--spacer);
   --form-field-font-size: var(--font-size-h3);
-  --form-field-min-height: calc(var(--rlh) * 2.5);
+  --form-field-min-height: calc(var(--spacer) * 2.5);
 }
 
 .form-field :is(:--text-field, [type='search']):disabled,
@@ -203,7 +205,7 @@ fieldset {
 }
 
 .form-disclaimer {
-  margin-block: var(--rlh);
+  margin-block: var(--spacer);
 }
 
 /* #endregion */

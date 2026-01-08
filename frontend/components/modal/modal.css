@@ -9,15 +9,15 @@
     --modal-shadow: var(--shadow-z3);
     --modal-radius: var(--radius-lg);
     --modal-radius-mobile: var(--radius-base);
-    --modal-padding-block: var(--rlh);
-    --modal-padding-inline: var(--padding-inline-md, var(--rlh));
+    --modal-padding-block: var(--spacer);
+    --modal-padding-inline: var(--padding-inline-md, var(--spacer));
     --modal-overlay-bg: var(--color-backdrop);
     --modal-overlay-filter: var(--backdrop-glass);
     --modal-duration: var(--duration-500);
     --modal-offset: var(--dim-5);
     --modal-scroll-inset: var(--dim-2);
     --modal-scroll-padding: var(--dim-1);
-    --modal-tab-shift: var(--rlh);
+    --modal-tab-shift: var(--spacer);
     --modal-gap: var(--dim-1);
     --modal-max-width: var(--width-xl);
     --modal-patch-offset: var(--modal-padding-block);
